@@ -7,7 +7,7 @@ const useStyles = makeStyles(() => ({
 const Home = () => {
 	const classes = useStyles();
 
-	return <div className={classes.root}>Home</div>;
+	return <div className={classes.root}></div>;
 };
 
 export default Home;

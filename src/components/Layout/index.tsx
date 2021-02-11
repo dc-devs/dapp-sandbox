@@ -3,8 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import { Link } from 'react-router-dom';
+import { Link as ReactLink } from 'react-router-dom';
+import Link from '@material-ui/core/Link';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -12,6 +12,12 @@ const useStyles = makeStyles((theme) => ({
 	},
 	title: {
 		flexGrow: 1,
+	},
+	appBar: {
+		backgroundColor: 'white',
+		boxShadow: 'none',
+		borderBottom: `1px solid #ddd`,
+		color: '#bbb',
 	},
 }));
 
@@ -24,17 +30,23 @@ const Layout: React.FC<Props> = ({ children }) => {
 
 	return (
 		<div className={classes.root}>
-			<AppBar position="static">
+			<AppBar
+				position="fixed"
+				classes={{
+					root: classes.appBar,
+				}}
+			>
 				<Toolbar>
 					<Typography variant="h6" className={classes.title}>
-						<Link to="/">React Starter Template</Link>
+						<Link
+							to="/"
+							color="primary"
+							underline="none"
+							component={ReactLink}
+						>
+							DApp
+						</Link>
 					</Typography>
-					<Button color="inherit">
-						<Link to="/sign-up">Sign Up</Link>
-					</Button>
-					<Button color="inherit">
-						<Link to="/sign-in">Sign In</Link>
-					</Button>
 				</Toolbar>
 			</AppBar>
 			{children}

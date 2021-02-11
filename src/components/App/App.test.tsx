@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react';
-import App from './App';
+import App from './index';
 
 test('renders learn react link', () => {
 	render(<App />);
-	const title = screen.getByText(/React Starter Template/i);
+	const title = screen.getByText(/DApp/i);
 	expect(title).toBeInTheDocument();
 });
