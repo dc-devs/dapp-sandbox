@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Container from '@material-ui/core/Container';
-import MetaMask from '../MetaMask';
+import WalletConnect from '../WalletConnect';
 import Logo from '../Logo';
 
 const useStyles = makeStyles((theme) => ({
@@ -51,7 +51,7 @@ const Layout: React.FC<Props> = ({ children }) => {
 				<Container>
 					<Toolbar>
 						<Logo />
-						<MetaMask />
+						<WalletConnect />
 					</Toolbar>
 				</Container>
 			</AppBar>

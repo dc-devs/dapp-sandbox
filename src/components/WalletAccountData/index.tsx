@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const MetaMask = () => {
+const MetaMaskAccountData = () => {
 	const classes = useStyles();
 
 	return (
@@ -36,4 +36,4 @@ const MetaMask = () => {
 	);
 };
 
-export default MetaMask;
+export default MetaMaskAccountData;
