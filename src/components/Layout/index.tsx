@@ -2,10 +2,9 @@ import { ReactNode } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import { Link as ReactLink } from 'react-router-dom';
-import Link from '@material-ui/core/Link';
 import Container from '@material-ui/core/Container';
+import MetaMask from '../MetaMask';
+import Logo from '../Logo';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -19,23 +18,6 @@ const useStyles = makeStyles((theme) => ({
 		boxShadow: 'none',
 		borderBottom: `1px solid #eceff1`,
 		color: '#bbb',
-	},
-	metaMaskContainer: {
-		display: 'flex',
-		flexDirection: 'row',
-		alignItems: 'center',
-		backgroundColor: '#eceff1',
-		borderRadius: '12px',
-	},
-	addressContainer: {
-		border: `1px solid #eceff1`,
-		borderRadius: '12px',
-		backgroundColor: 'white',
-		zIndex: 3,
-	},
-	accountInfo: {
-		padding: '.3rem .5rem',
-		color: theme.palette.text.primary,
 	},
 	button: {
 		// border: '1px solid rgba(111,76,255,1.0)',
@@ -68,26 +50,8 @@ const Layout: React.FC<Props> = ({ children }) => {
 			>
 				<Container>
 					<Toolbar>
-						<Typography variant="h6" className={classes.title}>
-							<Link
-								to="/"
-								color="primary"
-								underline="none"
-								component={ReactLink}
-							>
-								DApp
-							</Link>
-						</Typography>
-						<div className={classes.metaMaskContainer}>
-							<Typography className={classes.accountInfo}>
-								0.3067 ETH
-							</Typography>
-							<div className={classes.addressContainer}>
-								<Typography className={classes.accountInfo}>
-									0x9881...CC0D
-								</Typography>
-							</div>
-						</div>
+						<Logo />
+						<MetaMask />
 					</Toolbar>
 				</Container>
 			</AppBar>
