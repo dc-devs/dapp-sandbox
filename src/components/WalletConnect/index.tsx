@@ -1,16 +1,20 @@
 import useIsMetaMaskInstalled from '../../hooks/useIsMetaMaskInstalled';
-import ConnectToWallet from '../buttons/ConnectToWallet';
+import ConnectToWalletButton from '../buttons/ConnectToWalletButton';
 import WalletAccountData from '../WalletAccountData';
 
 const WalletConnect = () => {
 	const isWalletConnected = false;
-	const ConnectToWalletHTML = ConnectToWallet();
+	const ConnectToWalletButtonHTML = ConnectToWalletButton();
 	const WalletAccountDataHTML = WalletAccountData();
 
 	useIsMetaMaskInstalled();
 
 	return (
-		<>{isWalletConnected ? WalletAccountDataHTML : ConnectToWalletHTML}</>
+		<>
+			{isWalletConnected
+				? WalletAccountDataHTML
+				: ConnectToWalletButtonHTML}
+		</>
 	);
 };
 
