@@ -1,3 +1,5 @@
+import { ethers } from 'ethers';
+import detectEthereumProvider from '@metamask/detect-provider';
 import { SyntheticEvent } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -40,17 +42,33 @@ interface Props {
 	walletInstruction: string;
 }
 
-const WalletConnectContainer = ({
+const ConnectWalletButton = ({
 	imgSrc,
 	walletName,
 	walletInstruction,
 }: Props) => {
 	const classes = useStyles();
 
-	const handleOnClick = (event: SyntheticEvent) => {
+	const handleOnClick = async (event: SyntheticEvent) => {
 		event.preventDefault();
 		event.stopPropagation();
+		const ethereum = window.ethereum;
+
+		if (ethereum) {
+			// const { provider } = new ethers.providers.Web3Provider(ethereum);
+			// const accounts = await provider.request({
+			// 	method: 'eth_requestAccounts',
+			// });
+			// console.log(accounts);
+		}
 	};
+
+	// const isMetaMaskInstalled = async () => {
+	// 	return await detectEthereumProvider({
+	// 		mustBeMetaMask: true,
+	// 		silent: true,
+	// 	});
+	// };
 
 	return (
 		<>
@@ -69,4 +87,4 @@ const WalletConnectContainer = ({
 	);
 };
 
-export default WalletConnectContainer;
+export default ConnectWalletButton;

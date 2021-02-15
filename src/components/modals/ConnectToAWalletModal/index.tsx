@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
 import DialogContent from '@material-ui/core/DialogContent';
 import ModalBase from '../ModalBase';
-import WallectConnectContainer from '../../WallectConnectContainer';
+import WallectConnectContainer from '../../buttons/ConnectWalletButton';
 
 interface Props {
 	isOpen: boolean;
@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const ModalWalletConnect = ({ isOpen }: Props) => {
+const ConnectToAWalletModal = ({ isOpen }: Props) => {
 	const classes = useStyles();
 
 	return (
@@ -89,4 +89,4 @@ const ModalWalletConnect = ({ isOpen }: Props) => {
 	);
 };
 
-export default ModalWalletConnect;
+export default ConnectToAWalletModal;

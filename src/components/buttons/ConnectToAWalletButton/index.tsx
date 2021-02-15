@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import ModalWalletConnect from '../../modals/ModalWalletConnect';
+import ModalWalletConnect from '../../modals/ConnectToAWalletModal';
 
 const useStyles = makeStyles((theme) => ({
 	buttonRoot: {
@@ -15,15 +15,13 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const ConnectToWallet = () => {
+const ConnectToAWallet = () => {
 	const classes = useStyles();
 	const [open, setOpen] = useState(false);
 	const toggleModal = () => {
 		if (open) {
-			console.log('close');
 			setOpen(false);
 		} else {
-			console.log('open');
 			setOpen(true);
 		}
 	};
@@ -44,4 +42,4 @@ const ConnectToWallet = () => {
 	);
 };
 
-export default ConnectToWallet;
+export default ConnectToAWallet;

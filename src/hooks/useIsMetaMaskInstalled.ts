@@ -4,7 +4,9 @@ import detectEthereumProvider from '@metamask/detect-provider';
 const useIsMetaMaskInstalled = () => {
 	useEffect(() => {
 		const detectProvider = async () => {
-			const provider: any = await detectEthereumProvider();
+			const provider: any = await detectEthereumProvider({
+				mustBeMetaMask: true,
+			});
 
 			if (provider) {
 				provider
