@@ -1,9 +1,9 @@
 import { useDispatch } from 'react-redux';
-import { updateIsMetaMaskInstalled } from '../redux/slices/metamask-slice';
+import { updateIsMetaMaskConnected } from '../redux/slices/metamask-slice';
 import { useEffect } from 'react';
 import detectEthereumProvider from '@metamask/detect-provider';
 
-const useUpdateIsMetaMaskInstalled = () => {
+const useUpdateIsMetaMaskConnected = () => {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
@@ -13,8 +13,8 @@ const useUpdateIsMetaMaskInstalled = () => {
 				mustBeMetaMask: true,
 			});
 
-			if (provider) {
-				dispatch(updateIsMetaMaskInstalled(true));
+			if (provider && provider.selectedAddress) {
+				dispatch(updateIsMetaMaskConnected(true));
 			}
 		};
 
@@ -22,4 +22,4 @@ const useUpdateIsMetaMaskInstalled = () => {
 	});
 };
 
-export default useUpdateIsMetaMaskInstalled;
+export default useUpdateIsMetaMaskConnected;

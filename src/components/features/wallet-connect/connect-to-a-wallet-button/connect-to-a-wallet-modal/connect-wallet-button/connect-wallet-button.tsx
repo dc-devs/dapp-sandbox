@@ -4,7 +4,7 @@ import { SyntheticEvent } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { useSelector } from 'react-redux';
 import Typography from '@material-ui/core/Typography';
-import { selectIsInstalled } from '../../../../../../redux/slices/metamask-slice';
+import { selectIsMetaMaskInstalled } from '../../../../../../redux/slices/metamask-slice';
 
 const useStyles = makeStyles((theme) => ({
 	walletContainer: {
@@ -54,8 +54,7 @@ const ConnectWalletButton = ({
 	walletInstruction,
 }: Props) => {
 	const classes = useStyles();
-	const isMetaMaskInstalled = useSelector(selectIsInstalled);
-	console.log('isMetaMaskInstalled', isMetaMaskInstalled);
+	const isMetaMaskInstalled = useSelector(selectIsMetaMaskInstalled);
 
 	const handleOnClick = async (event: SyntheticEvent) => {
 		if (isMetaMaskInstalled) {

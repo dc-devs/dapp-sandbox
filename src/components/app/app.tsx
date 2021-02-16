@@ -1,10 +1,14 @@
 import Home from '../pages/home';
 import Layout from './layout';
-import useUpdateIsMetaMaskInstalled from '../../hooks/useUpdateIsMetaMaskInstalled';
+import {
+	useUpdateIsMetaMaskInstalled,
+	useUpdateIsMetaMaskConnected,
+} from '../../hooks';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 const App = () => {
 	useUpdateIsMetaMaskInstalled();
+	useUpdateIsMetaMaskConnected();
 
 	return (
 		<Router>

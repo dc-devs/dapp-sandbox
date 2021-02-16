@@ -1,34 +1,48 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 interface MetaMaskState {
-	isInstalled: boolean;
+	isMetaMaskInstalled: boolean;
+	isMetaMaskConnected: boolean;
 }
 
 interface State {
 	metaMask: MetaMaskState;
-	isInstalled: boolean;
 }
 
 export const metaMaskSlice = createSlice({
 	name: 'metaMask',
 	initialState: {
-		isInstalled: false,
+		isMetaMaskInstalled: false,
+		isMetaMaskConnected: false,
 	},
 	reducers: {
-		updateIsInstalled: (state, { payload }) => {
-			state.isInstalled = payload;
+		updateIsMetaMaskInstalled: (state, { payload }) => {
+			state.isMetaMaskInstalled = payload;
+		},
+		updateIsMetaMaskConnected: (state, { payload }) => {
+			state.isMetaMaskConnected = payload;
 		},
 	},
 });
 
 const { reducer, actions } = metaMaskSlice;
-export const { updateIsInstalled } = actions;
 
-// The function below is called a selector and allows us to select a value from
-// the state. Selectors can also be defined inline where they're used instead of
-// in the slice file. For example: `useSelector((state) => state.counter.value)`
-export const selectIsInstalled = (state: State) => {
-	return state.metaMask.isInstalled;
+// Export Actions
+// ------------------
+export const { updateIsMetaMaskInstalled, updateIsMetaMaskConnected } = actions;
+
+// Export Selectors
+// ------------------
+const selectIsMetaMaskInstalled = (state: State) => {
+	return state.metaMask.isMetaMaskInstalled;
 };
 
+const selectIsMetaMaskConnected = (state: State) => {
+	return state.metaMask.isMetaMaskConnected;
+};
+
+export { selectIsMetaMaskInstalled, selectIsMetaMaskConnected };
+
+// Export Reducer
+// ------------------
 export default reducer;
