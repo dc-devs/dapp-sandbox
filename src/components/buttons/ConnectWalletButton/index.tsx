@@ -4,7 +4,7 @@ import { SyntheticEvent } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { useSelector } from 'react-redux';
 import Typography from '@material-ui/core/Typography';
-import { selectIsInstalled } from '../../../features/walletConnect/metaMaskSlice';
+import { selectIsInstalled } from '../../features/wallet-connect/metamask-slice';
 
 const useStyles = makeStyles((theme) => ({
 	walletContainer: {

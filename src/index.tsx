@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/App';
-import reportWebVitals from './reportWebVitals';
+import App from './components/app';
+import reportWebVitals from './report-web-vitals';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { Provider } from 'react-redux';
