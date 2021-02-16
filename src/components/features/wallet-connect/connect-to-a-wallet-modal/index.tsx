@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
 import DialogContent from '@material-ui/core/DialogContent';
-import ModalBase from '../ModalBase';
-import WallectConnectContainer from '../../buttons/ConnectWalletButton';
+import ModalBase from '../../../core/modals/modal-base';
+import WallectConnectContainer from './connect-wallet-button';
 
 interface Props {
 	isOpen: boolean;

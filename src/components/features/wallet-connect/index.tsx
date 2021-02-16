@@ -1,5 +1,5 @@
-import ConnectToAWalletButton from '../buttons/ConnectToAWalletButton';
-import WalletAccountData from '../wallet-account-data';
+import ConnectToAWalletButton from './connect-to-a-wallet-button';
+import WalletAccountData from './wallet-account-data';
 
 const WalletConnect = () => {
 	const isWalletConnected = false;

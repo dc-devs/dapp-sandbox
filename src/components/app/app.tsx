@@ -1,5 +1,5 @@
-import Home from '../../pages/home';
-import Layout from '../layout';
+import Home from '../pages/home';
+import Layout from './layout';
 import useUpdateIsMetaMaskInstalled from '../../hooks/useUpdateIsMetaMaskInstalled';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 

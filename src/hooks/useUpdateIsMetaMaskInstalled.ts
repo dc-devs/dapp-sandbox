@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { updateIsInstalled } from '../components/features/wallet-connect/metamask-slice';
+import { updateIsInstalled } from '../redux/slices/metamask-slice';
 import { useEffect } from 'react';
 import detectEthereumProvider from '@metamask/detect-provider';
 

@@ -3,8 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Container from '@material-ui/core/Container';
-import WalletConnect from '../wallet-connect';
-import Logo from '../logo';
+import WalletConnect from '../../features/wallet-connect';
+import Logo from './logo';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
