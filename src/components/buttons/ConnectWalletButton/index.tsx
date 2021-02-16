@@ -2,6 +2,9 @@ import { ethers } from 'ethers';
 import detectEthereumProvider from '@metamask/detect-provider';
 import { SyntheticEvent } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import { useSelector } from 'react-redux';
+import Typography from '@material-ui/core/Typography';
+import { selectIsInstalled } from '../../../features/walletConnect/metaMaskSlice';
 
 const useStyles = makeStyles((theme) => ({
 	walletContainer: {
@@ -34,6 +37,9 @@ const useStyles = makeStyles((theme) => ({
 	walletInstruction: {
 		marginTop: '2px',
 	},
+	metaMaskInstallLink: {
+		textDecoration: 'none',
+	},
 }));
 
 interface Props {
@@ -48,27 +54,55 @@ const ConnectWalletButton = ({
 	walletInstruction,
 }: Props) => {
 	const classes = useStyles();
+	const isMetaMaskInstalled = useSelector(selectIsInstalled);
+	console.log('isMetaMaskInstalled', isMetaMaskInstalled);
 
 	const handleOnClick = async (event: SyntheticEvent) => {
-		event.preventDefault();
-		event.stopPropagation();
+		if (isMetaMaskInstalled) {
+			event.preventDefault();
+			event.stopPropagation();
+		}
 		const ethereum = window.ethereum;
 
 		if (ethereum) {
-			// const { provider } = new ethers.providers.Web3Provider(ethereum);
-			// const accounts = await provider.request({
-			// 	method: 'eth_requestAccounts',
-			// });
-			// console.log(accounts);
+			const metaMaskProvider: any = await detectEthereumProvider({
+				mustBeMetaMask: true,
+				silent: true,
+			});
+
+			if (metaMaskProvider) {
+				const { provider } = new ethers.providers.Web3Provider(
+					ethereum
+				) as any;
+				const accounts = await provider.request({
+					method: 'eth_requestAccounts',
+				});
+				console.log(accounts);
+			}
 		}
 	};
 
-	// const isMetaMaskInstalled = async () => {
-	// 	return await detectEthereumProvider({
-	// 		mustBeMetaMask: true,
-	// 		silent: true,
-	// 	});
-	// };
+	const MetaMaskInstallHTML = (
+		<a
+			href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn"
+			target="_blank"
+			rel="noreferrer"
+			className={classes.metaMaskInstallLink}
+		>
+			<Typography color="primary">Click to install MetaMask</Typography>
+		</a>
+	);
+
+	const WalletInstructionHTML = (
+		<Typography className={classes.walletInstruction}>
+			{walletInstruction}
+		</Typography>
+	);
+
+	const instruction =
+		walletName === 'MetaMask' && !isMetaMaskInstalled
+			? MetaMaskInstallHTML
+			: WalletInstructionHTML;
 
 	return (
 		<>
@@ -78,10 +112,12 @@ const ConnectWalletButton = ({
 					src={imgSrc}
 					alt={walletName}
 				/>
-				<div className={classes.walletName}>{walletName}</div>
-				<div className={classes.walletInstruction}>
-					{walletInstruction}
-				</div>
+
+				<Typography className={classes.walletName}>
+					{walletName}
+				</Typography>
+
+				{instruction}
 			</div>
 		</>
 	);
