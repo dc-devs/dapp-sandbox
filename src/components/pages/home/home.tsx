@@ -16,17 +16,12 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-interface Props {
-	isWalletConnected: boolean;
-}
-
-const Home = ({ isWalletConnected }: Props) => {
+const Home = () => {
 	const classes = useStyles();
 
 	return (
 		<div className={classes.root}>
 			<Typography className={classes.homeTitle}>Simple Wallet</Typography>
-			<Typography>{isWalletConnected.toString()}</Typography>
 		</div>
 	);
 };

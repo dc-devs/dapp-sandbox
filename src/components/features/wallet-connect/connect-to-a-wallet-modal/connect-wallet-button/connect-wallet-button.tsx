@@ -82,7 +82,6 @@ const ConnectWalletButton = ({
 				});
 
 				store.dispatch(updateIsMetaMaskConnected(true));
-				console.log(accounts);
 			}
 		}
 	};

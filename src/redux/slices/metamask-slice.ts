@@ -20,7 +20,6 @@ export const metaMaskSlice = createSlice({
 			state.isMetaMaskInstalled = payload;
 		},
 		updateIsMetaMaskConnected: (state, { payload }) => {
-			console.log('Setting: isMetaMaskConnected', payload);
 			state.isMetaMaskConnected = payload;
 		},
 	},

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import { Redirect } from 'react-router';
 import Typography from '@material-ui/core/Typography';
 import ModalWalletConnect from './connect-to-a-wallet-modal';
 import { selectIsMetaMaskConnected } from '../../../redux/slices/metamask-slice';
@@ -25,6 +26,10 @@ const ConnectToAWallet = () => {
 	const classes = useStyles();
 	const [open, setOpen] = useState(false);
 	const isWalletConnected = useSelector(selectIsMetaMaskConnected);
+
+	if (isWalletConnected) {
+		<Redirect to="/dashboard" />;
+	}
 
 	const toggleModal = () => {
 		if (open) {
