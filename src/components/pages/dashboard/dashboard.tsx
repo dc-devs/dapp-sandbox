@@ -9,20 +9,22 @@ const useStyles = makeStyles((theme) => ({
 		width: '100vw',
 		height: '100vh',
 	},
-	homeTitle: {
+	dashboardTitle: {
 		fontSize: '5rem',
 		color: theme.palette.primary.main,
 	},
 }));
 
-const Home = () => {
+const Dashboard = () => {
 	const classes = useStyles();
 
 	return (
 		<div className={classes.root}>
-			<Typography className={classes.homeTitle}>Simple Wallet</Typography>
+			<Typography className={classes.dashboardTitle}>
+				Dashboard
+			</Typography>
 		</div>
 	);
 };
 
-export default Home;
+export default Dashboard;

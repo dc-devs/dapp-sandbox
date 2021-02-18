@@ -16,20 +16,7 @@ const useStyles = makeStyles((theme) => ({
 	appBar: {
 		backgroundColor: 'white',
 		boxShadow: 'none',
-		borderBottom: `1px solid #eceff1`,
 		color: '#bbb',
-	},
-	button: {
-		// border: '1px solid rgba(111,76,255,1.0)',
-		// boxShadow: '0 0 24px 0 rgb(111 76 255 / 32%)',
-		padding: '15px 25px',
-		color: 'rgba(255,255,255,0.96)',
-		borderRadius: '4px',
-		background: 'rgba(111,76,255,0.1)',
-		transition: 'all 0.3s ease',
-		opacity: '1',
-		border: '2px solid rgb(166,150,231)',
-		boxShadow: ' 0 0 24px 0 rgb(111 76 255 / 32%)',
 	},
 }));
 

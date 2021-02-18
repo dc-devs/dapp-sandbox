@@ -4,7 +4,7 @@ import { SyntheticEvent } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { useSelector } from 'react-redux';
 import Typography from '@material-ui/core/Typography';
-import { selectIsMetaMaskInstalled } from '../../../../../../redux/slices/metamask-slice';
+import { selectIsMetaMaskInstalled } from '../../../../../redux/slices/metamask-slice';
 
 const useStyles = makeStyles((theme) => ({
 	walletContainer: {

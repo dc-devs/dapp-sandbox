@@ -1,5 +1,9 @@
+import LayoutHome from './layout-home';
+import LayoutApp from './layout-app';
 import Home from '../pages/home';
-import Layout from './layout';
+import Dashboard from '../pages/dashboard';
+import { useSelector } from 'react-redux';
+import { selectIsMetaMaskConnected } from '../../redux/slices/metamask-slice';
 import {
 	useUpdateIsMetaMaskInstalled,
 	useUpdateIsMetaMaskConnected,
@@ -10,15 +14,24 @@ const App = () => {
 	useUpdateIsMetaMaskInstalled();
 	useUpdateIsMetaMaskConnected();
 
+	const isWalletConnected = useSelector(selectIsMetaMaskConnected);
+
+	console.log('isWalletConnected', isWalletConnected);
+
 	return (
 		<Router>
-			<Layout>
-				<Switch>
-					<Route path="/">
+			<Switch>
+				<Route path="/dashboard">
+					<LayoutApp>
+						<Dashboard />
+					</LayoutApp>
+				</Route>
+				<Route path="/">
+					<LayoutHome>
 						<Home />
-					</Route>
-				</Switch>
-			</Layout>
+					</LayoutHome>
+				</Route>
+			</Switch>
 		</Router>
 	);
 };

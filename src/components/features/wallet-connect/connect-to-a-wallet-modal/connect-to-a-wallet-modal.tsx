@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 import DialogContent from '@material-ui/core/DialogContent';
-import ModalBase from '../../../../core/modals/modal-base';
+import ModalBase from '../../../core/modals/modal-base';
 import WallectConnectContainer from './connect-wallet-button';
 
 interface Props {

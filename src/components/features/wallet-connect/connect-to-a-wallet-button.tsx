@@ -8,7 +8,11 @@ const useStyles = makeStyles((theme) => ({
 	buttonRoot: {
 		textTransform: 'none',
 		borderRadius: '12px',
-		border: `1px solid #eceff1`,
+		backgroundColor: theme.palette.primary.main,
+		color: 'white',
+		'&:hover': {
+			backgroundColor: theme.palette.primary.dark,
+		},
 	},
 	buttonText: {
 		padding: '.2rem .4rem',
