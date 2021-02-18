@@ -11,12 +11,10 @@ import {
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 const App = () => {
-	useUpdateIsMetaMaskInstalled();
-	useUpdateIsMetaMaskConnected();
-
 	const isWalletConnected = useSelector(selectIsMetaMaskConnected);
 
-	console.log('isWalletConnected', isWalletConnected);
+	useUpdateIsMetaMaskInstalled();
+	useUpdateIsMetaMaskConnected();
 
 	return (
 		<Router>
@@ -28,7 +26,7 @@ const App = () => {
 				</Route>
 				<Route path="/">
 					<LayoutHome>
-						<Home />
+						<Home isWalletConnected={isWalletConnected} />
 					</LayoutHome>
 				</Route>
 			</Switch>

@@ -1,10 +1,14 @@
 import { ethers } from 'ethers';
+import store from '../../../../../redux/store';
 import detectEthereumProvider from '@metamask/detect-provider';
 import { SyntheticEvent } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { useSelector } from 'react-redux';
 import Typography from '@material-ui/core/Typography';
-import { selectIsMetaMaskInstalled } from '../../../../../redux/slices/metamask-slice';
+import {
+	selectIsMetaMaskInstalled,
+	updateIsMetaMaskConnected,
+} from '../../../../../redux/slices/metamask-slice';
 
 const useStyles = makeStyles((theme) => ({
 	walletContainer: {
@@ -76,6 +80,8 @@ const ConnectWalletButton = ({
 				const accounts = await provider.request({
 					method: 'eth_requestAccounts',
 				});
+
+				store.dispatch(updateIsMetaMaskConnected(true));
 				console.log(accounts);
 			}
 		}

@@ -3,6 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import ModalWalletConnect from './connect-to-a-wallet-modal';
+import { selectIsMetaMaskConnected } from '../../../redux/slices/metamask-slice';
+import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
 	buttonRoot: {
@@ -22,6 +24,8 @@ const useStyles = makeStyles((theme) => ({
 const ConnectToAWallet = () => {
 	const classes = useStyles();
 	const [open, setOpen] = useState(false);
+	const isWalletConnected = useSelector(selectIsMetaMaskConnected);
+
 	const toggleModal = () => {
 		if (open) {
 			setOpen(false);
@@ -29,6 +33,8 @@ const ConnectToAWallet = () => {
 			setOpen(true);
 		}
 	};
+
+	const isOpen = isWalletConnected ? false : open;
 
 	return (
 		<>
@@ -40,7 +46,7 @@ const ConnectToAWallet = () => {
 				<Typography className={classes.buttonText}>
 					Connect to a wallet
 				</Typography>
-				<ModalWalletConnect isOpen={open} />
+				<ModalWalletConnect isOpen={isOpen} />
 			</Button>
 		</>
 	);
