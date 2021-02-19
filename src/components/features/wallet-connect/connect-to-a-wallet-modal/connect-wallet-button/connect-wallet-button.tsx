@@ -6,6 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useSelector } from 'react-redux';
 import Typography from '@material-ui/core/Typography';
 import {
+	updateMetaMaskWalletData,
 	selectIsMetaMaskInstalled,
 	updateIsMetaMaskConnected,
 } from '../../../../../redux/slices/metamask-slice';
@@ -81,7 +82,12 @@ const ConnectWalletButton = ({
 					method: 'eth_requestAccounts',
 				});
 
+				const walletAddress = accounts[0];
+
 				store.dispatch(updateIsMetaMaskConnected(true));
+				store.dispatch(
+					updateMetaMaskWalletData({ address: walletAddress })
+				);
 			}
 		}
 	};

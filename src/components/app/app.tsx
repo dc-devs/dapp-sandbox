@@ -9,25 +9,27 @@ import {
 	useUpdateIsMetaMaskInstalled,
 	useUpdateIsMetaMaskConnected,
 } from '../../hooks';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Route, Switch, useLocation } from 'react-router-dom';
 
 const App = () => {
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	const isWalletConnected = useSelector(selectIsMetaMaskConnected);
+	const isMetaMaskConnected = useSelector(selectIsMetaMaskConnected);
+	const location = useLocation();
 
 	useUpdateIsMetaMaskInstalled();
 	useUpdateIsMetaMaskConnected();
 
-	console.log(isWalletConnected);
+	console.log(location);
+	console.log('isMetaMaskConnected', isMetaMaskConnected);
 
-	const redirectComponent = !isWalletConnected ? (
-		<Redirect to="/" />
-	) : (
+	const redirectComponent = isMetaMaskConnected ? (
 		<Redirect to="/dashboard" />
+	) : (
+		<Redirect to="/" />
 	);
 
 	return (
-		<Router>
+		<>
 			{redirectComponent}
 			<Switch>
 				<Route path="/dashboard">
@@ -41,7 +43,7 @@ const App = () => {
 					</LayoutHome>
 				</Route>
 			</Switch>
-		</Router>
+		</>
 	);
 };
 
