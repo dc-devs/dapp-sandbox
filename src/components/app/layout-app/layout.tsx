@@ -1,5 +1,7 @@
 import { ReactNode } from 'react';
+import PermanentDrawer from '../../permanent-drawer';
 import { makeStyles } from '@material-ui/core/styles';
+import { useUpdateMetaMaskWalletData } from '../../../hooks';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -11,10 +13,15 @@ interface Props {
 	children: ReactNode;
 }
 
-const Layout: React.FC<Props> = ({ children }) => {
+const Layout = ({ children }: Props) => {
 	const classes = useStyles();
+	useUpdateMetaMaskWalletData();
 
-	return <div className={classes.root}>{children}</div>;
+	return (
+		<div className={classes.root}>
+			<PermanentDrawer logoText="Haven">{children}</PermanentDrawer>
+		</div>
+	);
 };
 
 export default Layout;

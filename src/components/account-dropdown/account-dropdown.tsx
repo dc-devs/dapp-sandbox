@@ -1,6 +1,11 @@
+import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import ArrowBackIosRoundedIcon from '@material-ui/icons/ArrowBackIosRounded';
+import { selectMetaMaskWalletData } from '../../redux/slices/metamask-slice';
+import utils from '../../utils';
+
+const { shortenWalletAddress } = utils;
 
 const useStyles = makeStyles((theme) => ({
 	accountDropdownContainer: {
@@ -10,6 +15,7 @@ const useStyles = makeStyles((theme) => ({
 		marginTop: theme.spacing(3),
 		border: `1px solid #eceff1`,
 		borderRadius: '12px',
+		minHeight: '36px',
 	},
 	signedInDot: {
 		height: '10px',
@@ -21,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
 		display: 'flex',
 		justifyContent: 'center',
 		alignItems: 'center',
-		padding: '.3rem .5rem',
+		minWidth: '113px',
 		color: theme.palette.text.primary,
 		margin: '0 5px',
 	},
@@ -33,12 +39,15 @@ const useStyles = makeStyles((theme) => ({
 
 const AccountDropdown = () => {
 	const classes = useStyles();
+	const metaMaskWalletData = useSelector(selectMetaMaskWalletData);
+	const { address } = metaMaskWalletData;
+	const shortendWalletAddress = shortenWalletAddress(address);
 
 	return (
 		<div className={classes.accountDropdownContainer}>
 			<div className={classes.signedInDot} />
 			<Typography className={classes.walletAdress}>
-				0x9881...CC0D
+				{shortendWalletAddress}
 			</Typography>
 			<ArrowBackIosRoundedIcon className={classes.dropdownArrow} />
 		</div>
