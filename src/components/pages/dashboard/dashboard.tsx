@@ -6,10 +6,11 @@ import { makeStyles } from '@material-ui/core/styles';
 const assetSummaryWidth = 422;
 
 const useStyles = makeStyles((theme) => ({
-	root: {
-		// display: 'flex',
-	},
 	pageContainer: {
+		display: 'flex',
+		flexDirection: 'column',
+		alignItems: 'center',
+		justifyItems: 'center',
 		padding: theme.spacing(3),
 		height: '100vh',
 	},
@@ -53,30 +54,28 @@ const PermanentDrawer = () => {
 	useGetTransactions();
 
 	return (
-		<div className={classes.root}>
-			<div className={classes.pageContainer}>
-				<div className={classes.header}>
-					<Typography className={classes.headerText}>
-						Dashboard
-					</Typography>
-					<Typography className={classes.subheaderText}>
-						View your transactions, analyze your portfolio, and much
-						more
-					</Typography>
-				</div>
-				<div className={classes.dashboardDataContainer}>
-					<div className={classes.assetSummaryContainer}>
-						<Paper className={classes.valuationContainer}>
-							<Typography className={classes.valuationHeader}>
-								USD Valuation
-							</Typography>
-						</Paper>
-						<Paper className={classes.portfolioContainer}>
-							<Typography className={classes.portfolioHeader}>
-								Allocations
-							</Typography>
-						</Paper>
-					</div>
+		<div className={classes.pageContainer}>
+			<div className={classes.header}>
+				<Typography className={classes.headerText}>
+					Dashboard
+				</Typography>
+				<Typography className={classes.subheaderText}>
+					View your transactions, analyze your portfolio, and much
+					more
+				</Typography>
+			</div>
+			<div className={classes.dashboardDataContainer}>
+				<div className={classes.assetSummaryContainer}>
+					<Paper className={classes.valuationContainer}>
+						<Typography className={classes.valuationHeader}>
+							USD Valuation
+						</Typography>
+					</Paper>
+					<Paper className={classes.portfolioContainer}>
+						<Typography className={classes.portfolioHeader}>
+							Allocations
+						</Typography>
+					</Paper>
 				</div>
 			</div>
 		</div>

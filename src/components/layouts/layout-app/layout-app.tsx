@@ -1,11 +1,18 @@
 import { ReactNode } from 'react';
-import PermanentDrawer from '../../permanent-drawer';
+import SideBar from '../../sidebar';
 import { makeStyles } from '@material-ui/core/styles';
 import { useUpdateMetaMaskWalletData } from '../../../hooks';
 
 const useStyles = makeStyles((theme) => ({
-	root: {
-		flexGrow: 1,
+	layoutContainer: {
+		display: 'flex',
+		width: '100vw',
+	},
+	sidebarContainer: {
+		'flex-grow': '0',
+	},
+	pageContainer: {
+		'flex-grow': '1',
 	},
 }));
 
@@ -18,8 +25,11 @@ const Layout = ({ children }: Props) => {
 	useUpdateMetaMaskWalletData();
 
 	return (
-		<div className={classes.root}>
-			<PermanentDrawer logoText="Haven">{children}</PermanentDrawer>
+		<div className={classes.layoutContainer}>
+			<div className={classes.sidebarContainer}>
+				<SideBar logoText="Haven"></SideBar>
+			</div>
+			<div className={classes.pageContainer}>{children}</div>
 		</div>
 	);
 };

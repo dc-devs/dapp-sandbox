@@ -1,5 +1,5 @@
-import LayoutHome from './layout-home';
-import LayoutApp from './layout-app';
+import LayoutHome from '../layouts/layout-home';
+import LayoutApp from '../layouts/layout-app';
 import Home from '../pages/home';
 import Dashboard from '../pages/dashboard';
 import { useSelector } from 'react-redux';
