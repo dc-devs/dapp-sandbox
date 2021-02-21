@@ -1,18 +1,15 @@
 import Paper from '@material-ui/core/Paper';
-import { useGetTransactions } from '../../../hooks';
+import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-
-const assetSummaryWidth = 422;
+import Grid from '@material-ui/core/Grid';
+import AssetPieChart from './asset-pie-chart';
+import Transactions from './transactions';
 
 const useStyles = makeStyles((theme) => ({
 	pageContainer: {
-		display: 'flex',
-		flexDirection: 'column',
-		alignItems: 'center',
-		justifyItems: 'center',
-		padding: theme.spacing(3),
 		height: '100vh',
+		padding: theme.spacing(3),
 	},
 	header: {
 		display: 'flex',
@@ -24,34 +21,37 @@ const useStyles = makeStyles((theme) => ({
 	headerText: {
 		fontSize: '2rem',
 	},
-	subheaderText: {},
 	dashboardDataContainer: {
-		display: 'flex',
-		flexDirection: 'row',
-		justifyContent: 'center',
-		alignItems: 'center',
+		'flex-grow': '1',
+		padding: `${theme.spacing(2)}px ${theme.spacing(5)}px`,
+		height: '100vh',
 	},
 	assetSummaryContainer: {
 		display: 'flex',
-		justifyContent: 'center',
 		flexDirection: 'column',
-		alignItems: 'center',
-		width: assetSummaryWidth,
+		height: '100%',
 	},
 	valuationContainer: {
-		width: assetSummaryWidth,
+		padding: theme.spacing(2),
 	},
-	valuationHeader: {},
+	valuation: {
+		textAlign: 'center',
+		fontSize: '1.5rem',
+		color: theme.palette.primary.main,
+	},
 	portfolioContainer: {
-		width: assetSummaryWidth,
+		marginTop: theme.spacing(2),
+		padding: theme.spacing(2),
 	},
 	portfolioHeader: {},
+	tokenContainer: {
+		padding: theme.spacing(2),
+	},
+	allocationPieChart: {},
 }));
 
 const PermanentDrawer = () => {
 	const classes = useStyles();
-
-	useGetTransactions();
 
 	return (
 		<div className={classes.pageContainer}>
@@ -59,24 +59,54 @@ const PermanentDrawer = () => {
 				<Typography className={classes.headerText}>
 					Dashboard
 				</Typography>
-				<Typography className={classes.subheaderText}>
+				<Typography>
 					View your transactions, analyze your portfolio, and much
 					more
 				</Typography>
 			</div>
+
 			<div className={classes.dashboardDataContainer}>
-				<div className={classes.assetSummaryContainer}>
-					<Paper className={classes.valuationContainer}>
-						<Typography className={classes.valuationHeader}>
-							USD Valuation
-						</Typography>
-					</Paper>
-					<Paper className={classes.portfolioContainer}>
-						<Typography className={classes.portfolioHeader}>
-							Allocations
-						</Typography>
-					</Paper>
-				</div>
+				<Grid
+					container
+					direction="row"
+					justify="flex-start"
+					alignItems="flex-start"
+					spacing={3}
+				>
+					<Grid item xs>
+						<div className={classes.assetSummaryContainer}>
+							<Paper
+								elevation={2}
+								className={classes.valuationContainer}
+							>
+								<Typography>USD Valuation</Typography>
+								<Typography className={classes.valuation}>
+									$6,207
+								</Typography>
+							</Paper>
+							<Paper
+								elevation={2}
+								className={classes.portfolioContainer}
+							>
+								<Typography className={classes.portfolioHeader}>
+									Allocations
+								</Typography>
+								<div className={classes.allocationPieChart}>
+									<AssetPieChart />
+								</div>
+							</Paper>
+						</div>
+					</Grid>
+					<Grid item xs={8}>
+						<Paper elevation={2} className={classes.tokenContainer}>
+							<Typography>Tokens</Typography>
+							<Divider />
+						</Paper>
+					</Grid>
+					<Grid item xs={12}>
+						<Transactions />
+					</Grid>
+				</Grid>
 			</div>
 		</div>
 	);
