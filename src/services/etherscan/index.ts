@@ -1,3 +1,4 @@
+import getContract from './get-contract';
 import getTransactions from './get-transactions';
 
-export { getTransactions };
+export { getContract, getTransactions };

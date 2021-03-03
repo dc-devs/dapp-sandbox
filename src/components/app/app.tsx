@@ -19,8 +19,8 @@ const App = () => {
 	useUpdateIsMetaMaskInstalled();
 	useUpdateIsMetaMaskConnected();
 
-	console.log(location);
-	console.log('isMetaMaskConnected', isMetaMaskConnected);
+	// console.log(location);
+	// console.log('isMetaMaskConnected', isMetaMaskConnected);
 
 	const redirectComponent = isMetaMaskConnected ? (
 		<Redirect to="/dashboard" />
