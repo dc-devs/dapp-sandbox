@@ -1,5 +1,5 @@
 import Paper from '@material-ui/core/Paper';
-import AccountDropdown from '../../account-dropdown';
+import AccountDropdown from '../../features/account-dropdown';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 

@@ -13,14 +13,14 @@ interface State {
 
 // Export Thunks
 // ---------------
-export const setIsMetaMaskInstalled = createAsyncThunk(
-	'metaMaskInstalled/setIsMetaMaskInstalled',
+export const fetchIsMetaMaskInstalled = createAsyncThunk(
+	'metaMaskInstalled/fetchIsMetaMaskInstalled',
 	async () => {
 		return await getIsMetaMaskInstalled();
 	}
 );
 
-export const metaMaskSlice = createSlice({
+export const metaMaskInstalled = createSlice({
 	name: 'metaMaskInstalled',
 	initialState: {
 		isInstalled: false,
@@ -29,22 +29,22 @@ export const metaMaskSlice = createSlice({
 	},
 	reducers: {},
 	extraReducers: (builder) => {
-		builder.addCase(setIsMetaMaskInstalled.pending, (state) => {
+		builder.addCase(fetchIsMetaMaskInstalled.pending, (state) => {
 			state.status = 'loading';
 		});
 
-		builder.addCase(setIsMetaMaskInstalled.fulfilled, (state, action) => {
+		builder.addCase(fetchIsMetaMaskInstalled.fulfilled, (state, action) => {
 			state.status = 'succeeded';
 			state.isInstalled = action.payload;
 		});
 
-		builder.addCase(setIsMetaMaskInstalled.rejected, (state) => {
+		builder.addCase(fetchIsMetaMaskInstalled.rejected, (state) => {
 			state.status = 'failed';
 		});
 	},
 });
 
-const { reducer } = metaMaskSlice;
+const { reducer } = metaMaskInstalled;
 
 // Export Selectors
 // ------------------

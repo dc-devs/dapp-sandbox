@@ -1,31 +1,31 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { getIsMetaMaskConnected } from '../../services/metamask';
 
-interface MetaMask {
+interface IsConnected {
 	status: string;
 	error: null | string;
 	isConnected: boolean;
 }
 
 interface State {
-	metaMaskConnected: MetaMask;
+	metaMaskConnected: IsConnected;
 }
 
 // Export Thunks
 // ---------------
-export const setIsMetaMaskConnected = createAsyncThunk(
-	'metaMaskConnected/setIsMetaMaskConnected',
+export const fetchIsMetaMaskConnected = createAsyncThunk(
+	'metaMaskConnected/fetchIsMetaMaskConnected',
 	async () => {
 		return await getIsMetaMaskConnected();
 	}
 );
 
-export const metaMaskSlice = createSlice({
+export const metaMaskConnected = createSlice({
 	name: 'metaMaskConnected',
 	initialState: {
-		isConnected: false,
-		status: 'idle',
 		error: null,
+		status: 'idle',
+		isConnected: false,
 	},
 	reducers: {
 		updateIsMetaMaskConnected: (state, { payload }) => {
@@ -33,22 +33,22 @@ export const metaMaskSlice = createSlice({
 		},
 	},
 	extraReducers: (builder) => {
-		builder.addCase(setIsMetaMaskConnected.pending, (state) => {
+		builder.addCase(fetchIsMetaMaskConnected.pending, (state) => {
 			state.status = 'loading';
 		});
 
-		builder.addCase(setIsMetaMaskConnected.fulfilled, (state, action) => {
+		builder.addCase(fetchIsMetaMaskConnected.fulfilled, (state, action) => {
 			state.status = 'succeeded';
 			state.isConnected = action.payload;
 		});
 
-		builder.addCase(setIsMetaMaskConnected.rejected, (state) => {
+		builder.addCase(fetchIsMetaMaskConnected.rejected, (state) => {
 			state.status = 'failed';
 		});
 	},
 });
 
-const { reducer, actions } = metaMaskSlice;
+const { reducer, actions } = metaMaskConnected;
 
 // Export Actions
 // ------------------

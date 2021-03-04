@@ -1,13 +1,12 @@
 import { ethers } from 'ethers';
-import { useDispatch } from 'react-redux';
-// import store from '../../../../redux/store';
-import detectEthereumProvider from '@metamask/detect-provider';
 import { SyntheticEvent } from 'react';
+import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
+import ConnectWalletBase from '../connect-wallet-base';
+import detectEthereumProvider from '@metamask/detect-provider';
 import { updateMetaMaskWallet } from '../../../../redux/slices/metamask-slice';
 import { updateIsMetaMaskConnected } from '../../../../redux/slices/metamask-connected-slice';
 import { selectIsMetaMaskInstalled } from '../../../../redux/slices/metamask-installed-slice';
-import ConnectWalletBase from '../connect-wallet-base';
 
 interface Props {
 	imgSrc: string;

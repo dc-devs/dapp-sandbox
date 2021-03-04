@@ -42,7 +42,7 @@ interface Props {
 	imgSrc: string;
 	walletName: string;
 	connectWallet(event: SyntheticEvent): Promise<void>;
-	walletInstallUrl: string;
+	walletInstallUrl?: string;
 	walletInstruction: string;
 	displayWalletInstallUrl: boolean;
 }
