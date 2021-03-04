@@ -12,10 +12,30 @@ import Paper from '@material-ui/core/Paper';
 import Popper from '@material-ui/core/Popper';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
+import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
+import FileCopyOutlinedIcon from '@material-ui/icons/FileCopyOutlined';
+import SettingsOutlinedIcon from '@material-ui/icons/SettingsOutlined';
 
 const { shortenWalletAddress } = utils;
 
 const useStyles = makeStyles((theme) => ({
+	root: {
+		display: 'flex',
+	},
+	container: {
+		position: 'relative',
+		width: '100%',
+	},
+	popperRoot: {
+		width: '100%',
+		transform: 'translate3d(44px, 62px, 0px)',
+	},
+	menuIcon: {
+		marginRight: '15px',
+	},
+	paper: {
+		marginRight: theme.spacing(2),
+	},
 	accountDropdownContainer: {
 		display: 'flex',
 		justifyContent: 'center',
@@ -24,6 +44,7 @@ const useStyles = makeStyles((theme) => ({
 		border: `1px solid #eceff1`,
 		borderRadius: '12px',
 		minHeight: '36px',
+		width: '100%',
 	},
 	signedInDot: {
 		height: '10px',
@@ -43,36 +64,12 @@ const useStyles = makeStyles((theme) => ({
 		fontSize: '1rem',
 		transform: 'rotate(-90deg)',
 	},
-	root: {
-		display: 'flex',
-	},
-	paper: {
-		marginRight: theme.spacing(2),
-	},
 }));
-
-// const AccountDropdown = () => {
-// 	const classes = useStyles();
-// 	const { selectedAddress } = useSelector(selectMetaMaskWallet);
-// 	const shortendWalletAddress = shortenWalletAddress(selectedAddress);
-
-// 	return (
-// 		<div className={classes.accountDropdownContainer}>
-// 			<div className={classes.signedInDot} />
-// 			<Typography className={classes.walletAdress}>
-// 				{shortendWalletAddress}
-// 			</Typography>
-// 			<ArrowBackIosRoundedIcon className={classes.dropdownArrow} />
-// 		</div>
-// 	);
-// };
 
 const AccountDropdown = () => {
 	const classes = useStyles();
 	const { selectedAddress } = useSelector(selectMetaMaskWallet);
 	const shortendWalletAddress = shortenWalletAddress(selectedAddress);
-	console.log(useSelector(selectMetaMaskWallet));
-	console.log(selectedAddress, shortendWalletAddress);
 	const [open, setOpen] = useState(false);
 	const anchorRef = useRef(null);
 
@@ -114,7 +111,7 @@ const AccountDropdown = () => {
 
 	return (
 		<div className={classes.root}>
-			<div>
+			<div className={classes.container}>
 				<Button
 					ref={anchorRef}
 					aria-controls={open ? 'menu-list-grow' : undefined}
@@ -136,6 +133,7 @@ const AccountDropdown = () => {
 					role={undefined}
 					transition
 					disablePortal
+					className={classes.popperRoot}
 				>
 					{({ TransitionProps, placement }) => (
 						<Grow
@@ -155,7 +153,24 @@ const AccountDropdown = () => {
 										onKeyDown={handleListKeyDown}
 									>
 										<MenuItem onClick={handleClose}>
-											Sign Out
+											<SettingsOutlinedIcon
+												className={classes.menuIcon}
+											/>
+											<Typography>Settings</Typography>
+										</MenuItem>
+										<MenuItem onClick={handleClose}>
+											<FileCopyOutlinedIcon
+												className={classes.menuIcon}
+											/>
+											<Typography>
+												Copy Address
+											</Typography>
+										</MenuItem>
+										<MenuItem onClick={handleClose}>
+											<ExitToAppRoundedIcon
+												className={classes.menuIcon}
+											/>
+											<Typography>Sign Out</Typography>
 										</MenuItem>
 									</MenuList>
 								</ClickAwayListener>
