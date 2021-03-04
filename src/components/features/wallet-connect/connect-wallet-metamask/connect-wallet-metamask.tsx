@@ -1,9 +1,12 @@
 import { ethers } from 'ethers';
-import store from '../../../../redux/store';
+import { useDispatch } from 'react-redux';
+// import store from '../../../../redux/store';
 import detectEthereumProvider from '@metamask/detect-provider';
 import { SyntheticEvent } from 'react';
 import { useSelector } from 'react-redux';
-import { selectIsMetaMaskInstalled } from '../../../../redux/slices/metamask-slice';
+import { updateMetaMaskWallet } from '../../../../redux/slices/metamask-slice';
+import { updateIsMetaMaskConnected } from '../../../../redux/slices/metamask-connected-slice';
+import { selectIsMetaMaskInstalled } from '../../../../redux/slices/metamask-installed-slice';
 import ConnectWalletBase from '../connect-wallet-base';
 
 interface Props {
@@ -19,9 +22,10 @@ const ConnectWalletMetaMask = ({
 	walletInstallUrl,
 	walletInstruction,
 }: Props) => {
+	const dispatch = useDispatch();
 	const isWalletInstalled = useSelector(selectIsMetaMaskInstalled);
 	const displayWalletInstallUrl = !isWalletInstalled;
-	console.log('isWalletInstalled', isWalletInstalled);
+	console.log('connectWallet - isWalletInstalled', isWalletInstalled);
 
 	const connectWallet = async (event: SyntheticEvent) => {
 		if (isWalletInstalled) {
@@ -40,13 +44,18 @@ const ConnectWalletMetaMask = ({
 				const { provider } = new ethers.providers.Web3Provider(
 					ethereum
 				) as any;
-				const accounts = await provider.request({
+
+				await provider.request({
 					method: 'eth_requestAccounts',
 				});
 
-				console.log('Wallet Connected!');
-				console.log(accounts);
-				console.log(provider.selectedAddress);
+				dispatch(
+					updateMetaMaskWallet({
+						selectedAddress: provider.selectedAddress,
+					})
+				);
+
+				dispatch(updateIsMetaMaskConnected(true));
 			}
 		}
 	};

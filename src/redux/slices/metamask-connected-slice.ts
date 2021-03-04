@@ -13,12 +13,10 @@ interface State {
 
 // Export Thunks
 // ---------------
-export const fetchIsMetaMaskConnected = createAsyncThunk(
-	'metaMaskConnected/fetchIsMetaMaskConnected',
+export const setIsMetaMaskConnected = createAsyncThunk(
+	'metaMaskConnected/setIsMetaMaskConnected',
 	async () => {
-		const transactions = await getIsMetaMaskConnected();
-
-		return transactions;
+		return await getIsMetaMaskConnected();
 	}
 );
 
@@ -29,24 +27,32 @@ export const metaMaskSlice = createSlice({
 		status: 'idle',
 		error: null,
 	},
-	reducers: {},
+	reducers: {
+		updateIsMetaMaskConnected: (state, { payload }) => {
+			state.isConnected = payload;
+		},
+	},
 	extraReducers: (builder) => {
-		builder.addCase(fetchIsMetaMaskConnected.pending, (state) => {
+		builder.addCase(setIsMetaMaskConnected.pending, (state) => {
 			state.status = 'loading';
 		});
 
-		builder.addCase(fetchIsMetaMaskConnected.fulfilled, (state, action) => {
+		builder.addCase(setIsMetaMaskConnected.fulfilled, (state, action) => {
 			state.status = 'succeeded';
 			state.isConnected = action.payload;
 		});
 
-		builder.addCase(fetchIsMetaMaskConnected.rejected, (state) => {
+		builder.addCase(setIsMetaMaskConnected.rejected, (state) => {
 			state.status = 'failed';
 		});
 	},
 });
 
-const { reducer } = metaMaskSlice;
+const { reducer, actions } = metaMaskSlice;
+
+// Export Actions
+// ------------------
+export const { updateIsMetaMaskConnected } = actions;
 
 // Export Selectors
 // ------------------

@@ -1,12 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 interface Wallet {
-	address: string;
+	selectedAddress: string;
 }
 
 interface MetaMask {
-	isMetaMaskInstalled: boolean;
-	isMetaMaskConnected: boolean;
 	wallet: Wallet;
 }
 
@@ -17,18 +15,10 @@ interface State {
 export const metaMaskSlice = createSlice({
 	name: 'metaMask',
 	initialState: {
-		isMetaMaskInstalled: false,
-		isMetaMaskConnected: false,
-		wallet: { address: null },
+		wallet: { selectedAddress: null },
 	},
 	reducers: {
-		updateIsMetaMaskInstalled: (state, { payload }) => {
-			state.isMetaMaskInstalled = payload;
-		},
-		updateIsMetaMaskConnected: (state, { payload }) => {
-			state.isMetaMaskConnected = payload;
-		},
-		updateMetaMaskWalletData: (state, { payload }) => {
+		updateMetaMaskWallet: (state, { payload }) => {
 			state.wallet = payload;
 		},
 	},
@@ -38,31 +28,15 @@ const { reducer, actions } = metaMaskSlice;
 
 // Export Actions
 // ------------------
-export const {
-	updateMetaMaskWalletData,
-	updateIsMetaMaskInstalled,
-	updateIsMetaMaskConnected,
-} = actions;
+export const { updateMetaMaskWallet } = actions;
 
 // Export Selectors
 // ------------------
-const selectIsMetaMaskInstalled = (state: State) => {
-	return state.metaMask.isMetaMaskInstalled;
-};
-
-const selectIsMetaMaskConnected = (state: State) => {
-	return state.metaMask.isMetaMaskConnected;
-};
-
-const selectMetaMaskWalletData = (state: State) => {
+const selectMetaMaskWallet = (state: State) => {
 	return state.metaMask.wallet;
 };
 
-export {
-	selectIsMetaMaskInstalled,
-	selectIsMetaMaskConnected,
-	selectMetaMaskWalletData,
-};
+export { selectMetaMaskWallet };
 
 // Export Reducer
 // ------------------

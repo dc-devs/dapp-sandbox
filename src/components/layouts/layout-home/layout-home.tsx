@@ -4,7 +4,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Container from '@material-ui/core/Container';
 import WalletConnectButton from '../../features/wallet-connect/connect-to-a-wallet-button';
-import Logo from './logo';
+import Logo from '../logo';
 
 const useStyles = makeStyles((theme) => ({
 	root: {

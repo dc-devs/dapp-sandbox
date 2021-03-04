@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import SideBar from '../../sidebar';
+import SideBar from '../sidebar';
 import { makeStyles } from '@material-ui/core/styles';
 // import { useUpdateMetaMaskWalletData } from '../../../hooks';
 

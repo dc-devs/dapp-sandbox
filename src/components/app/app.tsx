@@ -6,24 +6,30 @@ import Dashboard from '../pages/dashboard';
 import LayoutApp from '../layouts/layout-app';
 import LayoutHome from '../layouts/layout-home';
 import { Route, Switch } from 'react-router-dom';
-import { selectIsMetaMaskConnected } from '../../redux/slices/metamask-connected-slice';
+import {
+	selectIsMetaMaskConnected,
+	setIsMetaMaskConnected,
+} from '../../redux/slices/metamask-connected-slice';
 import {
 	selectIsMetaMaskInstalled,
-	fetchIsMetaMaskInstalled,
+	setIsMetaMaskInstalled,
 } from '../../redux/slices/metamask-installed-slice';
 
 const App = () => {
 	const dispatch = useDispatch();
 	const isMetaMaskInstalled = useSelector(selectIsMetaMaskInstalled);
 	const isMetaMaskConnected = useSelector(selectIsMetaMaskConnected);
-	console.log('isMetaMaskInstalled', isMetaMaskInstalled);
-	console.log('isMetaMaskConnected', isMetaMaskConnected);
+	console.log('App - isMetaMaskInstalled', isMetaMaskInstalled);
+	console.log('App - isMetaMaskConnected', isMetaMaskConnected);
 
 	useEffect(() => {
 		if (!isMetaMaskInstalled) {
-			dispatch(fetchIsMetaMaskInstalled());
+			dispatch(setIsMetaMaskInstalled());
 		}
-	}, [isMetaMaskInstalled, dispatch]);
+		if (isMetaMaskInstalled) {
+			dispatch(setIsMetaMaskConnected());
+		}
+	}, [isMetaMaskInstalled, isMetaMaskConnected, dispatch]);
 
 	const redirectComponent = isMetaMaskConnected ? (
 		<Redirect to="/dashboard" />

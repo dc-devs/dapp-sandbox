@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import ArrowBackIosRoundedIcon from '@material-ui/icons/ArrowBackIosRounded';
-import { selectMetaMaskWalletData } from '../../redux/slices/metamask-slice';
+import { selectMetaMaskWallet } from '../../redux/slices/metamask-slice';
 import utils from '../../utils';
 
 const { shortenWalletAddress } = utils;
@@ -39,9 +39,9 @@ const useStyles = makeStyles((theme) => ({
 
 const AccountDropdown = () => {
 	const classes = useStyles();
-	const metaMaskWalletData = useSelector(selectMetaMaskWalletData);
-	const { address } = metaMaskWalletData;
-	const shortendWalletAddress = shortenWalletAddress(address);
+	const metaMaskWalletData = useSelector(selectMetaMaskWallet);
+	const { selectedAddress } = metaMaskWalletData;
+	const shortendWalletAddress = shortenWalletAddress(selectedAddress);
 
 	return (
 		<div className={classes.accountDropdownContainer}>
