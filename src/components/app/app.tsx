@@ -1,26 +1,29 @@
-import LayoutHome from '../layouts/layout-home';
-import LayoutApp from '../layouts/layout-app';
+import { useEffect } from 'react';
 import Home from '../pages/home';
-import Dashboard from '../pages/dashboard';
-import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router';
-import { selectIsMetaMaskConnected } from '../../redux/slices/metamask-slice';
+import { useSelector, useDispatch } from 'react-redux';
+import Dashboard from '../pages/dashboard';
+import LayoutApp from '../layouts/layout-app';
+import LayoutHome from '../layouts/layout-home';
+import { Route, Switch } from 'react-router-dom';
+import { selectIsMetaMaskConnected } from '../../redux/slices/metamask-connected-slice';
 import {
-	useUpdateIsMetaMaskInstalled,
-	useUpdateIsMetaMaskConnected,
-} from '../../hooks';
-import { Route, Switch, useLocation } from 'react-router-dom';
+	selectIsMetaMaskInstalled,
+	fetchIsMetaMaskInstalled,
+} from '../../redux/slices/metamask-installed-slice';
 
 const App = () => {
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
+	const dispatch = useDispatch();
+	const isMetaMaskInstalled = useSelector(selectIsMetaMaskInstalled);
 	const isMetaMaskConnected = useSelector(selectIsMetaMaskConnected);
-	const location = useLocation();
+	console.log('isMetaMaskInstalled', isMetaMaskInstalled);
+	console.log('isMetaMaskConnected', isMetaMaskConnected);
 
-	useUpdateIsMetaMaskInstalled();
-	useUpdateIsMetaMaskConnected();
-
-	// console.log(location);
-	// console.log('isMetaMaskConnected', isMetaMaskConnected);
+	useEffect(() => {
+		if (!isMetaMaskInstalled) {
+			dispatch(fetchIsMetaMaskInstalled());
+		}
+	}, [isMetaMaskInstalled, dispatch]);
 
 	const redirectComponent = isMetaMaskConnected ? (
 		<Redirect to="/dashboard" />

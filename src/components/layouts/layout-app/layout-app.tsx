@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import SideBar from '../../sidebar';
 import { makeStyles } from '@material-ui/core/styles';
-import { useUpdateMetaMaskWalletData } from '../../../hooks';
+// import { useUpdateMetaMaskWalletData } from '../../../hooks';
 
 const useStyles = makeStyles((theme) => ({
 	layoutContainer: {
@@ -23,7 +23,7 @@ interface Props {
 
 const Layout = ({ children }: Props) => {
 	const classes = useStyles();
-	useUpdateMetaMaskWalletData();
+	// useUpdateMetaMaskWalletData();
 
 	return (
 		<div className={classes.layoutContainer}>

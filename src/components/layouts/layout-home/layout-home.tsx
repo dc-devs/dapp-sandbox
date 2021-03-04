@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Container from '@material-ui/core/Container';
-import WalletConnect from '../../features/wallet-connect';
+import WalletConnectButton from '../../features/wallet-connect/connect-to-a-wallet-button';
 import Logo from './logo';
 
 const useStyles = makeStyles((theme) => ({
@@ -38,7 +38,7 @@ const Layout: React.FC<Props> = ({ children }) => {
 				<Container>
 					<Toolbar>
 						<Logo />
-						<WalletConnect />
+						<WalletConnectButton />
 					</Toolbar>
 				</Container>
 			</AppBar>
