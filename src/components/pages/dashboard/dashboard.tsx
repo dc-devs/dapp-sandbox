@@ -1,10 +1,10 @@
 import Paper from '@material-ui/core/Paper';
-import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import AssetPieChart from './asset-pie-chart';
-import Transactions from './transactions';
+import TokenBalances from './token-balances';
+// import Transactions from './transactions';
 
 const useStyles = makeStyles((theme) => ({
 	pageContainer: {
@@ -44,9 +44,6 @@ const useStyles = makeStyles((theme) => ({
 		padding: theme.spacing(2),
 	},
 	portfolioHeader: {},
-	tokenContainer: {
-		padding: theme.spacing(2),
-	},
 	allocationPieChart: {},
 }));
 
@@ -98,13 +95,10 @@ const PermanentDrawer = () => {
 						</div>
 					</Grid>
 					<Grid item xs={8}>
-						<Paper elevation={2} className={classes.tokenContainer}>
-							<Typography>Tokens</Typography>
-							<Divider />
-						</Paper>
+						<TokenBalances />
 					</Grid>
 					<Grid item xs={12}>
-						<Transactions />
+						{/* <Transactions /> */}
 					</Grid>
 				</Grid>
 			</div>

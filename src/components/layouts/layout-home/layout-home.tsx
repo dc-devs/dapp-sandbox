@@ -1,10 +1,12 @@
-import { ReactNode } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Container from '@material-ui/core/Container';
-import WalletConnectButton from '../../features/wallet-connect/connect-to-a-wallet-button';
 import Logo from '../logo';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import { Link as ReactLink } from 'react-router-dom';
+import Link from '@material-ui/core/Link';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -15,16 +17,22 @@ const useStyles = makeStyles((theme) => ({
 	},
 	appBar: {
 		backgroundColor: 'white',
-		boxShadow: 'none',
+		boxShadow: theme.shadows[1],
 		color: '#bbb',
+	},
+	loginLink: {
+		marginRight: '20px',
+	},
+	signUpButton: {
+		textTransform: 'none',
 	},
 }));
 
 interface Props {
-	children: ReactNode;
+	children: JSX.Element;
 }
 
-const Layout: React.FC<Props> = ({ children }) => {
+const LayoutHome = ({ children }: Props) => {
 	const classes = useStyles();
 
 	return (
@@ -38,7 +46,22 @@ const Layout: React.FC<Props> = ({ children }) => {
 				<Container>
 					<Toolbar>
 						<Logo />
-						<WalletConnectButton />
+						<Link
+							to="/sign-in"
+							color="primary"
+							underline="none"
+							component={ReactLink}
+							className={classes.loginLink}
+						>
+							<Typography>Login</Typography>
+						</Link>
+						<Button
+							color="primary"
+							variant="contained"
+							className={classes.signUpButton}
+						>
+							Sign Up
+						</Button>
 					</Toolbar>
 				</Container>
 			</AppBar>
@@ -47,4 +70,4 @@ const Layout: React.FC<Props> = ({ children }) => {
 	);
 };
 
-export default Layout;
+export default LayoutHome;

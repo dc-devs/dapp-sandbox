@@ -21,7 +21,9 @@ const Home = () => {
 
 	return (
 		<div className={classes.root}>
-			<Typography className={classes.homeTitle}>Home Page!</Typography>
+			<Typography className={classes.homeTitle}>
+				Connect a wallet!
+			</Typography>
 		</div>
 	);
 };

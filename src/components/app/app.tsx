@@ -1,14 +1,16 @@
 import { useEffect } from 'react';
 import Home from '../pages/home';
+import AppHome from '../pages/app-home';
 import { Redirect } from 'react-router';
 import { useSelector, useDispatch } from 'react-redux';
 import Dashboard from '../pages/dashboard';
 import LayoutApp from '../layouts/layout-app';
+import LayoutAppHome from '../layouts/layout-app-home';
 import LayoutHome from '../layouts/layout-home';
 import { Route, Switch } from 'react-router-dom';
 import {
 	fetchMetaMaskWallet,
-	selectMetaMaskWallet,
+	// selectMetaMaskWallet,
 } from '../../redux/slices/metamask-slice';
 import {
 	selectIsMetaMaskConnected,
@@ -21,13 +23,13 @@ import {
 
 const App = () => {
 	const dispatch = useDispatch();
-	const metaMaskWallet = useSelector(selectMetaMaskWallet);
+	// const metaMaskWallet = useSelector(selectMetaMaskWallet);
 	const isMetaMaskInstalled = useSelector(selectIsMetaMaskInstalled);
 	const isMetaMaskConnected = useSelector(selectIsMetaMaskConnected);
 
-	console.log('App - metaMaskWallet', metaMaskWallet);
-	console.log('App - isMetaMaskInstalled', isMetaMaskInstalled);
-	console.log('App - isMetaMaskConnected', isMetaMaskConnected);
+	// console.log('App - metaMaskWallet', metaMaskWallet);
+	// console.log('App - isMetaMaskInstalled', isMetaMaskInstalled);
+	// console.log('App - isMetaMaskConnected', isMetaMaskConnected);
 
 	useEffect(() => {
 		if (!isMetaMaskInstalled) {
@@ -57,6 +59,11 @@ const App = () => {
 					<LayoutApp>
 						<Dashboard />
 					</LayoutApp>
+				</Route>
+				<Route path="/app">
+					<LayoutAppHome>
+						<AppHome />
+					</LayoutAppHome>
 				</Route>
 				<Route path="/">
 					<LayoutHome>

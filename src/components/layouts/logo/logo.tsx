@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-// import { Link as ReactLink } from 'react-router-dom';
-// import Link from '@material-ui/core/Link';
+import { Link as ReactLink } from 'react-router-dom';
+import Link from '@material-ui/core/Link';
 
 const useStyles = makeStyles(() => ({
 	title: {
@@ -14,9 +14,9 @@ const Logo = () => {
 
 	return (
 		<Typography variant="h6" className={classes.title}>
-			{/* <Link to="/" color="primary" underline="none" component={ReactLink}>
+			<Link to="/" color="primary" underline="none" component={ReactLink}>
 				DApp
-			</Link> */}
+			</Link>
 		</Typography>
 	);
 };

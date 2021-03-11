@@ -15,6 +15,7 @@ import MenuList from '@material-ui/core/MenuList';
 import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
 import FileCopyOutlinedIcon from '@material-ui/icons/FileCopyOutlined';
 import SettingsOutlinedIcon from '@material-ui/icons/SettingsOutlined';
+import { MouseEvent } from 'react';
 
 const { shortenWalletAddress } = utils;
 
@@ -71,7 +72,7 @@ const AccountDropdown = () => {
 	const { selectedAddress } = useSelector(selectMetaMaskWallet);
 	const shortendWalletAddress = shortenWalletAddress(selectedAddress);
 	const [open, setOpen] = useState(false);
-	const anchorRef = useRef(null);
+	const anchorRef = useRef(null) as any;
 
 	const handleToggle = () => {
 		setOpen((prevOpen) => !prevOpen);
@@ -79,15 +80,18 @@ const AccountDropdown = () => {
 
 	// TODO: FIX ANY
 	const handleClose = (event: any) => {
-		// if (
-		// 	anchorRef.current &&
-		// 	anchorRef.current.contains &&
-		// 	anchorRef.current.contains(event.target)
-		// ) {
-		// 	return;
-		// }
+		console.log(event);
+		if (
+			anchorRef.current &&
+			anchorRef.current.contains &&
+			anchorRef.current.contains(event.target)
+		) {
+			return;
+		}
 
 		setOpen(false);
+
+		return true;
 	};
 
 	// TODO: FIX ANY
@@ -103,7 +107,7 @@ const AccountDropdown = () => {
 
 	useEffect(() => {
 		if (prevOpen.current === true && open === false) {
-			// anchorRef.current.focus();
+			anchorRef.current.focus();
 		}
 
 		prevOpen.current = open;
