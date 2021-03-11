@@ -55,13 +55,15 @@ const LayoutHome = ({ children }: Props) => {
 						>
 							<Typography>Login</Typography>
 						</Link>
-						<Button
-							color="primary"
-							variant="contained"
-							className={classes.signUpButton}
-						>
-							Sign Up
-						</Button>
+						<Link to="/sign-up" component={ReactLink}>
+							<Button
+								color="primary"
+								variant="contained"
+								className={classes.signUpButton}
+							>
+								Sign Up
+							</Button>
+						</Link>
 					</Toolbar>
 				</Container>
 			</AppBar>

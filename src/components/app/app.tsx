@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 import Home from '../pages/home';
 import AppHome from '../pages/app-home';
+import SignIn from '../pages/sign-in';
+import SignUp from '../pages/sign-up';
 import { Redirect } from 'react-router';
 import { useSelector, useDispatch } from 'react-redux';
 import Dashboard from '../pages/dashboard';
@@ -45,20 +47,26 @@ const App = () => {
 		}
 	}, [isMetaMaskInstalled, isMetaMaskConnected, dispatch]);
 
-	const redirectComponent = isMetaMaskConnected ? (
-		<Redirect to="/dashboard" />
-	) : (
-		<Redirect to="/" />
-	);
+	// const redirectComponent = isMetaMaskConnected ? (
+	// 	<Redirect to="/dashboard" />
+	// ) : (
+	// 	<Redirect to="/" />
+	// );
 
 	return (
 		<>
-			{redirectComponent}
+			{/* {redirectComponent} */}
 			<Switch>
 				<Route path="/dashboard">
 					<LayoutApp>
 						<Dashboard />
 					</LayoutApp>
+				</Route>
+				<Route path="/sign-up">
+					<SignUp />
+				</Route>
+				<Route path="/sign-in">
+					<SignIn />
 				</Route>
 				<Route path="/app">
 					<LayoutAppHome>
