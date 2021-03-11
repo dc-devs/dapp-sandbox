@@ -1,9 +1,10 @@
-// import Paper from '@material-ui/core/Paper';
+import axios from 'axios';
 import Logo from '../../icons/logo';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
+import { useForm } from 'react-hook-form';
+import SignInForm from '../../sign-in-form';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import environment from '../../../constants/environment';
 
 const useStyles = makeStyles((theme) => ({
 	pageContainer: {
@@ -46,10 +47,23 @@ const useStyles = makeStyles((theme) => ({
 		width: '100%',
 		margin: theme.spacing(1),
 	},
+	errorContainer: {
+		textAlign: 'left',
+		marginLeft: theme.spacing(1),
+		color: theme.palette.error.main,
+	},
 }));
 
 const SignUp = () => {
 	const classes = useStyles();
+	const { register, handleSubmit, errors, watch } = useForm();
+	const { development, headers } = environment;
+	const { serverBaseUrl } = development;
+
+	const onSubmit = async (data: any) => {
+		console.log('Submitted!!');
+		axios.post(`${serverBaseUrl}/users`, { data }, { headers });
+	};
 
 	return (
 		<div className={classes.pageContainer}>
@@ -61,26 +75,14 @@ const SignUp = () => {
 					<Typography color="primary" className={classes.signUpText}>
 						Create an account
 					</Typography>
-					<form
-						className={classes.form}
-						noValidate
-						autoComplete="off"
-					>
-						<TextField fullWidth={true} id="email" label="email" />
-						<TextField fullWidth id="password" label="password" />
-						<TextField
-							fullWidth
-							id="password-confirmation"
-							label="password confirmation"
-						/>
-						<Button
-							className={classes.submitButton}
-							color="primary"
-							variant="contained"
-						>
-							Submit
-						</Button>
-					</form>
+					<SignInForm
+						watch={watch}
+						errors={errors}
+						register={register}
+						onSubmit={onSubmit}
+						handleSubmit={handleSubmit}
+						displayPasswordConfirmation={true}
+					/>
 				</div>
 			</div>
 		</div>
