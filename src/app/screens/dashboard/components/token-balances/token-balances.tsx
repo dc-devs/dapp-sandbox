@@ -6,13 +6,13 @@ import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectMetaMaskWallet } from '../../../../redux/slices/metamask-slice';
+import { selectMetaMaskWallet } from '../../../../../redux/slices/metamask-slice';
 import {
 	fetchTokenBalances,
 	selectTokenBalances,
 	selectTokenBalancesStatus,
 	selectTokenBalancesError,
-} from '../../../../redux/slices/token-balances-slice';
+} from '../../../../../redux/slices/token-balances-slice';
 
 const useStyles = makeStyles((theme) => ({
 	tokenContainer: {

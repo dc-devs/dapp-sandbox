@@ -2,8 +2,8 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import AssetPieChart from './asset-pie-chart';
-import TokenBalances from './token-balances';
+import AssetPieChart from './components/asset-pie-chart';
+import TokenBalances from './components/token-balances';
 // import Transactions from './transactions';
 
 const useStyles = makeStyles((theme) => ({

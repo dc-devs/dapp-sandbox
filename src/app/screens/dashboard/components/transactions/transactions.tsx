@@ -1,16 +1,16 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import Transaction from '../transaction';
 import Paper from '@material-ui/core/Paper';
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import Transaction from '../../../../components/transaction';
 import {
 	fetchTransactions,
 	selectTransactions,
 	selectTransactionsStatus,
 	selectTransactionsError,
-} from '../../../../redux/slices/transaction-slice';
+} from '../../../../../redux/slices/transaction-slice';
 
 const useStyles = makeStyles((theme) => ({
 	tokenContainer: {

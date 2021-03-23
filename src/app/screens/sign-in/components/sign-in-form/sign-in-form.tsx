@@ -1,10 +1,10 @@
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
-import emailRegex from '../../constants/email-regex';
-import SignInOptions from './sign-in-options';
-import HaveAnAccount from './have-an-account';
-import PasswordConfirmation from './password-confirmation';
+import SignInOptions from '../sign-in-form/sign-in-options';
+import HaveAnAccount from '../sign-in-form/have-an-account';
+import emailRegex from '../../../../../constants/email-regex';
+import PasswordConfirmation from '../sign-in-form/password-confirmation';
 
 const useStyles = makeStyles((theme) => ({
 	form: {

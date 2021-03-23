@@ -1,8 +1,7 @@
 import axios from 'axios';
 import Logo from '../../icons/logo';
 import { useForm } from 'react-hook-form';
-import SignInForm from '../../sign-in-form';
-import Typography from '@material-ui/core/Typography';
+import SignInForm from '../sign-in/components/sign-in-form';
 import { makeStyles } from '@material-ui/core/styles';
 import environment from '../../../constants/environment';
 
@@ -17,6 +16,7 @@ const useStyles = makeStyles((theme) => ({
 	signUpWrapper: {
 		display: 'flex',
 		flexDirection: 'column',
+		padding: theme.spacing(2),
 		width: '375px',
 	},
 	logoContainer: {
@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const SignUp = () => {
+const SignIn = () => {
 	const classes = useStyles();
 	const { register, handleSubmit, errors, watch } = useForm();
 	const { development, headers } = environment;
@@ -43,7 +43,7 @@ const SignUp = () => {
 
 	const onSubmit = async (data: any) => {
 		console.log('Submitted!!');
-		axios.post(`${serverBaseUrl}/users`, { data }, { headers });
+		axios.post(`${serverBaseUrl}/sign-in`, { data }, { headers });
 	};
 
 	return (
@@ -59,8 +59,7 @@ const SignUp = () => {
 						register={register}
 						onSubmit={onSubmit}
 						handleSubmit={handleSubmit}
-						submitButtonText="Sign Up"
-						isSignUpForm={true}
+						submitButtonText="Sign In"
 					/>
 				</div>
 			</div>
@@ -68,4 +67,4 @@ const SignUp = () => {
 	);
 };
 
-export default SignUp;
+export default SignIn;

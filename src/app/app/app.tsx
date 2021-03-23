@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
-import Home from '../pages/home';
-import AppHome from '../pages/app-home';
-import SignIn from '../pages/sign-in';
-import SignUp from '../pages/sign-up';
+import Home from '../screens/home';
+import AppHome from '../screens/app-home';
+import SignIn from '../screens/sign-in';
+import SignUp from '../screens/sign-up';
 import { Redirect } from 'react-router';
 import { useSelector, useDispatch } from 'react-redux';
-import Dashboard from '../pages/dashboard';
+import Dashboard from '../screens/dashboard';
 import LayoutApp from '../layouts/layout-app';
 import LayoutAppHome from '../layouts/layout-app-home';
 import LayoutHome from '../layouts/layout-home';
