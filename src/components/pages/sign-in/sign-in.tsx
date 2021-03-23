@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
 		display: 'flex',
 		flexDirection: 'column',
 		padding: theme.spacing(2),
-		width: '350px',
+		width: '375px',
 	},
 	logoContainer: {
 		textAlign: 'center',
@@ -34,24 +34,6 @@ const useStyles = makeStyles((theme) => ({
 	signUpText: {
 		fontSize: '1.5rem',
 	},
-	form: {
-		marginTop: '10px',
-		display: 'flex',
-		flexDirection: 'column',
-		'& .MuiTextField-root': {
-			margin: theme.spacing(1),
-		},
-	},
-	submitButton: {
-		marginTop: '30px',
-		width: '100%',
-		margin: theme.spacing(1),
-	},
-	errorContainer: {
-		textAlign: 'left',
-		marginLeft: theme.spacing(1),
-		color: theme.palette.error.main,
-	},
 }));
 
 const SignIn = () => {
@@ -62,7 +44,7 @@ const SignIn = () => {
 
 	const onSubmit = async (data: any) => {
 		console.log('Submitted!!');
-		axios.post(`${serverBaseUrl}/users`, { data }, { headers });
+		axios.post(`${serverBaseUrl}/sign-in`, { data }, { headers });
 	};
 
 	return (
@@ -72,15 +54,13 @@ const SignIn = () => {
 					<Logo className={classes.logo} />
 				</div>
 				<div className={classes.signUpContainer}>
-					<Typography color="primary" className={classes.signUpText}>
-						Sign into account
-					</Typography>
 					<SignInForm
 						watch={watch}
 						errors={errors}
 						register={register}
 						onSubmit={onSubmit}
 						handleSubmit={handleSubmit}
+						submitButtonText="Sign In"
 					/>
 				</div>
 			</div>

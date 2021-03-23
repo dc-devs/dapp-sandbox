@@ -17,8 +17,7 @@ const useStyles = makeStyles((theme) => ({
 	signUpWrapper: {
 		display: 'flex',
 		flexDirection: 'column',
-		padding: theme.spacing(2),
-		width: '350px',
+		width: '375px',
 	},
 	logoContainer: {
 		textAlign: 'center',
@@ -33,24 +32,6 @@ const useStyles = makeStyles((theme) => ({
 	},
 	signUpText: {
 		fontSize: '1.5rem',
-	},
-	form: {
-		marginTop: '10px',
-		display: 'flex',
-		flexDirection: 'column',
-		'& .MuiTextField-root': {
-			margin: theme.spacing(1),
-		},
-	},
-	submitButton: {
-		marginTop: '30px',
-		width: '100%',
-		margin: theme.spacing(1),
-	},
-	errorContainer: {
-		textAlign: 'left',
-		marginLeft: theme.spacing(1),
-		color: theme.palette.error.main,
 	},
 }));
 
@@ -72,16 +53,14 @@ const SignUp = () => {
 					<Logo className={classes.logo} />
 				</div>
 				<div className={classes.signUpContainer}>
-					<Typography color="primary" className={classes.signUpText}>
-						Create an account
-					</Typography>
 					<SignInForm
 						watch={watch}
 						errors={errors}
 						register={register}
 						onSubmit={onSubmit}
 						handleSubmit={handleSubmit}
-						displayPasswordConfirmation={true}
+						submitButtonText="Sign Up"
+						isSignUpForm={true}
 					/>
 				</div>
 			</div>
