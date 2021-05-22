@@ -1,10 +1,10 @@
-import Grid from '@material-ui/core/Grid';
-import BigNumber from 'bignumber.js';
-import { makeStyles } from '@material-ui/core/styles';
 import numeral from 'numeral';
+import Grid from '@material-ui/core/Grid';
+import { makeStyles } from '@material-ui/core/styles';
 import CovalentTokenBalance from '../../../../../services/covalent/covalent-token-balance-interface';
 import NomicsTokenData from '../../../../../services/nomics/nomics-token-data-interface';
 import getFormattedTokenBalance from '../../../../../utils/get-formatted-token-balance';
+import getTokenAssetValue from './utils/get-token-asset-value';
 
 const useStyles = makeStyles((theme) => ({
 	tokenBalanceContainer: {
@@ -44,13 +44,17 @@ const TokenBalance = ({ tokenBalance, tokenData }: Props) => {
 	);
 
 	const tokenPrice = tokenData?.price || '0';
-	const balanceBN = new BigNumber(balance);
-	const totalBN = balanceBN
-		.shiftedBy(-contract_decimals)
-		.multipliedBy(tokenPrice);
-
 	const tokenPriceFormatted = numeral(tokenPrice).format('$0,0.00000');
-	const totalFormatted = numeral(totalBN.toString()).format('$0,0.00');
+
+	const tokenAssetValue = getTokenAssetValue({
+		balance,
+		tokenPrice,
+		contract_decimals,
+	});
+
+	const tokenAssetValueFormatted = numeral(tokenAssetValue.toString()).format(
+		'$0,0.00'
+	);
 
 	return (
 		<div className={classes.tokenBalanceContainer}>
@@ -87,7 +91,7 @@ const TokenBalance = ({ tokenBalance, tokenData }: Props) => {
 				</Grid>
 				<Grid item xs className={classes.gridItem}>
 					<div className={classes.total}>
-						<div>{totalFormatted}</div>
+						<div>{tokenAssetValueFormatted}</div>
 					</div>
 				</Grid>
 			</Grid>

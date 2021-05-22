@@ -6,6 +6,8 @@ import Grid from '@material-ui/core/Grid';
 import AssetPieChart from './components/asset-pie-chart';
 import TokenBalances from './components/token-balances';
 import { selectMetaMaskWallet } from '../../../redux/slices/metamask-slice';
+import filterTokenBalances from './components/token-balances/utils/filter-token-balances';
+import getTokenSymbols from './components/token-balances/utils/get-token-symbols';
 import { useSelector, useDispatch } from 'react-redux';
 import {
 	fetchTokenBalances,
@@ -72,12 +74,7 @@ const PermanentDrawer = () => {
 	const tokenData = useSelector(selectTokenData);
 	const tokenDataStatus = useSelector(selectTokenDataStatus);
 	const tokenDataError = useSelector(selectTokenDataError);
-
-	// Filter Token Balances
-	const filteredTokenBalances = tokenBalances.filter((tokenBalance) => {
-		const { balance } = tokenBalance;
-		return balance !== '0';
-	});
+	const filteredTokenBalances = filterTokenBalances(tokenBalances);
 
 	// GET Token Balances
 	useEffect(() => {
@@ -93,16 +90,7 @@ const PermanentDrawer = () => {
 			filteredTokenBalances.length > 0 &&
 			tokenDataStatus === 'idle'
 		) {
-			let symbols = '';
-
-			filteredTokenBalances.forEach((token, index) => {
-				if (index === 0) {
-					symbols += `${token.contract_ticker_symbol}`;
-				} else {
-					symbols += `,${token.contract_ticker_symbol}`;
-				}
-			});
-
+			const symbols = getTokenSymbols(filteredTokenBalances);
 			dispatch(fetchTokenData(symbols));
 		}
 	}, [tokenDataStatus, selectedAddress, filteredTokenBalances, dispatch]);
