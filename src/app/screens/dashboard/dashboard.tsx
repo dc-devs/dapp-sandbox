@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import AssetPieChart from './components/asset-pie-chart';
 import TokenBalances from './components/token-balances';
-// import Transactions from './transactions';
+// import Transactions from './components/transactions';
 
 const useStyles = makeStyles((theme) => ({
 	pageContainer: {

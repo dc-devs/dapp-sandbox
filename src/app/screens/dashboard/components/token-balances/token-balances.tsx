@@ -13,6 +13,12 @@ import {
 	selectTokenBalancesStatus,
 	selectTokenBalancesError,
 } from '../../../../../redux/slices/token-balances-slice';
+import {
+	fetchTokenData,
+	selectTokenData,
+	selectTokenDataStatus,
+	selectTokenDataError,
+} from '../../../../../redux/slices/token-data-slice';
 
 const useStyles = makeStyles((theme) => ({
 	tokenContainer: {
@@ -42,6 +48,9 @@ const TokenBalances = () => {
 	const tokenBalances = useSelector(selectTokenBalances);
 	const tokenBalancesStatus = useSelector(selectTokenBalancesStatus);
 	const tokenBalancesError = useSelector(selectTokenBalancesError);
+	const tokenData = useSelector(selectTokenData);
+	const tokenDataStatus = useSelector(selectTokenDataStatus);
+	const tokenDataError = useSelector(selectTokenDataError);
 
 	useEffect(() => {
 		if (selectedAddress && tokenBalancesStatus === 'idle') {
@@ -49,21 +58,46 @@ const TokenBalances = () => {
 		}
 	}, [tokenBalancesStatus, selectedAddress, dispatch]);
 
+	useEffect(() => {
+		if (
+			selectedAddress &&
+			tokenBalances.length > 0 &&
+			tokenDataStatus === 'idle'
+		) {
+			let symbols = '';
+
+			tokenBalances.forEach((token, index) => {
+				if (index === 0) {
+					symbols += `${token.contract_ticker_symbol}`;
+				} else {
+					symbols += `,${token.contract_ticker_symbol}`;
+				}
+			});
+
+			dispatch(fetchTokenData(symbols));
+		}
+	}, [tokenDataStatus, selectedAddress, tokenBalances, dispatch]);
+
 	const tokenBalancesHTML = tokenBalances
 		.filter((tokenBalance) => {
 			const { balance } = tokenBalance;
 			return balance !== '0';
 		})
 		.map((tokenBalance) => {
-			const { contract_address } = tokenBalance;
+			const { contract_address, contract_ticker_symbol } = tokenBalance;
+			const singleTokenData =
+				tokenData[contract_ticker_symbol.toUpperCase()];
 
 			return (
 				<TokenBalance
 					key={contract_address}
+					tokenData={singleTokenData}
 					tokenBalance={tokenBalance}
 				/>
 			);
 		});
+
+	console.log('tokenData', tokenData);
 
 	return (
 		<Paper elevation={2} className={classes.tokenContainer}>

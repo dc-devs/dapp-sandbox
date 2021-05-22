@@ -1,5 +1,10 @@
-import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
+import BigNumber from 'bignumber.js';
+import { makeStyles } from '@material-ui/core/styles';
+import numeral from 'numeral';
+import ConalentTokenBalance from '../../../../../services/covalent/covalent-token-balance-interface';
+import NomicsTokenData from '../../../../../services/nomics/nomics-token-data-interface';
+import getFormattedTokenBalance from '../../../../../utils/get-formatted-token-balance';
 
 const useStyles = makeStyles((theme) => ({
 	tokenBalanceContainer: {
@@ -25,20 +30,27 @@ const useStyles = makeStyles((theme) => ({
 	total: {},
 }));
 
-interface TokenBalanceObj {
-	contract_address: string;
-	logo_url: string;
-	contract_name: string;
-	contract_ticker_symbol: string;
-	balance: string;
-}
-
 interface Props {
-	tokenBalance: TokenBalanceObj;
+	tokenData: NomicsTokenData;
+	tokenBalance: ConalentTokenBalance;
 }
 
-const TokenBalance = ({ tokenBalance }: Props) => {
+const TokenBalance = ({ tokenBalance, tokenData }: Props) => {
 	const classes = useStyles();
+	const { balance, contract_decimals } = tokenBalance;
+	const tokenBalanceAmountFormatted = getFormattedTokenBalance(
+		balance,
+		contract_decimals
+	);
+
+	const tokenPrice = tokenData?.price || '0';
+	const balanceBN = new BigNumber(balance);
+	const totalBN = balanceBN
+		.shiftedBy(-contract_decimals)
+		.multipliedBy(tokenPrice);
+
+	const tokenPriceFormatted = numeral(tokenPrice).format('$0,0.00000');
+	const totalFormatted = numeral(totalBN.toString()).format('$0,0.00');
 
 	return (
 		<div className={classes.tokenBalanceContainer}>
@@ -65,17 +77,17 @@ const TokenBalance = ({ tokenBalance }: Props) => {
 				</Grid>
 				<Grid item xs className={classes.gridItem}>
 					<div className={classes.amount}>
-						<div>{tokenBalance.balance}</div>
+						<div>{tokenBalanceAmountFormatted}</div>
 					</div>
 				</Grid>
 				<Grid item xs className={classes.gridItem}>
 					<div className={classes.price}>
-						<div>$100.50</div>
+						<div>{tokenPriceFormatted}</div>
 					</div>
 				</Grid>
 				<Grid item xs className={classes.gridItem}>
 					<div className={classes.total}>
-						<div>$50,000,000.34</div>
+						<div>{totalFormatted}</div>
 					</div>
 				</Grid>
 			</Grid>

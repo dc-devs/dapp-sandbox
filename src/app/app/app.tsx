@@ -1,18 +1,14 @@
 import { useEffect } from 'react';
-import Home from '../screens/home';
 import AppHome from '../screens/app-home';
-import SignIn from '../screens/sign-in';
-import SignUp from '../screens/sign-up';
 import { Redirect } from 'react-router';
 import { useSelector, useDispatch } from 'react-redux';
 import Dashboard from '../screens/dashboard';
 import LayoutApp from '../layouts/layout-app';
 import LayoutAppHome from '../layouts/layout-app-home';
-import LayoutHome from '../layouts/layout-home';
 import { Route, Switch } from 'react-router-dom';
 import {
 	fetchMetaMaskWallet,
-	// selectMetaMaskWallet,
+	selectMetaMaskWallet,
 } from '../../redux/slices/metamask-slice';
 import {
 	selectIsMetaMaskConnected,
@@ -25,13 +21,13 @@ import {
 
 const App = () => {
 	const dispatch = useDispatch();
-	// const metaMaskWallet = useSelector(selectMetaMaskWallet);
+	const metaMaskWallet = useSelector(selectMetaMaskWallet);
 	const isMetaMaskInstalled = useSelector(selectIsMetaMaskInstalled);
 	const isMetaMaskConnected = useSelector(selectIsMetaMaskConnected);
 
-	// console.log('App - metaMaskWallet', metaMaskWallet);
-	// console.log('App - isMetaMaskInstalled', isMetaMaskInstalled);
-	// console.log('App - isMetaMaskConnected', isMetaMaskConnected);
+	console.log('App - metaMaskWallet', metaMaskWallet);
+	console.log('App - isMetaMaskInstalled', isMetaMaskInstalled);
+	console.log('App - isMetaMaskConnected', isMetaMaskConnected);
 
 	useEffect(() => {
 		if (!isMetaMaskInstalled) {
@@ -47,36 +43,25 @@ const App = () => {
 		}
 	}, [isMetaMaskInstalled, isMetaMaskConnected, dispatch]);
 
-	// const redirectComponent = isMetaMaskConnected ? (
-	// 	<Redirect to="/dashboard" />
-	// ) : (
-	// 	<Redirect to="/" />
-	// );
+	const redirectComponent = isMetaMaskConnected ? (
+		<Redirect to="/dashboard" />
+	) : (
+		<Redirect to="/" />
+	);
 
 	return (
 		<>
-			{/* {redirectComponent} */}
+			{redirectComponent}
 			<Switch>
 				<Route path="/dashboard">
 					<LayoutApp>
 						<Dashboard />
 					</LayoutApp>
 				</Route>
-				<Route path="/sign-up">
-					<SignUp />
-				</Route>
-				<Route path="/sign-in">
-					<SignIn />
-				</Route>
-				<Route path="/app">
+				<Route path="/">
 					<LayoutAppHome>
 						<AppHome />
 					</LayoutAppHome>
-				</Route>
-				<Route path="/">
-					<LayoutHome>
-						<Home />
-					</LayoutHome>
 				</Route>
 			</Switch>
 		</>

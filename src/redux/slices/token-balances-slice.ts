@@ -1,8 +1,9 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import getTokenBalances from '../../services/covalent/get-token-balances';
+import ConalentTokenBalance from '../../services/covalent/covalent-token-balance-interface';
 
 interface Transaction {
-	tokenBalances: any[];
+	tokenBalances: ConalentTokenBalance[];
 	status: string;
 	error: null | string;
 }
@@ -16,7 +17,8 @@ interface State {
 export const fetchTokenBalances = createAsyncThunk(
 	'tokenBalances/fetchTokenBalances',
 	async (address: string) => {
-		const tokenBalances = (await getTokenBalances(address)) as [];
+		const tokenBalances = await getTokenBalances(address);
+
 		return tokenBalances;
 	}
 );
