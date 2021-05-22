@@ -1,24 +1,11 @@
-import { useEffect } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import TokenBalance from '../token-balance';
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import { useSelector, useDispatch } from 'react-redux';
-import { selectMetaMaskWallet } from '../../../../../redux/slices/metamask-slice';
-import {
-	fetchTokenBalances,
-	selectTokenBalances,
-	selectTokenBalancesStatus,
-	selectTokenBalancesError,
-} from '../../../../../redux/slices/token-balances-slice';
-import {
-	fetchTokenData,
-	selectTokenData,
-	selectTokenDataStatus,
-	selectTokenDataError,
-} from '../../../../../redux/slices/token-data-slice';
+import CovalentTokenBalance from '../../../../../services/covalent/covalent-token-balance-interface';
+import TokenData from '../../../../../services/nomics/token-data-interface';
 
 const useStyles = makeStyles((theme) => ({
 	tokenContainer: {
@@ -41,63 +28,26 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const TokenBalances = () => {
+interface Props {
+	tokenData: TokenData;
+	tokenBalances: CovalentTokenBalance[];
+}
+
+const TokenBalances = ({ tokenBalances, tokenData }: Props) => {
 	const classes = useStyles();
-	const dispatch = useDispatch();
-	const { selectedAddress } = useSelector(selectMetaMaskWallet);
-	const tokenBalances = useSelector(selectTokenBalances);
-	const tokenBalancesStatus = useSelector(selectTokenBalancesStatus);
-	const tokenBalancesError = useSelector(selectTokenBalancesError);
-	const tokenData = useSelector(selectTokenData);
-	const tokenDataStatus = useSelector(selectTokenDataStatus);
-	const tokenDataError = useSelector(selectTokenDataError);
 
-	useEffect(() => {
-		if (selectedAddress && tokenBalancesStatus === 'idle') {
-			dispatch(fetchTokenBalances(selectedAddress));
-		}
-	}, [tokenBalancesStatus, selectedAddress, dispatch]);
+	const tokenBalancesHTML = tokenBalances.map((tokenBalance) => {
+		const { contract_address, contract_ticker_symbol } = tokenBalance;
+		const singleTokenData = tokenData[contract_ticker_symbol.toUpperCase()];
 
-	useEffect(() => {
-		if (
-			selectedAddress &&
-			tokenBalances.length > 0 &&
-			tokenDataStatus === 'idle'
-		) {
-			let symbols = '';
-
-			tokenBalances.forEach((token, index) => {
-				if (index === 0) {
-					symbols += `${token.contract_ticker_symbol}`;
-				} else {
-					symbols += `,${token.contract_ticker_symbol}`;
-				}
-			});
-
-			dispatch(fetchTokenData(symbols));
-		}
-	}, [tokenDataStatus, selectedAddress, tokenBalances, dispatch]);
-
-	const tokenBalancesHTML = tokenBalances
-		.filter((tokenBalance) => {
-			const { balance } = tokenBalance;
-			return balance !== '0';
-		})
-		.map((tokenBalance) => {
-			const { contract_address, contract_ticker_symbol } = tokenBalance;
-			const singleTokenData =
-				tokenData[contract_ticker_symbol.toUpperCase()];
-
-			return (
-				<TokenBalance
-					key={contract_address}
-					tokenData={singleTokenData}
-					tokenBalance={tokenBalance}
-				/>
-			);
-		});
-
-	console.log('tokenData', tokenData);
+		return (
+			<TokenBalance
+				key={contract_address}
+				tokenData={singleTokenData}
+				tokenBalance={tokenBalance}
+			/>
+		);
+	});
 
 	return (
 		<Paper elevation={2} className={classes.tokenContainer}>

@@ -21,15 +21,18 @@ const Logo = () => {
 
 	return (
 		<div className={classes.logoContainer}>
-			<LogoSvg className={classes.logo} />
+			<LogoSvg dataTestId="LogoSvg" className={classes.logo} />
 			<Link
 				to="/"
 				color="primary"
 				underline="none"
 				component={ReactLink}
 				className={classes.logoContainer}
+				data-testid="LogoLink"
 			>
-				<Typography variant="h6">DApp</Typography>
+				<Typography data-testid="LogoText" variant="h6">
+					DApp
+				</Typography>
 			</Link>
 		</div>
 	);

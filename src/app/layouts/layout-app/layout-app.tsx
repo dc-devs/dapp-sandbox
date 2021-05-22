@@ -23,7 +23,7 @@ const LayoutApp = ({ children }: Props) => {
 	const classes = useStyles();
 
 	return (
-		<div className={classes.layoutContainer}>
+		<div data-testid="layoutApp" className={classes.layoutContainer}>
 			<div className={classes.sidebarContainer}>
 				<SideBar logoText="Haven"></SideBar>
 			</div>

@@ -1,4 +1,3 @@
-import { ReactNode } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -28,7 +27,7 @@ const LayoutAppHome = ({ children }: Props) => {
 	const classes = useStyles();
 
 	return (
-		<div className={classes.root}>
+		<div data-testid="layoutAppHome" className={classes.root}>
 			<AppBar
 				position="fixed"
 				classes={{

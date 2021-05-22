@@ -2,7 +2,7 @@ import Grid from '@material-ui/core/Grid';
 import BigNumber from 'bignumber.js';
 import { makeStyles } from '@material-ui/core/styles';
 import numeral from 'numeral';
-import ConalentTokenBalance from '../../../../../services/covalent/covalent-token-balance-interface';
+import CovalentTokenBalance from '../../../../../services/covalent/covalent-token-balance-interface';
 import NomicsTokenData from '../../../../../services/nomics/nomics-token-data-interface';
 import getFormattedTokenBalance from '../../../../../utils/get-formatted-token-balance';
 
@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
 
 interface Props {
 	tokenData: NomicsTokenData;
-	tokenBalance: ConalentTokenBalance;
+	tokenBalance: CovalentTokenBalance;
 }
 
 const TokenBalance = ({ tokenBalance, tokenData }: Props) => {

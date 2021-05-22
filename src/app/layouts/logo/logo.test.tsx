@@ -1,8 +1,13 @@
-import { render, screen } from '@testing-library/react';
-import App from './index';
+import { render, screen } from '../../../test-utils';
+import Logo from './index';
 
 test('renders learn react link', () => {
-	render(<App />);
-	const title = screen.getByText(/DApp/i);
-	expect(title).toBeInTheDocument();
+	render(<Logo />);
+	const LogoSvg = screen.getByTestId('LogoSvg');
+	const LogoLink = screen.getByTestId('LogoLink');
+	const LogoText = screen.getByTestId('LogoText');
+
+	expect(LogoSvg).toBeInTheDocument();
+	expect(LogoLink).toBeInTheDocument();
+	expect(LogoText).toBeInTheDocument();
 });

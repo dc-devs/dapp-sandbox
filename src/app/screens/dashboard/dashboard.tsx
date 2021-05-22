@@ -1,9 +1,24 @@
+import { useEffect } from 'react';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import AssetPieChart from './components/asset-pie-chart';
 import TokenBalances from './components/token-balances';
+import { selectMetaMaskWallet } from '../../../redux/slices/metamask-slice';
+import { useSelector, useDispatch } from 'react-redux';
+import {
+	fetchTokenBalances,
+	selectTokenBalances,
+	selectTokenBalancesStatus,
+	selectTokenBalancesError,
+} from '../../../redux/slices/token-balances-slice';
+import {
+	fetchTokenData,
+	selectTokenData,
+	selectTokenDataStatus,
+	selectTokenDataError,
+} from '../../../redux/slices/token-data-slice';
 // import Transactions from './components/transactions';
 
 const useStyles = makeStyles((theme) => ({
@@ -49,6 +64,48 @@ const useStyles = makeStyles((theme) => ({
 
 const PermanentDrawer = () => {
 	const classes = useStyles();
+	const dispatch = useDispatch();
+	const { selectedAddress } = useSelector(selectMetaMaskWallet);
+	const tokenBalances = useSelector(selectTokenBalances);
+	const tokenBalancesStatus = useSelector(selectTokenBalancesStatus);
+	const tokenBalancesError = useSelector(selectTokenBalancesError);
+	const tokenData = useSelector(selectTokenData);
+	const tokenDataStatus = useSelector(selectTokenDataStatus);
+	const tokenDataError = useSelector(selectTokenDataError);
+
+	// Filter Token Balances
+	const filteredTokenBalances = tokenBalances.filter((tokenBalance) => {
+		const { balance } = tokenBalance;
+		return balance !== '0';
+	});
+
+	// GET Token Balances
+	useEffect(() => {
+		if (selectedAddress && tokenBalancesStatus === 'idle') {
+			dispatch(fetchTokenBalances(selectedAddress));
+		}
+	}, [tokenBalancesStatus, selectedAddress, dispatch]);
+
+	// GET Token Data
+	useEffect(() => {
+		if (
+			selectedAddress &&
+			filteredTokenBalances.length > 0 &&
+			tokenDataStatus === 'idle'
+		) {
+			let symbols = '';
+
+			filteredTokenBalances.forEach((token, index) => {
+				if (index === 0) {
+					symbols += `${token.contract_ticker_symbol}`;
+				} else {
+					symbols += `,${token.contract_ticker_symbol}`;
+				}
+			});
+
+			dispatch(fetchTokenData(symbols));
+		}
+	}, [tokenDataStatus, selectedAddress, filteredTokenBalances, dispatch]);
 
 	return (
 		<div className={classes.pageContainer}>
@@ -95,7 +152,10 @@ const PermanentDrawer = () => {
 						</div>
 					</Grid>
 					<Grid item xs={8}>
-						<TokenBalances />
+						<TokenBalances
+							tokenData={tokenData}
+							tokenBalances={filteredTokenBalances}
+						/>
 					</Grid>
 					<Grid item xs={12}>
 						{/* <Transactions /> */}

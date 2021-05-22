@@ -2,9 +2,10 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 
 interface Props {
 	className?: string;
+	dataTestId?: string;
 }
 
-const Logo = ({ className }: Props) => {
+const Logo = ({ className, dataTestId }: Props) => {
 	return (
 		<SvgIcon
 			className={className}
@@ -12,6 +13,7 @@ const Logo = ({ className }: Props) => {
 			xmlns="http://www.w3.org/2000/svg"
 			width="2500"
 			height="1985"
+			data-testid={dataTestId}
 		>
 			<path
 				d="M0 259.8V0l225 129.9v86.6L75 129.9v173.2z"
