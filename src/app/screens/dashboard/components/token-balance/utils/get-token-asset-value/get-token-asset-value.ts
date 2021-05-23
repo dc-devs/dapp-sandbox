@@ -12,7 +12,9 @@ const getTokenAssetValue = ({
 	contract_decimals,
 }: Props) => {
 	const balanceBN = new BigNumber(balance);
-	return balanceBN.shiftedBy(-contract_decimals).multipliedBy(tokenPrice);
+	const balanceETHBN = balanceBN.shiftedBy(-contract_decimals);
+
+	return balanceETHBN.multipliedBy(tokenPrice);
 };
 
 export default getTokenAssetValue;

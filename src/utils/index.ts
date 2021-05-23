@@ -1,6 +1,3 @@
-import shortenWalletAddress from './shorten-wallet-address';
-import getFormattedTokenBalance from './get-formatted-token-balance';
+import shortenWalletAddress from './shorten-wallet-address/shorten-wallet-address';
 
-const utils = { shortenWalletAddress, getFormattedTokenBalance };
-
-export default utils;
+export { shortenWalletAddress };

@@ -3,7 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import CovalentTokenBalance from '../../../../../services/covalent/covalent-token-balance-interface';
 import NomicsTokenData from '../../../../../services/nomics/nomics-token-data-interface';
-import getFormattedTokenBalance from '../../../../../utils/get-formatted-token-balance';
+import getFormattedTokenBalance from '../token-balances/utils/get-formatted-token-balance';
 import getTokenAssetValue from './utils/get-token-asset-value';
 
 const useStyles = makeStyles((theme) => ({

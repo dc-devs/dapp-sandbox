@@ -8,6 +8,8 @@ import TokenBalances from './components/token-balances';
 import { selectMetaMaskWallet } from '../../../redux/slices/metamask-slice';
 import filterTokenBalances from './components/token-balances/utils/filter-token-balances';
 import getTokenSymbols from './components/token-balances/utils/get-token-symbols';
+import getTotalAssetValue from './utils/get-total-asset-value';
+import formatBnNToUsd from '../../../utils/format-bn-to-usd';
 import { useSelector, useDispatch } from 'react-redux';
 import {
 	fetchTokenBalances,
@@ -95,6 +97,14 @@ const PermanentDrawer = () => {
 		}
 	}, [tokenDataStatus, selectedAddress, filteredTokenBalances, dispatch]);
 
+	// Get Total Asset Value
+	const totalAssetValue = getTotalAssetValue({
+		tokenBalances: filteredTokenBalances,
+		tokenData,
+	});
+
+	console.log('totalAssetValue', formatBnNToUsd(totalAssetValue));
+
 	return (
 		<div className={classes.pageContainer}>
 			<div className={classes.header}>
@@ -123,7 +133,7 @@ const PermanentDrawer = () => {
 							>
 								<Typography>USD Valuation</Typography>
 								<Typography className={classes.valuation}>
-									$6,207
+									{formatBnNToUsd(totalAssetValue)}
 								</Typography>
 							</Paper>
 							<Paper

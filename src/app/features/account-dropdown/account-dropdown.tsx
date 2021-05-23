@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import ArrowBackIosRoundedIcon from '@material-ui/icons/ArrowBackIosRounded';
 import { selectMetaMaskWallet } from '../../../redux/slices/metamask-slice';
-import utils from '../../../utils';
+import { shortenWalletAddress } from '../../../utils';
 import Button from '@material-ui/core/Button';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import Grow from '@material-ui/core/Grow';
@@ -16,8 +16,6 @@ import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
 import FileCopyOutlinedIcon from '@material-ui/icons/FileCopyOutlined';
 import SettingsOutlinedIcon from '@material-ui/icons/SettingsOutlined';
 import { MouseEvent } from 'react';
-
-const { shortenWalletAddress } = utils;
 
 const useStyles = makeStyles((theme) => ({
 	root: {

@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import infuraProvider from '../../../../../services/ethers/infura-provider';
-import shortenWalletAddress from '../../../../../utils/shorten-wallet-address';
+import shortenWalletAddress from '../../../../../utils/shorten-wallet-address/shorten-wallet-address';
 import {
 	fetchContract,
 	selectContract,
