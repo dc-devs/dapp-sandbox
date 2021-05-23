@@ -5,6 +5,7 @@ import CovalentTokenBalance from '../../../../../services/covalent/covalent-toke
 import NomicsTokenData from '../../../../../services/nomics/nomics-token-data-interface';
 import getFormattedTokenBalance from '../token-balances/utils/get-formatted-token-balance';
 import getTokenAssetValue from './utils/get-token-asset-value';
+import formatBnToUsd from '../../../../../utils/format-bn-to-usd';
 
 const useStyles = makeStyles((theme) => ({
 	tokenBalanceContainer: {
@@ -52,9 +53,7 @@ const TokenBalance = ({ tokenBalance, tokenData }: Props) => {
 		contract_decimals,
 	});
 
-	const tokenAssetValueFormatted = numeral(tokenAssetValue.toString()).format(
-		'$0,0.00'
-	);
+	const tokenAssetValueUsd = formatBnToUsd(tokenAssetValue);
 
 	return (
 		<div className={classes.tokenBalanceContainer}>
@@ -91,7 +90,7 @@ const TokenBalance = ({ tokenBalance, tokenData }: Props) => {
 				</Grid>
 				<Grid item xs className={classes.gridItem}>
 					<div className={classes.total}>
-						<div>{tokenAssetValueFormatted}</div>
+						<div>{tokenAssetValueUsd}</div>
 					</div>
 				</Grid>
 			</Grid>
