@@ -23,6 +23,7 @@ import {
 	selectTokenDataStatus,
 	selectTokenDataError,
 } from '../../../redux/slices/token-data-slice';
+import generateTokenDisplayData from '../../../utils/generate-token-display-data';
 // import Transactions from './components/transactions';
 
 const useStyles = makeStyles((theme) => ({
@@ -66,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
 	allocationPieChart: {},
 }));
 
-const PermanentDrawer = () => {
+const DashBoard = () => {
 	const classes = useStyles();
 	const dispatch = useDispatch();
 	const { selectedAddress } = useSelector(selectMetaMaskWallet);
@@ -104,6 +105,31 @@ const PermanentDrawer = () => {
 	});
 
 	const totalAssetValueUsd = formatBnToUsd(totalAssetValue);
+	const tokenDisplayData = generateTokenDisplayData({
+		tokenData,
+		tokenBalances: filteredTokenBalances,
+	});
+
+	const seriesData = [
+		{
+			name: '$ 170,000.0',
+			y: 170000.0,
+			color: '#2ecc71',
+			sliced: true,
+		},
+		{
+			name: '$ 210,000.0',
+			y: 210000.0,
+			color: '#18c3f3',
+			sliced: true,
+		},
+		{
+			name: '$ 220,000.0',
+			y: 220000.0,
+			color: '#ffcd00',
+			sliced: true,
+		},
+	];
 
 	return (
 		<div className={classes.pageContainer}>
@@ -144,16 +170,16 @@ const PermanentDrawer = () => {
 									Allocations
 								</Typography>
 								<div className={classes.allocationPieChart}>
-									<AssetPieChart />
+									<AssetPieChart
+										seriesData={seriesData}
+										totalAssetValue={totalAssetValueUsd}
+									/>
 								</div>
 							</Paper>
 						</div>
 					</Grid>
 					<Grid item xs={8}>
-						<TokenBalances
-							tokenData={tokenData}
-							tokenBalances={filteredTokenBalances}
-						/>
+						<TokenBalances tokenDisplayData={tokenDisplayData} />
 					</Grid>
 					<Grid item xs={12}>
 						{/* <Transactions /> */}
@@ -164,4 +190,4 @@ const PermanentDrawer = () => {
 	);
 };
 
-export default PermanentDrawer;
+export default DashBoard;

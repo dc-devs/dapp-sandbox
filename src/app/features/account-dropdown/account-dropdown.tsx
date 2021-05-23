@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
 		backgroundColor: theme.palette.primary.main,
 		borderRadius: '50%',
 	},
-	walletAdress: {
+	walletAddress: {
 		display: 'flex',
 		justifyContent: 'center',
 		alignItems: 'center',
@@ -120,7 +120,7 @@ const AccountDropdown = () => {
 					className={classes.accountDropdownContainer}
 				>
 					<div className={classes.signedInDot} />
-					<Typography className={classes.walletAdress}>
+					<Typography className={classes.walletAddress}>
 						{shortendWalletAddress}
 					</Typography>
 					<ArrowBackIosRoundedIcon

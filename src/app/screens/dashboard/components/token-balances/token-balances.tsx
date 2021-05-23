@@ -4,8 +4,7 @@ import TokenBalance from '../token-balance';
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import CovalentTokenBalance from '../../../../../services/covalent/covalent-token-balance-interface';
-import TokenData from '../../../../../services/nomics/token-data-interface';
+import TokenDisplayData from '../../../../../interfaces/token-display-data-interface';
 
 const useStyles = makeStyles((theme) => ({
 	tokenContainer: {
@@ -29,24 +28,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 interface Props {
-	tokenData: TokenData;
-	tokenBalances: CovalentTokenBalance[];
+	tokenDisplayData: TokenDisplayData[];
 }
 
-const TokenBalances = ({ tokenBalances, tokenData }: Props) => {
+const TokenBalances = ({ tokenDisplayData }: Props) => {
 	const classes = useStyles();
 
-	const tokenBalancesHTML = tokenBalances.map((tokenBalance) => {
-		const { contract_address, contract_ticker_symbol } = tokenBalance;
-		const singleTokenData = tokenData[contract_ticker_symbol.toUpperCase()];
-
-		return (
-			<TokenBalance
-				key={contract_address}
-				tokenData={singleTokenData}
-				tokenBalance={tokenBalance}
-			/>
-		);
+	const tokenBalanceComponents = tokenDisplayData.map((token) => {
+		const { tokenContractAddress } = token;
+		return <TokenBalance key={tokenContractAddress} token={token} />;
 	});
 
 	return (
@@ -78,7 +68,7 @@ const TokenBalances = ({ tokenBalances, tokenData }: Props) => {
 						</Grid>
 					</Grid>
 				</div>
-				{tokenBalancesHTML}
+				{tokenBalanceComponents}
 			</div>
 		</Paper>
 	);

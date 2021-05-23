@@ -1,11 +1,6 @@
-import numeral from 'numeral';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
-import CovalentTokenBalance from '../../../../../services/covalent/covalent-token-balance-interface';
-import NomicsTokenData from '../../../../../services/nomics/nomics-token-data-interface';
-import getFormattedTokenBalance from '../token-balances/utils/get-formatted-token-balance';
-import getTokenAssetValue from './utils/get-token-asset-value';
-import formatBnToUsd from '../../../../../utils/format-bn-to-usd';
+import TokenDisplayData from '../../../../../interfaces/token-display-data-interface';
 
 const useStyles = makeStyles((theme) => ({
 	tokenBalanceContainer: {
@@ -32,28 +27,19 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 interface Props {
-	tokenData: NomicsTokenData;
-	tokenBalance: CovalentTokenBalance;
+	token: TokenDisplayData;
 }
 
-const TokenBalance = ({ tokenBalance, tokenData }: Props) => {
+const TokenBalance = ({ token }: Props) => {
 	const classes = useStyles();
-	const { balance, contract_decimals } = tokenBalance;
-	const tokenBalanceAmountFormatted = getFormattedTokenBalance(
-		balance,
-		contract_decimals
-	);
-
-	const tokenPrice = tokenData?.price || '0';
-	const tokenPriceFormatted = numeral(tokenPrice).format('$0,0.00000');
-
-	const tokenAssetValue = getTokenAssetValue({
-		balance,
+	const {
+		tokenName,
 		tokenPrice,
-		contract_decimals,
-	});
-
-	const tokenAssetValueUsd = formatBnToUsd(tokenAssetValue);
+		tokenSymbol,
+		tokenBalance,
+		tokenLogoUrl,
+		totalAssetValue,
+	} = token;
 
 	return (
 		<div className={classes.tokenBalanceContainer}>
@@ -68,29 +54,28 @@ const TokenBalance = ({ tokenBalance, tokenData }: Props) => {
 					<div className={classes.assetContainer}>
 						<img
 							alt=""
-							src={tokenBalance.logo_url}
+							src={tokenLogoUrl}
 							className={`${classes.image} ${classes.assetItem}`}
 						/>
 						<div className={classes.assetItem}>
-							{tokenBalance.contract_ticker_symbol} -{' '}
-							{tokenBalance.contract_name}
+							{tokenSymbol} - {tokenName}
 						</div>
 						<div className={classes.assetItem}></div>
 					</div>
 				</Grid>
 				<Grid item xs className={classes.gridItem}>
 					<div className={classes.amount}>
-						<div>{tokenBalanceAmountFormatted}</div>
+						<div>{tokenBalance}</div>
 					</div>
 				</Grid>
 				<Grid item xs className={classes.gridItem}>
 					<div className={classes.price}>
-						<div>{tokenPriceFormatted}</div>
+						<div>{tokenPrice}</div>
 					</div>
 				</Grid>
 				<Grid item xs className={classes.gridItem}>
 					<div className={classes.total}>
-						<div>{tokenAssetValueUsd}</div>
+						<div>{totalAssetValue}</div>
 					</div>
 				</Grid>
 			</Grid>
