@@ -12,9 +12,7 @@ import Paper from '@material-ui/core/Paper';
 import Popper from '@material-ui/core/Popper';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
-import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
-import FileCopyOutlinedIcon from '@material-ui/icons/FileCopyOutlined';
-import SettingsOutlinedIcon from '@material-ui/icons/SettingsOutlined';
+import { Copy, LogOut, Settings } from 'react-feather';
 import { MouseEvent } from 'react';
 
 const useStyles = makeStyles((theme) => ({
@@ -78,7 +76,7 @@ const AccountDropdown = () => {
 
 	// TODO: FIX ANY
 	const handleClose = (event: any) => {
-		console.log(event);
+		// console.log(event);
 		if (
 			anchorRef.current &&
 			anchorRef.current.contains &&
@@ -155,13 +153,13 @@ const AccountDropdown = () => {
 										onKeyDown={handleListKeyDown}
 									>
 										<MenuItem onClick={handleClose}>
-											<SettingsOutlinedIcon
+											<Settings
 												className={classes.menuIcon}
 											/>
 											<Typography>Settings</Typography>
 										</MenuItem>
 										<MenuItem onClick={handleClose}>
-											<FileCopyOutlinedIcon
+											<Copy
 												className={classes.menuIcon}
 											/>
 											<Typography>
@@ -169,7 +167,7 @@ const AccountDropdown = () => {
 											</Typography>
 										</MenuItem>
 										<MenuItem onClick={handleClose}>
-											<ExitToAppRoundedIcon
+											<LogOut
 												className={classes.menuIcon}
 											/>
 											<Typography>Sign Out</Typography>

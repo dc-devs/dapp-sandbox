@@ -2,47 +2,53 @@ import * as Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 
 const chartOptions: Highcharts.Options = {
-	title: {
-		text: '',
+	chart: {
+		type: 'pie',
+		plotShadow: false,
+	},
+	credits: {
+		enabled: false,
 	},
 	plotOptions: {
 		pie: {
-			allowPointSelect: true,
-			cursor: 'pointer',
+			innerSize: '100%',
+			borderWidth: 6,
+			borderColor: undefined,
+			slicedOffset: 5,
 			dataLabels: {
-				enabled: false,
+				connectorWidth: 0,
 			},
-			showInLegend: true,
 		},
 	},
+	title: {
+		verticalAlign: 'middle',
+		floating: true,
+		text: '$ 600,000.00',
+	},
+	legend: {},
 	series: [
 		{
 			type: 'pie',
-			name: 'Brands',
+			id: 'idData',
+			name: 'Data',
 			data: [
 				{
-					name: 'BTC',
-					y: 61.41,
+					name: '$ 170,000.0',
+					y: 170000.0,
+					color: '#2ecc71',
+					sliced: true,
 				},
 				{
-					name: 'ETH',
-					y: 11.84,
+					name: '$ 210,000.0',
+					y: 210000.0,
+					color: '#18c3f3',
+					sliced: true,
 				},
 				{
-					name: 'RSR',
-					y: 10.85,
-				},
-				{
-					name: 'ZKS',
-					y: 4.67,
-				},
-				{
-					name: 'REEF',
-					y: 4.18,
-				},
-				{
-					name: 'GRT',
-					y: 7.05,
+					name: '$ 220,000.0',
+					y: 220000.0,
+					color: '#ffcd00',
+					sliced: true,
 				},
 			],
 		},

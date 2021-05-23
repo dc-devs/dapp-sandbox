@@ -29,8 +29,6 @@ const getTotalAssetValue = ({ tokenBalances, tokenData }: Props) => {
 
 			totalAssetValue = totalAssetValue.plus(tokenAssetValue);
 		});
-
-		console.log(totalAssetValue);
 	}
 
 	return totalAssetValue;

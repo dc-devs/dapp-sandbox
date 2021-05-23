@@ -105,8 +105,6 @@ const PermanentDrawer = () => {
 
 	const totalAssetValueUsd = formatBnToUsd(totalAssetValue);
 
-	console.log('totalAssetValue', totalAssetValue.toString());
-
 	return (
 		<div className={classes.pageContainer}>
 			<div className={classes.header}>

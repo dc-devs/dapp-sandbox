@@ -2,6 +2,7 @@ import Paper from '@material-ui/core/Paper';
 import AccountDropdown from '../../features/account-dropdown';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import { BarChart } from 'react-feather';
 
 const drawerWidth = 240;
 
@@ -39,6 +40,10 @@ const PermanentDrawer = ({ logoText }: Props) => {
 					</Typography>
 				</div>
 				<AccountDropdown />
+				<div>
+					<BarChart />
+					<Typography>Dashboard</Typography>
+				</div>
 			</div>
 		</Paper>
 	);

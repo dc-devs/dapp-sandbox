@@ -25,7 +25,7 @@ const LayoutApp = ({ children }: Props) => {
 	return (
 		<div data-testid="layoutApp" className={classes.layoutContainer}>
 			<div className={classes.sidebarContainer}>
-				<SideBar logoText="Company"></SideBar>
+				<SideBar logoText="company"></SideBar>
 			</div>
 			<div className={classes.pageContainer}>{children}</div>
 		</div>
