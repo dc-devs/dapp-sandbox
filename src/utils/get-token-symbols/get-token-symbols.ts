@@ -1,4 +1,4 @@
-import CovalentTokenBalance from '../../../../../../../services/covalent/covalent-token-balance-interface';
+import CovalentTokenBalance from '../../interfaces/covalent-token-balance-interface';
 
 const getTokenSymbols = (tokenBalances: CovalentTokenBalance[]) => {
 	let symbols = '';

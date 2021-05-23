@@ -1,13 +1,13 @@
 import numeral from 'numeral';
 import formatBnToUsd from '../format-bn-to-usd';
-import getTokenAssetValue from '../../app/screens/dashboard/components/token-balance/utils/get-token-asset-value';
-import CovalentTokenBalanceInterface from '../../services/covalent/covalent-token-balance-interface';
-import NomicsTokenDataInterface from '../../services/nomics/token-data-interface';
-import getFormattedTokenBalance from '../../app/screens/dashboard/components/token-balances/utils/get-formatted-token-balance';
+import getTokenAssetValue from '../get-token-asset-value';
+import getFormattedTokenBalance from '../get-formatted-token-balance';
+import NomicsTokenDatas from '../../interfaces/nomics-token-datas-interface';
+import CovalentTokenBalance from '../../interfaces/covalent-token-balance-interface';
 
 interface AssetData {
-	tokenData: NomicsTokenDataInterface;
-	tokenBalances: CovalentTokenBalanceInterface[];
+	tokenData: NomicsTokenDatas;
+	tokenBalances: CovalentTokenBalance[];
 }
 
 const generateTokenDisplayData = ({ tokenData, tokenBalances }: AssetData) => {

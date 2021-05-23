@@ -1,9 +1,9 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import getTokenData from '../../services/nomics/get-token-data';
-import NomicsTokenData from '../../services/nomics/token-data-interface';
+import NomicsTokenDatas from '../../interfaces/nomics-token-datas-interface';
 
 interface Transaction {
-	tokenData: NomicsTokenData;
+	tokenData: NomicsTokenDatas;
 	status: string;
 	error: null | string;
 }

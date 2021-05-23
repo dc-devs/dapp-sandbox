@@ -1,16 +1,17 @@
 import { useEffect } from 'react';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import AssetPieChart from './components/asset-pie-chart';
-import TokenBalances from './components/token-balances';
-import { selectMetaMaskWallet } from '../../../redux/slices/metamask-slice';
-import filterTokenBalances from './components/token-balances/utils/filter-token-balances';
-import getTokenSymbols from './components/token-balances/utils/get-token-symbols';
-import getTotalAssetValue from './utils/get-total-asset-value';
-import formatBnToUsd from '../../../utils/format-bn-to-usd';
+import Paper from '@material-ui/core/Paper';
+import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
 import { useSelector, useDispatch } from 'react-redux';
+import TokenBalances from './components/token-balances';
+import AssetPieChart from './components/asset-pie-chart';
+import formatBnToUsd from '../../../utils/format-bn-to-usd';
+import getTokenSymbols from '../../../utils/get-token-symbols';
+import getTotalAssetValue from '../../../utils/get-total-asset-value';
+import filterTokenBalances from '../../../utils/filter-token-balances';
+import { selectMetaMaskWallet } from '../../../redux/slices/metamask-slice';
+import generateTokenDisplayData from '../../../utils/generate-token-display-data';
 import {
 	fetchTokenBalances,
 	selectTokenBalances,
@@ -23,7 +24,6 @@ import {
 	selectTokenDataStatus,
 	selectTokenDataError,
 } from '../../../redux/slices/token-data-slice';
-import generateTokenDisplayData from '../../../utils/generate-token-display-data';
 // import Transactions from './components/transactions';
 
 const useStyles = makeStyles((theme) => ({

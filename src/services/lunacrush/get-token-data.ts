@@ -1,11 +1,11 @@
 import axios from 'axios';
-import LunaTokenData from './luna-token-data-interface';
-import TokenData from './token-data-interface';
+import LunacrushTokenData from '../../interfaces/lunacrush-token-data-interface';
+import LunacrushTokenDatas from '../../interfaces/lunacrush-token-datas-interface';
 
 const convertArrayToObject = (dataArray: []) => {
-	const tokenData = {} as TokenData;
+	const tokenData = {} as LunacrushTokenDatas;
 
-	dataArray.forEach((lunaTokenData: LunaTokenData) => {
+	dataArray.forEach((lunaTokenData: LunacrushTokenData) => {
 		tokenData[lunaTokenData.symbol] = lunaTokenData;
 	});
 

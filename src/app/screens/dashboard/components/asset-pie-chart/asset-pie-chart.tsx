@@ -1,7 +1,7 @@
 import * as Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
-import generateChartOptions from './utils/generate-chart-options';
-import HighchartPointDataPie from './interfaces/highchart-point-data-pie-interface';
+import generateChartOptions from './generate-chart-options';
+import HighchartPointDataPie from '../../../../../interfaces/highchart-point-data-pie-interface';
 
 interface Props {
 	seriesData: HighchartPointDataPie[];

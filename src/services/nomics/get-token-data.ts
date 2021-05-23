@@ -1,9 +1,9 @@
 import axios from 'axios';
-import NomicsTokenData from './nomics-token-data-interface';
-import TokenData from './token-data-interface';
+import NomicsTokenData from '../../interfaces/nomics-token-data-interface';
+import NomicsTokenDatas from '../../interfaces/nomics-token-datas-interface';
 
 const convertArrayToObject = (dataArray: []) => {
-	const tokenData = {} as TokenData;
+	const tokenData = {} as NomicsTokenDatas;
 
 	dataArray.forEach((nomicTokenData: NomicsTokenData) => {
 		tokenData[nomicTokenData.id] = nomicTokenData;

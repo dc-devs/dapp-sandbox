@@ -1,4 +1,4 @@
-import HighchartPointDataPie from '../../interfaces/highchart-point-data-pie-interface';
+import HighchartPointDataPie from '../../../../../../interfaces/highchart-point-data-pie-interface';
 
 interface PieChartData {
 	seriesData: HighchartPointDataPie[];

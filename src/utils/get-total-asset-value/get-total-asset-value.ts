@@ -1,7 +1,7 @@
 import BigNumber from 'bignumber.js';
-import NomicsTokenData from '../../../../../services/nomics/token-data-interface';
-import CovalentTokenBalance from '../../../../../services/covalent/covalent-token-balance-interface';
-import getTokenAssetValue from '../../components/token-balance/utils/get-token-asset-value';
+import getTokenAssetValue from '../get-token-asset-value';
+import NomicsTokenData from '../../interfaces/nomics-token-datas-interface';
+import CovalentTokenBalance from '../../interfaces/covalent-token-balance-interface';
 
 interface Props {
 	tokenBalances: CovalentTokenBalance[];

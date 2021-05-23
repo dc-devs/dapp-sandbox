@@ -1,7 +1,7 @@
 import NomicsTokenData from './nomics-token-data-interface';
 
-interface TokenData {
+interface NomicsTokenDatas {
 	[key: string]: NomicsTokenData;
 }
 
-export default TokenData;
+export default NomicsTokenDatas;
