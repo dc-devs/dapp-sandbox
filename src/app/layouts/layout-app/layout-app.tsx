@@ -1,4 +1,4 @@
-import SideBar from '../sidebar';
+import SideBar from '../layout-app-home/sidebar';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({

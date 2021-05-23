@@ -1,5 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
-import ModalBase from '../../../core/modals/modal-base';
+import ModalBase from '../../../../core/modals/modal-base';
 import DialogContent from '@material-ui/core/DialogContent';
 import ConnectWalletGeneric from '../connect-wallet-generic';
 import ConnectWalletMetaMask from '../connect-wallet-metamask';
