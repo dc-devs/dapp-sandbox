@@ -4,8 +4,9 @@ const filtereTokenBalances = (
 	tokenBalances: CovalentTokenBalance[]
 ): CovalentTokenBalance[] => {
 	return tokenBalances.filter((tokenBalance) => {
-		const { balance } = tokenBalance;
-		return balance !== '0';
+		const { balance, quote } = tokenBalance;
+
+		return balance !== '0' && quote !== 0;
 	});
 };
 

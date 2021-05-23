@@ -70,12 +70,12 @@ const TokenBalance = ({ token }: Props) => {
 				</Grid>
 				<Grid item xs className={classes.gridItem}>
 					<div className={classes.price}>
-						<div>{tokenPrice}</div>
+						<div>{tokenPrice.formatted}</div>
 					</div>
 				</Grid>
 				<Grid item xs className={classes.gridItem}>
 					<div className={classes.total}>
-						<div>{totalAssetValue}</div>
+						<div>{totalAssetValue.formatted}</div>
 					</div>
 				</Grid>
 			</Grid>

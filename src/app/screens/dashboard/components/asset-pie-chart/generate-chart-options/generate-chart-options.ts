@@ -1,7 +1,7 @@
-import HighchartPointDataPie from '../../../../../../interfaces/highchart-point-data-pie-interface';
+import HighchartPieSeriesDataPoint from '../../../../../../interfaces/highchart-point-data-pie-interface';
 
 interface PieChartData {
-	seriesData: HighchartPointDataPie[];
+	seriesData: HighchartPieSeriesDataPoint[];
 	totalAssetValue: string;
 }
 

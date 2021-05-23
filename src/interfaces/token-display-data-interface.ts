@@ -1,11 +1,23 @@
+interface TokenPrice {
+	number: number;
+	string: string;
+	formatted: string;
+}
+
+interface TotalAssetValue {
+	number: number;
+	string: string;
+	formatted: string;
+}
+
 interface TokenDisplayData {
 	tokenName: string;
-	tokenPrice: string;
 	tokenSymbol: string;
 	tokenBalance: string;
 	tokenLogoUrl: string;
-	totalAssetValue: string;
+	tokenPrice: TokenPrice;
 	tokenContractAddress: string;
+	totalAssetValue: TotalAssetValue;
 }
 
 export default TokenDisplayData;

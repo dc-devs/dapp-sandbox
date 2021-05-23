@@ -6,12 +6,13 @@ import Typography from '@material-ui/core/Typography';
 import { useSelector, useDispatch } from 'react-redux';
 import TokenBalances from './components/token-balances';
 import AssetPieChart from './components/asset-pie-chart';
-import formatBnToUsd from '../../../utils/format-bn-to-usd';
+import formatBnToFiat from '../../../utils/format-bn-to-fiat';
 import getTokenSymbols from '../../../utils/get-token-symbols';
 import getTotalAssetValue from '../../../utils/get-total-asset-value';
 import filterTokenBalances from '../../../utils/filter-token-balances';
 import { selectMetaMaskWallet } from '../../../redux/slices/metamask-slice';
-import generateTokenDisplayData from '../../../utils/generate-token-display-data';
+import getTokenDisplayData from '../../../utils/get-token-display-data';
+import generateSeriesData from './components/asset-pie-chart/generate-series-data';
 import {
 	fetchTokenBalances,
 	selectTokenBalances,
@@ -78,6 +79,10 @@ const DashBoard = () => {
 	const tokenDataStatus = useSelector(selectTokenDataStatus);
 	const tokenDataError = useSelector(selectTokenDataError);
 	const filteredTokenBalances = filterTokenBalances(tokenBalances);
+	const tokenDisplayData = getTokenDisplayData({
+		tokenData,
+		tokenBalances: filteredTokenBalances,
+	});
 
 	// GET Token Balances
 	useEffect(() => {
@@ -104,32 +109,13 @@ const DashBoard = () => {
 		tokenData,
 	});
 
-	const totalAssetValueUsd = formatBnToUsd(totalAssetValue);
-	const tokenDisplayData = generateTokenDisplayData({
-		tokenData,
-		tokenBalances: filteredTokenBalances,
+	const totalAssetValueFiat = formatBnToFiat({
+		currency: 'usd',
+		format: '0,0.00',
+		bigNumber: totalAssetValue,
 	});
 
-	const seriesData = [
-		{
-			name: '$ 170,000.0',
-			y: 170000.0,
-			color: '#2ecc71',
-			sliced: true,
-		},
-		{
-			name: '$ 210,000.0',
-			y: 210000.0,
-			color: '#18c3f3',
-			sliced: true,
-		},
-		{
-			name: '$ 220,000.0',
-			y: 220000.0,
-			color: '#ffcd00',
-			sliced: true,
-		},
-	];
+	const seriesData = generateSeriesData({ tokenDisplayData });
 
 	return (
 		<div className={classes.pageContainer}>
@@ -159,7 +145,7 @@ const DashBoard = () => {
 							>
 								<Typography>USD Valuation</Typography>
 								<Typography className={classes.valuation}>
-									{totalAssetValueUsd}
+									{totalAssetValueFiat}
 								</Typography>
 							</Paper>
 							<Paper
@@ -172,7 +158,7 @@ const DashBoard = () => {
 								<div className={classes.allocationPieChart}>
 									<AssetPieChart
 										seriesData={seriesData}
-										totalAssetValue={totalAssetValueUsd}
+										totalAssetValue={totalAssetValueFiat}
 									/>
 								</div>
 							</Paper>

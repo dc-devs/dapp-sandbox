@@ -1,8 +1,8 @@
-interface HighchartPointDataPie {
+interface HighchartPieSeriesDataPoint {
 	name: string;
 	y: number;
 	color: string;
 	sliced: boolean;
 }
 
-export default HighchartPointDataPie;
+export default HighchartPieSeriesDataPoint;
