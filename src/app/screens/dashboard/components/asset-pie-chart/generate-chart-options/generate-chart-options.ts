@@ -19,7 +19,7 @@ const generateChartOptions = ({
 		},
 		plotOptions: {
 			pie: {
-				innerSize: '100%',
+				innerSize: '92%',
 				borderWidth: 6,
 				borderColor: undefined,
 				slicedOffset: 5,
@@ -30,10 +30,11 @@ const generateChartOptions = ({
 		},
 		title: {
 			verticalAlign: 'middle',
-			floating: true,
+			horizonalAlign: 'middle',
+			// floating: true,
 			text: totalAssetValue,
 		},
-		legend: {},
+		// legend: {},
 		series: [
 			{
 				type: 'pie',
