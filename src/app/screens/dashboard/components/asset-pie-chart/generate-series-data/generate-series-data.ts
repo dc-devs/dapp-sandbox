@@ -42,8 +42,6 @@ const generateSeriesData = ({
 		const { totalAssetValue } = token;
 		const yAxis = Math.floor(totalAssetValue.number);
 
-		console.log(yAxis);
-
 		return {
 			name: `${totalAssetValue.formatted}`,
 			y: yAxis,

@@ -23,6 +23,22 @@ const useStyles = makeStyles((theme) => ({
 		textAlign: 'center',
 		fontSize: '2rem',
 	},
+	sidebarLinksContainer: {
+		marginTop: '50px',
+	},
+	sidebarLinkContainer: {
+		display: 'flex',
+		alignContent: 'center',
+		cursor: 'pointer',
+	},
+	sidebarLinkLogo: {
+		marginRight: '10px',
+		color: theme.palette.primary.main,
+	},
+	sidebarLinkText: {
+		fontSize: '1.2rem',
+		color: theme.palette.primary.main,
+	},
 }));
 
 interface Props {
@@ -40,9 +56,13 @@ const PermanentDrawer = ({ logoText }: Props) => {
 					</Typography>
 				</div>
 				<AccountDropdown />
-				<div>
-					<BarChart />
-					<Typography>Dashboard</Typography>
+				<div className={classes.sidebarLinksContainer}>
+					<div className={classes.sidebarLinkContainer}>
+						<BarChart className={classes.sidebarLinkLogo} />
+						<Typography className={classes.sidebarLinkText}>
+							Dashboard
+						</Typography>
+					</div>
 				</div>
 			</div>
 		</Paper>
