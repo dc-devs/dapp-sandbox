@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
 		height: '100vh',
 	},
 	homeTitle: {
-		fontSize: '5rem',
+		fontSize: '2.5rem',
 		color: theme.palette.primary.main,
 	},
 }));
@@ -22,7 +22,7 @@ const Home = () => {
 	return (
 		<div className={classes.root}>
 			<Typography className={classes.homeTitle}>
-				Connect a wallet!
+				Crypto asset tracking made easy.
 			</Typography>
 		</div>
 	);

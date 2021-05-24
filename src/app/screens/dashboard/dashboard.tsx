@@ -12,7 +12,6 @@ import getTotalAssetValue from '../../../utils/get-total-asset-value';
 import filterTokenBalances from '../../../utils/filter-token-balances';
 import { selectMetaMaskWallet } from '../../../redux/slices/metamask-slice';
 import getTokenDisplayData from '../../../utils/get-token-display-data';
-import generateSeriesData from './components/asset-pie-chart/generate-series-data';
 import {
 	fetchTokenBalances,
 	selectTokenBalances,
@@ -115,8 +114,6 @@ const DashBoard = () => {
 		bigNumber: totalAssetValue,
 	});
 
-	const seriesData = generateSeriesData({ tokenDisplayData });
-
 	return (
 		<div className={classes.pageContainer}>
 			<div className={classes.header}>
@@ -157,7 +154,7 @@ const DashBoard = () => {
 								</Typography>
 								<div className={classes.allocationPieChart}>
 									<AssetPieChart
-										seriesData={seriesData}
+										tokenDisplayData={tokenDisplayData}
 										totalAssetValue={totalAssetValueFiat}
 									/>
 								</div>

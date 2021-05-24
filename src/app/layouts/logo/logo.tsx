@@ -1,7 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import { Link as ReactLink } from 'react-router-dom';
-import LogoSvg from '../../icons/logo';
 import Link from '@material-ui/core/Link';
 
 const useStyles = makeStyles(() => ({
@@ -14,6 +13,9 @@ const useStyles = makeStyles(() => ({
 	logo: {
 		marginRight: '10px',
 	},
+	logoImage: {
+		marginRight: '10px',
+	},
 }));
 
 const Logo = () => {
@@ -21,7 +23,7 @@ const Logo = () => {
 
 	return (
 		<div className={classes.logoContainer}>
-			<LogoSvg dataTestId="LogoSvg" className={classes.logo} />
+			{/* <LogoSvg dataTestId="LogoSvg" className={classes.logo} /> */}
 			<Link
 				to="/"
 				color="primary"
@@ -30,8 +32,15 @@ const Logo = () => {
 				className={classes.logoContainer}
 				data-testid="LogoLink"
 			>
+				<Typography
+					data-testid="LogoImage"
+					variant="h5"
+					className={classes.logoImage}
+				>
+					b
+				</Typography>
 				<Typography data-testid="LogoText" variant="h6">
-					DApp
+					blocksight
 				</Typography>
 			</Link>
 		</div>

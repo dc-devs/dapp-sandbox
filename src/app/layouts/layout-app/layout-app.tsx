@@ -1,4 +1,4 @@
-import SideBar from '../layout-app-home/sidebar';
+import SideBar from './sidebar';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -25,7 +25,7 @@ const LayoutApp = ({ children }: Props) => {
 	return (
 		<div data-testid="layoutApp" className={classes.layoutContainer}>
 			<div className={classes.sidebarContainer}>
-				<SideBar logoText="company"></SideBar>
+				<SideBar logoText="blocksight"></SideBar>
 			</div>
 			<div className={classes.pageContainer}>{children}</div>
 		</div>

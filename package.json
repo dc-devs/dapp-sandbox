@@ -18,6 +18,7 @@
 		"await-to-js": "^3.0.0",
 		"axios": "^0.21.1",
 		"bignumber.js": "^9.0.1",
+		"chart.js": "^3.2.1",
 		"ethers": "^5.2.0",
 		"highcharts": "^9.1.0",
 		"highcharts-react-official": "^3.0.0",
