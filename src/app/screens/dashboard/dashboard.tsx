@@ -67,7 +67,10 @@ const useStyles = makeStyles((theme) => ({
 		paddingBottom: theme.spacing(6),
 	},
 	portfolioHeader: {},
-	allocationPieChart: {},
+	allocationPieChart: {
+		display: 'flex',
+		justifyContent: 'center',
+	},
 }));
 
 const DashBoard = () => {

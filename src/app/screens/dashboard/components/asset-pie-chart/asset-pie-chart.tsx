@@ -1,3 +1,4 @@
+import numeral from 'numeral';
 import pieChartColors from './pie-chart-colors';
 import { makeStyles } from '@material-ui/core/styles';
 import generateSeriesData from './generate-series-data';
@@ -15,21 +16,13 @@ import TokenDisplayData from '../../../../../interfaces/token-display-data-inter
 // 1. Start to Calculate the Fiat In
 // and see what it takes to get that number
 // 2 Coinbase Integrations
-//
-// 2. Cahnges colors on char for light theme
-// finished with legend to right w/ percentages
-// refactor that area a bit
 const useStyles = makeStyles((theme) => ({
 	label: {
 		fontSize: '1.5rem',
 		color: theme.palette.primary.main,
 		fill: theme.palette.primary.main,
 	},
-	legendContainer: {
-		display: 'flex',
-		flexDirection: 'column',
-		position: 'relative',
-	},
+	legendContainer: {},
 	legendItemContainer: {
 		display: 'flex',
 		alignItems: 'center',
@@ -41,6 +34,12 @@ const useStyles = makeStyles((theme) => ({
 		marginRight: '5px',
 	},
 	legendItem: {
+		display: 'flex',
+		alignItems: 'center',
+		justifyContent: 'space-between',
+		width: '100px',
+	},
+	legendItemToken: {
 		marginRight: '10px',
 	},
 }));
@@ -50,13 +49,34 @@ interface Props {
 	tokenDisplayData: TokenDisplayData[];
 }
 
+interface TokenData {
+	name: string;
+	percent: number;
+}
+
+interface TokenPayload {
+	payload: TokenData;
+}
+
+interface TokenSymbolPercents {
+	[key: string]: number;
+}
+
 const AssetPieChart = ({ totalAssetValue, tokenDisplayData }: Props) => {
 	const classes = useStyles();
 	const seriesData = generateSeriesData({ tokenDisplayData });
 
 	const legendComponent = (props: any) => {
-		console.log(props);
 		const { payload } = props;
+		let tokenSymbolsPercents = {} as TokenSymbolPercents;
+
+		props.payload.forEach((token: TokenPayload) => {
+			const tokenData = token.payload;
+			tokenSymbolsPercents[tokenData.name] = tokenData.percent;
+		});
+
+		console.log(tokenSymbolsPercents);
+
 		const legendItems = payload.map((entry: any, index: number) => {
 			let colorHex;
 
@@ -74,6 +94,10 @@ const AssetPieChart = ({ totalAssetValue, tokenDisplayData }: Props) => {
 				colorHex = pieChartColors[index - 55];
 			}
 
+			const tokeSymbol = entry.value;
+			const percent = tokenSymbolsPercents[tokeSymbol] * 100;
+			const percentFormatted = numeral(percent).format('0.0');
+
 			return (
 				<div
 					key={`item-${index}`}
@@ -85,7 +109,12 @@ const AssetPieChart = ({ totalAssetValue, tokenDisplayData }: Props) => {
 							backgroundColor: colorHex,
 						}}
 					/>
-					<div className={classes.legendItem}>{entry.value}</div>
+					<div className={classes.legendItem}>
+						<div className={classes.legendItemToken}>
+							{tokeSymbol}
+						</div>
+						<div>{percentFormatted}%</div>
+					</div>
 				</div>
 			);
 		});
@@ -98,9 +127,10 @@ const AssetPieChart = ({ totalAssetValue, tokenDisplayData }: Props) => {
 	});
 
 	return (
-		<ResponsiveContainer width="100%" height={300}>
+		<ResponsiveContainer width={400} height={300}>
 			<PieChart>
 				<Pie
+					cx="32%"
 					data={seriesData}
 					innerRadius={115}
 					outerRadius={130}
@@ -117,7 +147,12 @@ const AssetPieChart = ({ totalAssetValue, tokenDisplayData }: Props) => {
 						{totalAssetValue}
 					</Label>
 				</Pie>
-				<Legend content={legendComponent} />;
+				<Legend
+					content={legendComponent}
+					align="right"
+					layout="vertical"
+					verticalAlign="top"
+				/>
 			</PieChart>
 		</ResponsiveContainer>
 	);
