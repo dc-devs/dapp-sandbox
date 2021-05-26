@@ -6,7 +6,7 @@ const filtereTokenBalances = (
 	return tokenBalances.filter((tokenBalance) => {
 		const { balance, quote } = tokenBalance;
 
-		return true; // balance !== '0' && quote !== 0;
+		return balance !== '0' && quote !== 0;
 	});
 };
 
