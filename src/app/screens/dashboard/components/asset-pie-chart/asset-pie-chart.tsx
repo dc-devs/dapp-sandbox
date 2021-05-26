@@ -5,76 +5,25 @@ import { makeStyles } from '@material-ui/core/styles';
 import generateSeriesData from './generate-series-data';
 import { Pie, Cell, Label, Sector, Legend, PieChart } from 'recharts';
 import TokenDisplayData from '../../../../../interfaces/token-display-data-interface';
+import LegendComponent from './legend';
 
-// LEFT OFF
-// 1. Custom CSS for legend, different amounts of coins
-// dynamically place themselves on pie cahrt differenlty
-// 3. Start to Calculate the Fiat In
-// and see what it takes to get that number
-// 2 Coinbase Integrations
 const useStyles = makeStyles((theme) => ({
-	label: {
-		fontSize: '1.5rem',
-		color: theme.palette.primary.main,
-		fill: theme.palette.primary.main,
-	},
-	legendContainer: {
-		display: 'flex',
-		flexWrap: 'wrap',
-		justifyContent: 'center',
-	},
-	legendItemContainer: {
-		display: 'flex',
-		alignItems: 'center',
-		justifyContent: 'center',
-		margin: '2px 25px',
-		cursor: 'text',
-	},
-	legendCircle: {
-		width: '10px',
-		height: '10px',
-		borderRadius: '100%',
-		marginRight: '5px',
-	},
-	legendItem: {
-		display: 'flex',
-		alignItems: 'center',
-		justifyContent: 'space-between',
-		width: '100px',
-		fontSize: '.95rem',
-	},
-	legendItemToken: {
-		marginRight: '10px',
-	},
 	pieChart: {
 		cursor: 'pointer',
 		'& .recharts-legend-wrapper': {
 			top: '310px !important',
 		},
 	},
-	labelContainer: {
-		display: 'flex',
-		flexDirection: 'column',
+	label: {
+		fontSize: '1.5rem',
+		color: theme.palette.primary.main,
+		fill: theme.palette.primary.main,
 	},
-	legendColumnContainer: {},
 }));
 
 interface Props {
 	totalAssetValue: string;
 	tokenDisplayData: TokenDisplayData[];
-}
-
-interface TokenData {
-	name: string;
-	percent: number;
-}
-
-interface TokenPayload {
-	payload: TokenData;
-}
-
-interface TokenSymbolPercents {
-	[key: string]: number;
 }
 
 const AssetPieChart = ({ totalAssetValue, tokenDisplayData }: Props) => {
@@ -88,133 +37,9 @@ const AssetPieChart = ({ totalAssetValue, tokenDisplayData }: Props) => {
 	const onPieEnter = (_: any, index: number) => {
 		setIndex(index);
 	};
+
 	const onPieLeave = () => {
 		setIndex(-1);
-	};
-
-	const legendComponent = (props: any) => {
-		const { payload } = props;
-		let tokenSymbolsPercents = {} as TokenSymbolPercents;
-		console.log(payload.length);
-		props.payload.forEach((token: TokenPayload) => {
-			const tokenData = token.payload;
-			tokenSymbolsPercents[tokenData.name] = tokenData.percent;
-		});
-
-		const legendItemsData = payload.map((entry: any, index: number) => {
-			let colorHex;
-
-			if (index < 11) {
-				colorHex = pieChartColors[index];
-			} else if (index >= 11) {
-				colorHex = pieChartColors[index - 11];
-			} else if (index >= 22) {
-				colorHex = pieChartColors[index - 22];
-			} else if (index >= 33) {
-				colorHex = pieChartColors[index - 33];
-			} else if (index >= 44) {
-				colorHex = pieChartColors[index - 44];
-			} else if (index >= 55) {
-				colorHex = pieChartColors[index - 55];
-			}
-
-			const tokeSymbol = entry.value;
-			const percent = tokenSymbolsPercents[tokeSymbol] * 100;
-			const percentFormatted = numeral(percent).format('0.0');
-
-			return {
-				percent,
-				colorHex,
-				tokeSymbol,
-				percentFormatted,
-			};
-		});
-
-		interface LegendItemData {
-			percent: number;
-			colorHex: string;
-			tokeSymbol: string;
-			percentFormatted: string;
-		}
-
-		const splitArrayInHalf = (array: any[]) => {
-			const half_length = Math.ceil(array.length / 2);
-			const arrayCopy1 = [...array];
-			const arrayCopy2 = [...array];
-
-			const firstHalf = arrayCopy1.splice(0, half_length);
-			const secondHalf = arrayCopy2.splice(half_length, array.length - 1);
-
-			return {
-				firstHalf,
-				secondHalf,
-			};
-		};
-
-		const legendItemsDataHalves = splitArrayInHalf(legendItemsData);
-
-		const legendItemsColumnOne = legendItemsDataHalves.firstHalf.map(
-			(legendItemData: LegendItemData, index: number) => {
-				const { colorHex, tokeSymbol, percentFormatted } =
-					legendItemData;
-				return (
-					<div
-						key={`item-${index}`}
-						className={classes.legendItemContainer}
-					>
-						<div
-							className={classes.legendCircle}
-							style={{
-								backgroundColor: colorHex,
-							}}
-						/>
-						<div className={classes.legendItem}>
-							<div className={classes.legendItemToken}>
-								{tokeSymbol}
-							</div>
-							<div>{percentFormatted}%</div>
-						</div>
-					</div>
-				);
-			}
-		);
-
-		const legendItemsColumnTwo = legendItemsDataHalves.secondHalf.map(
-			(legendItemData: LegendItemData, index: number) => {
-				const { colorHex, tokeSymbol, percentFormatted } =
-					legendItemData;
-				return (
-					<div
-						key={`item-${index}`}
-						className={classes.legendItemContainer}
-					>
-						<div
-							className={classes.legendCircle}
-							style={{
-								backgroundColor: colorHex,
-							}}
-						/>
-						<div className={classes.legendItem}>
-							<div className={classes.legendItemToken}>
-								{tokeSymbol}
-							</div>
-							<div>{percentFormatted}%</div>
-						</div>
-					</div>
-				);
-			}
-		);
-
-		return (
-			<div className={classes.legendContainer}>
-				<div className={classes.legendColumnContainer}>
-					{legendItemsColumnOne}
-				</div>
-				<div className={classes.legendColumnContainer}>
-					{legendItemsColumnTwo}
-				</div>
-			</div>
-		);
 	};
 
 	const renderActiveShape = (props: any) => {
@@ -324,7 +149,7 @@ const AssetPieChart = ({ totalAssetValue, tokenDisplayData }: Props) => {
 					''
 				)}
 			</Pie>
-			<Legend content={legendComponent} />
+			<Legend content={LegendComponent} />
 		</PieChart>
 	);
 };
