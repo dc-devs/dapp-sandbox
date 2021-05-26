@@ -29,9 +29,6 @@ interface Props {
 const AssetPieChart = ({ totalAssetValue, tokenDisplayData }: Props) => {
 	const classes = useStyles();
 	const seriesData = generateSeriesData({ tokenDisplayData });
-	const cellComponents = seriesData.map((entry, index) => {
-		return <Cell key={`cell-${index}`} fill={pieChartColors[index]} />;
-	});
 	const [index, setIndex] = useState(-1);
 
 	const onPieEnter = (_: any, index: number) => {
@@ -42,35 +39,24 @@ const AssetPieChart = ({ totalAssetValue, tokenDisplayData }: Props) => {
 		setIndex(-1);
 	};
 
+	const cellComponents = seriesData.map((entry, index) => {
+		return <Cell key={`cell-${index}`} fill={pieChartColors[index]} />;
+	});
+
 	const renderActiveShape = (props: any) => {
-		const RADIAN = Math.PI / 180;
 		const {
 			cx,
 			cy,
-			midAngle,
 			innerRadius,
 			outerRadius,
 			startAngle,
 			endAngle,
 			fill,
 			payload,
-			percent,
-			value,
 		} = props;
-		const sin = Math.sin(-RADIAN * midAngle);
-		const cos = Math.cos(-RADIAN * midAngle);
-		const sx = cx + (outerRadius + 10) * cos;
-		const sy = cy + (outerRadius + 10) * sin;
-		const mx = cx + (outerRadius + 30) * cos;
-		const my = cy + (outerRadius + 30) * sin;
-		const ex = mx + (cos >= 0 ? 1 : -1) * 22;
-		const ey = my;
-		const textAnchor = cos >= 0 ? 'start' : 'end';
 
 		const tokenAssetValue = numeral(payload.value).format('$0,000');
 		const tokenAssetSymbol = payload.name;
-		const tokenPercent = percent * 100;
-		const percentFormatted = `${numeral(tokenPercent).format('0.0')}%`;
 
 		return (
 			<g>
