@@ -84,7 +84,10 @@ const DashBoard = () => {
 	const tokenData = useSelector(selectTokenData);
 	const tokenDataStatus = useSelector(selectTokenDataStatus);
 	const tokenDataError = useSelector(selectTokenDataError);
-	const filteredTokenBalances = filterTokenBalances(tokenBalances);
+	const filteredTokenBalances = filterTokenBalances({
+		tokenBalances,
+		filterZeros: true,
+	});
 	const tokenDisplayData = getTokenDisplayData({
 		tokenData,
 		tokenBalances: filteredTokenBalances,
