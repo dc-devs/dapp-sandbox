@@ -1,6 +1,6 @@
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
-import TokenDisplayData from '../../../../../../../interfaces/token-display-data-interface';
+import TokenDisplayData from '../../../../../../../../interfaces/token-display-data-interface';
 
 const useStyles = makeStyles((theme) => ({
 	tokenBalanceContainer: {

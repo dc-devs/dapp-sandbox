@@ -2,10 +2,8 @@ import Grid from '@material-ui/core/Grid';
 import DollarSummary from './dollar-summary';
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme) => ({
-	assetDollarSummaryContainer: {
-		border: '1px solid blue',
-	},
+const useStyles = makeStyles(() => ({
+	assetDollarSummaryContainer: {},
 }));
 
 interface Props {

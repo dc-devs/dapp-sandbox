@@ -1,14 +1,16 @@
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import TokenBalance from '../token-balance';
+import TokenBalance from './token-balance';
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import TokenDisplayData from '../../../../../../../interfaces/token-display-data-interface';
 
 const useStyles = makeStyles((theme) => ({
-	tokenContainer: {
+	tokenBalancesContainer: {
+		height: '478px',
 		padding: theme.spacing(2),
+		borderRadius: '10px',
 	},
 	tokenBalancesTable: {},
 	tokenBalancesHeader: {
@@ -40,7 +42,7 @@ const TokenBalances = ({ tokenDisplayData }: Props) => {
 	});
 
 	return (
-		<Paper elevation={2} className={classes.tokenContainer}>
+		<Paper elevation={3} className={classes.tokenBalancesContainer}>
 			<Typography className={classes.tokenBalanceHeader}>
 				Tokens
 			</Typography>

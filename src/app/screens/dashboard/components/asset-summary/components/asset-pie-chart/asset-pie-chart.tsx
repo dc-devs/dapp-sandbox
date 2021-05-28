@@ -1,13 +1,28 @@
 import { useState } from 'react';
 import numeral from 'numeral';
+import Paper from '@material-ui/core/Paper';
 import pieChartColors from './pie-chart-colors';
 import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
 import generateSeriesData from './generate-series-data';
 import { Pie, Cell, Label, Sector, Legend, PieChart } from 'recharts';
 import TokenDisplayData from '../../../../../../../interfaces/token-display-data-interface';
 import LegendComponent from './legend';
 
 const useStyles = makeStyles((theme) => ({
+	allocationPieChartContainer: {
+		paddingTop: theme.spacing(2),
+		paddingLeft: theme.spacing(2),
+		paddingRight: theme.spacing(2),
+		paddingBottom: theme.spacing(6),
+		borderRadius: '10px',
+		overflowY: 'scroll',
+	},
+	allocationPieChartHeader: {},
+	allocationPieChart: {
+		display: 'flex',
+		justifyContent: 'center',
+	},
 	pieChart: {
 		cursor: 'pointer',
 		'& .recharts-legend-wrapper': {
@@ -105,38 +120,45 @@ const AssetPieChart = ({ totalAssetValue, tokenDisplayData }: Props) => {
 	};
 
 	return (
-		<PieChart width={350} height={390} className={classes.pieChart}>
-			<Pie
-				cy={140}
-				cursor="pointer"
-				activeIndex={index}
-				onMouseEnter={onPieEnter}
-				onMouseLeave={onPieLeave}
-				activeShape={renderActiveShape}
-				data={seriesData}
-				innerRadius={120}
-				outerRadius={130}
-				paddingAngle={0}
-				cornerRadius={100}
-				dataKey="value"
-				className={classes.pieChart}
-			>
-				{cellComponents}
-
-				{index === -1 ? (
-					<Label
-						width={30}
-						position="center"
-						className={classes.label}
+		<Paper elevation={3} className={classes.allocationPieChartContainer}>
+			<Typography className={classes.allocationPieChartHeader}>
+				Allocations
+			</Typography>
+			<div className={classes.allocationPieChart}>
+				<PieChart width={350} height={390} className={classes.pieChart}>
+					<Pie
+						cy={140}
+						cursor="pointer"
+						activeIndex={index}
+						onMouseEnter={onPieEnter}
+						onMouseLeave={onPieLeave}
+						activeShape={renderActiveShape}
+						data={seriesData}
+						innerRadius={120}
+						outerRadius={130}
+						paddingAngle={0}
+						cornerRadius={100}
+						dataKey="value"
+						className={classes.pieChart}
 					>
-						{totalAssetValue}
-					</Label>
-				) : (
-					''
-				)}
-			</Pie>
-			<Legend content={LegendComponent} />
-		</PieChart>
+						{cellComponents}
+
+						{index === -1 ? (
+							<Label
+								width={30}
+								position="center"
+								className={classes.label}
+							>
+								{totalAssetValue}
+							</Label>
+						) : (
+							''
+						)}
+					</Pie>
+					<Legend content={LegendComponent} />
+				</PieChart>
+			</div>
+		</Paper>
 	);
 };
 
