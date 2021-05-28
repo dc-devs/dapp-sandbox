@@ -28,6 +28,7 @@ const AssetDolllarSummary = ({ totalAssetValueFiat }: Props) => {
 				<Grid item xs>
 					<DollarSummary
 						title="Crypto Assets"
+						deltaValue={100}
 						amount={totalAssetValueFiat}
 					/>
 				</Grid>
