@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 import LegendColumn from './legend-column';
-import splitArrayInTwo from '../../../../../../utils/split-array-in-two';
+import splitArrayInTwo from '../../../../../../../../utils/split-array-in-two';
 import getLegendItemsData from './get-legend-items-data';
 
 const useStyles = makeStyles(() => ({

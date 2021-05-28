@@ -4,7 +4,7 @@ import TokenBalance from '../token-balance';
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import TokenDisplayData from '../../../../../interfaces/token-display-data-interface';
+import TokenDisplayData from '../../../../../../../interfaces/token-display-data-interface';
 
 const useStyles = makeStyles((theme) => ({
 	tokenContainer: {

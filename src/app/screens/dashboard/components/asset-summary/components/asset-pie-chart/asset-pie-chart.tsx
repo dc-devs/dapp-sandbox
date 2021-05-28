@@ -4,7 +4,7 @@ import pieChartColors from './pie-chart-colors';
 import { makeStyles } from '@material-ui/core/styles';
 import generateSeriesData from './generate-series-data';
 import { Pie, Cell, Label, Sector, Legend, PieChart } from 'recharts';
-import TokenDisplayData from '../../../../../interfaces/token-display-data-interface';
+import TokenDisplayData from '../../../../../../../interfaces/token-display-data-interface';
 import LegendComponent from './legend';
 
 const useStyles = makeStyles((theme) => ({

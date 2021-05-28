@@ -1,5 +1,5 @@
-import TokenDisplayData from '../../../../../../interfaces/token-display-data-interface';
-import RechartPieDataPoint from '../../../../../../interfaces/rechart-pie-data-point-interface';
+import TokenDisplayData from '../../../../../../../../interfaces/token-display-data-interface';
+import RechartPieDataPoint from '../../../../../../../../interfaces/rechart-pie-data-point-interface';
 
 interface Props {
 	tokenDisplayData: TokenDisplayData[];

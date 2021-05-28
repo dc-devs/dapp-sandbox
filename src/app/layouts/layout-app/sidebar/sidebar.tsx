@@ -19,9 +19,9 @@ const useStyles = makeStyles((theme) => ({
 		height: '100vh',
 	},
 	logoText: {
-		color: theme.palette.primary.main,
 		textAlign: 'center',
 		fontSize: '2rem',
+		'font-weight': '300',
 	},
 	sidebarLinksContainer: {
 		marginTop: '50px',

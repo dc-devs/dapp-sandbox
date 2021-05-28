@@ -1,14 +1,8 @@
 import { unstable_createMuiStrictModeTheme as createMuiTheme } from '@material-ui/core/styles';
-import colors from './colors';
+import defaultColors from './colors/default-colors';
 
-const {
-	primaryLight,
-	primary,
-	primaryDark,
-	background,
-	secondary,
-	error,
-} = colors;
+const { primaryLight, primary, primaryDark, background, secondary, error } =
+	defaultColors;
 
 const theme = createMuiTheme({
 	typography: {
