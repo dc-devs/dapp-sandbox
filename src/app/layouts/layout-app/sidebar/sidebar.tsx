@@ -2,9 +2,17 @@ import Paper from '@material-ui/core/Paper';
 import AccountDropdown from '../../../screens/dashboard/components/account-dropdown';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import { BarChart } from 'react-feather';
+import { BarChart, Octagon, Repeat, Search } from 'react-feather';
+import { Link as ReactLink } from 'react-router-dom';
+import Link from '@material-ui/core/Link';
 
 const drawerWidth = 240;
+
+// LEFT OFF
+// Need to create a flexbox with fixed width for the icons in the sidebar
+// So that icons and words align
+// Queue up the collapsable side bar
+// Update weird layout that is currently set..
 
 const useStyles = makeStyles((theme) => ({
 	sidebar: {
@@ -30,6 +38,7 @@ const useStyles = makeStyles((theme) => ({
 		display: 'flex',
 		alignContent: 'center',
 		cursor: 'pointer',
+		marginTop: '20px',
 	},
 	sidebarLinkLogo: {
 		marginRight: '10px',
@@ -57,12 +66,55 @@ const PermanentDrawer = ({ logoText }: Props) => {
 				</div>
 				<AccountDropdown />
 				<div className={classes.sidebarLinksContainer}>
-					<div className={classes.sidebarLinkContainer}>
+					<Link
+						to="/"
+						color="primary"
+						underline="none"
+						component={ReactLink}
+						className={classes.sidebarLinkContainer}
+					>
 						<BarChart className={classes.sidebarLinkLogo} />
 						<Typography className={classes.sidebarLinkText}>
 							Dashboard
 						</Typography>
-					</div>
+					</Link>
+
+					<Link
+						to="/"
+						color="primary"
+						underline="none"
+						component={ReactLink}
+						className={classes.sidebarLinkContainer}
+					>
+						<Octagon className={classes.sidebarLinkLogo} />
+						<Typography className={classes.sidebarLinkText}>
+							Tokens
+						</Typography>
+					</Link>
+					<Link
+						to="/"
+						color="primary"
+						underline="none"
+						component={ReactLink}
+						className={classes.sidebarLinkContainer}
+					>
+						<Repeat className={classes.sidebarLinkLogo} />
+						<Typography className={classes.sidebarLinkText}>
+							Transactions
+						</Typography>
+					</Link>
+					<Link
+						to="/"
+						color="primary"
+						underline="none"
+						component={ReactLink}
+						className={classes.sidebarLinkContainer}
+					>
+						<Search className={classes.sidebarLinkLogo} />
+						<Typography className={classes.sidebarLinkText}>
+							Wallet Mapper
+						</Typography>
+					</Link>
 				</div>
 			</div>
 		</Paper>

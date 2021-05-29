@@ -25,10 +25,13 @@ const useStyles = makeStyles(() => ({
 		display: 'flex',
 		alignItems: 'center',
 		justifyContent: 'space-between',
-		width: '100px',
+		width: '104px',
 		fontSize: '.95rem',
 	},
 	legendItemToken: {
+		whiteSpace: 'nowrap',
+		overflow: 'hidden',
+		textOverflow: 'ellipsis',
 		marginRight: '10px',
 	},
 }));

@@ -27,6 +27,10 @@ const useStyles = makeStyles((theme) => ({
 			textAlign: 'left',
 		},
 	},
+	tokenBalancesTokensContainer: {
+		overflowY: 'scroll',
+		height: '361px',
+	},
 }));
 
 interface Props {
@@ -70,7 +74,9 @@ const TokenBalances = ({ tokenDisplayData }: Props) => {
 						</Grid>
 					</Grid>
 				</div>
-				{tokenBalanceComponents}
+				<div className={classes.tokenBalancesTokensContainer}>
+					{tokenBalanceComponents}
+				</div>
 			</div>
 		</Paper>
 	);

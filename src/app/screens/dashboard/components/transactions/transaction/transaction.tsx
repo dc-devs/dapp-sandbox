@@ -6,14 +6,14 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
-import infuraProvider from '../../../../../services/ethers/infura-provider';
-import shortenWalletAddress from '../../../../../utils/shorten-wallet-address/shorten-wallet-address';
+import infuraProvider from '../../../../../../services/ethers/infura-provider';
+import shortenWalletAddress from '../../../../../../utils/shorten-wallet-address/shorten-wallet-address';
 import {
 	fetchContract,
 	selectContract,
 	selectContractError,
 	selectContractStatus,
-} from '../../../../../redux/slices/contract-slice';
+} from '../../../../../../redux/slices/contract-slice';
 
 var web3 = new Web3(process.env.REACT_APP_INFURA_RPC_URL as string);
 

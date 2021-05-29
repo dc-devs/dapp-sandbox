@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import Transaction from '../transaction';
+import Transaction from './transaction';
 import Paper from '@material-ui/core/Paper';
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
@@ -13,7 +13,9 @@ import {
 } from '../../../../../redux/slices/transaction-slice';
 
 const useStyles = makeStyles((theme) => ({
-	tokenContainer: {
+	transactionsContainer: {
+		marginTop: '20px',
+		borderRadius: '10px',
 		padding: theme.spacing(2),
 	},
 	loadingState: {
@@ -43,7 +45,7 @@ const Transactions = () => {
 	});
 
 	return (
-		<Paper elevation={2} className={classes.tokenContainer}>
+		<Paper elevation={3} className={classes.transactionsContainer}>
 			<Typography>Transactions</Typography>
 			<Divider />
 			<div> {transactionsHTML} </div>

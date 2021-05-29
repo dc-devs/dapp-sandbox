@@ -10,29 +10,6 @@ const useStyles = makeStyles(() => ({
 		justifyContent: 'center',
 	},
 	legendColumnContainer: {},
-	legendItemContainer: {
-		display: 'flex',
-		alignItems: 'center',
-		justifyContent: 'center',
-		margin: '2px 25px',
-		cursor: 'text',
-	},
-	legendCircle: {
-		width: '10px',
-		height: '10px',
-		borderRadius: '100%',
-		marginRight: '5px',
-	},
-	legendItem: {
-		display: 'flex',
-		alignItems: 'center',
-		justifyContent: 'space-between',
-		width: '100px',
-		fontSize: '.95rem',
-	},
-	legendItemToken: {
-		marginRight: '10px',
-	},
 }));
 
 const Legend = (legendPayload: any) => {

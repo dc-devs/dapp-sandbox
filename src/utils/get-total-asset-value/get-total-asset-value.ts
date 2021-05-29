@@ -13,21 +13,21 @@ const getTotalAssetValue = ({ tokenBalances, tokenData }: Props) => {
 
 	if (Object.keys(tokenData).length > 0 && tokenBalances.length > 0) {
 		tokenBalances.forEach((tokenBalance) => {
-			const {
-				balance,
-				contract_decimals,
-				contract_ticker_symbol,
-			} = tokenBalance;
+			const { balance, contract_decimals, contract_ticker_symbol } =
+				tokenBalance;
 			const singleTokenData = tokenData[contract_ticker_symbol];
-			const { price: tokenPrice } = singleTokenData;
 
-			const tokenAssetValue = getTokenAssetValue({
-				balance,
-				tokenPrice,
-				contract_decimals,
-			});
+			if (singleTokenData) {
+				const { price: tokenPrice } = singleTokenData;
 
-			totalAssetValue = totalAssetValue.plus(tokenAssetValue);
+				const tokenAssetValue = getTokenAssetValue({
+					balance,
+					tokenPrice,
+					contract_decimals,
+				});
+
+				totalAssetValue = totalAssetValue.plus(tokenAssetValue);
+			}
 		});
 	}
 

@@ -9,7 +9,7 @@ import { selectMetaMaskWallet } from '../../../redux/slices/metamask-slice';
 import getTokenDisplayData from '../../../utils/get-token-display-data';
 import AssetDollarSummary from './components/asset-dollar-summary';
 import AssetSummary from './components/asset-summary';
-// import Transactions from './components/transactions';
+import Transactions from './components/transactions';
 import {
 	fetchTokenBalances,
 	selectTokenBalances,
@@ -103,10 +103,7 @@ const DashBoard = () => {
 					tokenDisplayData={tokenDisplayData}
 					totalAssetValueFiat={totalAssetValueFiat}
 				/>
-				{/* 
-					<Grid item xs={12}>
-						{/* <Transactions /> */}
-				{/* </Grid>  */}
+				{/* <Transactions /> */}
 			</div>
 		</div>
 	);
