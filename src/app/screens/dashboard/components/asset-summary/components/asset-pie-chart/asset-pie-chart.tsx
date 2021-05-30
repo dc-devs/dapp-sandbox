@@ -6,7 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import generateSeriesData from './generate-series-data';
 import { Pie, Cell, Label, Sector, Legend, PieChart } from 'recharts';
-import TokenDisplayData from '../../../../../../../interfaces/token-display-data-interface';
+import TokenBalance from '../../../../../../../interfaces/token-balance-interface';
 import LegendComponent from './legend';
 
 const useStyles = makeStyles((theme) => ({
@@ -37,13 +37,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 interface Props {
-	totalAssetValue: string;
-	tokenDisplayData: TokenDisplayData[];
+	totalValue: string;
+	tokenBalances: TokenBalance[];
 }
 
-const AssetPieChart = ({ totalAssetValue, tokenDisplayData }: Props) => {
+const AssetPieChart = ({ totalValue, tokenBalances }: Props) => {
 	const classes = useStyles();
-	const seriesData = generateSeriesData({ tokenDisplayData });
+	const seriesData = generateSeriesData({ tokenBalances });
 	const [index, setIndex] = useState(-1);
 
 	const onPieEnter = (_: any, index: number) => {
@@ -149,7 +149,7 @@ const AssetPieChart = ({ totalAssetValue, tokenDisplayData }: Props) => {
 								position="center"
 								className={classes.label}
 							>
-								{totalAssetValue}
+								{totalValue}
 							</Label>
 						) : (
 							''

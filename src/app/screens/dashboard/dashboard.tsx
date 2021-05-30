@@ -16,12 +16,6 @@ import {
 	selectTokenBalancesStatus,
 	selectTokenBalancesError,
 } from '../../../redux/slices/token-balances-slice';
-import {
-	fetchTokenData,
-	selectTokenData,
-	selectTokenDataStatus,
-	selectTokenDataError,
-} from '../../../redux/slices/token-data-slice';
 
 const useStyles = makeStyles((theme) => ({
 	pageContainer: {
@@ -49,20 +43,15 @@ const DashBoard = () => {
 	const classes = useStyles();
 	const dispatch = useDispatch();
 	const { selectedAddress } = useSelector(selectMetaMaskWallet);
+
 	const tokenBalances = useSelector(selectTokenBalances);
 	const tokenBalancesStatus = useSelector(selectTokenBalancesStatus);
 	const tokenBalancesError = useSelector(selectTokenBalancesError);
-	const tokenData = useSelector(selectTokenData);
-	const tokenDataStatus = useSelector(selectTokenDataStatus);
-	const tokenDataError = useSelector(selectTokenDataError);
-	const filteredTokenBalances = filterTokenBalances({
-		tokenBalances,
-		filterZeros: true,
-	});
-	const tokenDisplayData = getTokenDisplayData({
-		tokenData,
-		tokenBalances: filteredTokenBalances,
-	});
+
+	// const filteredTokenBalances = filterTokenBalances({
+	// 	tokenBalances,
+	// 	filterZeros: true,
+	// });
 
 	// GET Token Balances
 	useEffect(() => {
@@ -71,37 +60,15 @@ const DashBoard = () => {
 		}
 	}, [tokenBalancesStatus, selectedAddress, dispatch]);
 
-	// GET Token Data
-	useEffect(() => {
-		if (
-			selectedAddress &&
-			filteredTokenBalances.length > 0 &&
-			tokenDataStatus === 'idle'
-		) {
-			const symbols = getTokenSymbols(filteredTokenBalances);
-			dispatch(fetchTokenData(symbols));
-		}
-	}, [tokenDataStatus, selectedAddress, filteredTokenBalances, dispatch]);
-
-	// Get Total Asset Value
-	const totalAssetValue = getTotalAssetValue({
-		tokenBalances: filteredTokenBalances,
-		tokenData,
-	});
-
-	const totalAssetValueFiat = formatBnToFiat({
-		currency: 'usd',
-		format: '0,0.00',
-		bigNumber: totalAssetValue,
-	});
+	const { totalValue, balances } = tokenBalances;
 
 	return (
 		<div className={classes.pageContainer}>
 			<div className={classes.dashboardDataContainer}>
-				<AssetDollarSummary totalAssetValueFiat={totalAssetValueFiat} />
+				<AssetDollarSummary totalAssetValueFiat={totalValue} />
 				<AssetSummary
-					tokenDisplayData={tokenDisplayData}
-					totalAssetValueFiat={totalAssetValueFiat}
+					totalValue={totalValue}
+					tokenBalances={balances}
 				/>
 				{/* <Transactions /> */}
 			</div>

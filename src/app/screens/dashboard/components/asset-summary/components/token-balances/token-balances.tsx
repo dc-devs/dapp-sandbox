@@ -4,7 +4,7 @@ import TokenBalance from './token-balance';
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import TokenDisplayData from '../../../../../../../interfaces/token-display-data-interface';
+import TokenBalanceInterface from '../../../../../../../interfaces/token-balance-interface';
 
 const useStyles = makeStyles((theme) => ({
 	tokenBalancesContainer: {
@@ -34,15 +34,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 interface Props {
-	tokenDisplayData: TokenDisplayData[];
+	tokenBalances: TokenBalanceInterface[];
 }
 
-const TokenBalances = ({ tokenDisplayData }: Props) => {
+const TokenBalances = ({ tokenBalances = [] }: Props) => {
 	const classes = useStyles();
 
-	const tokenBalanceComponents = tokenDisplayData.map((token) => {
-		const { tokenContractAddress } = token;
-		return <TokenBalance key={tokenContractAddress} token={token} />;
+	const tokenBalanceComponents = tokenBalances.map((token) => {
+		const { contractAddress } = token;
+		return <TokenBalance key={contractAddress} token={token} />;
 	});
 
 	return (

@@ -2,9 +2,9 @@ import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import TokenBalances from './components/token-balances';
 import AssetPieChart from './components/asset-pie-chart';
-import TokenDisplayData from '../../../../../interfaces/token-display-data-interface';
+import TokenBalance from '../../../../../interfaces/token-balance-interface';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
 	assetSummaryContainer: {
 		marginTop: '20px',
 	},
@@ -16,14 +16,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 interface Props {
-	totalAssetValueFiat: string;
-	tokenDisplayData: TokenDisplayData[];
+	totalValue: string;
+	tokenBalances: TokenBalance[];
 }
 
-const AssetDolllarSummary = ({
-	totalAssetValueFiat,
-	tokenDisplayData,
-}: Props) => {
+const AssetDolllarSummary = ({ totalValue, tokenBalances }: Props) => {
 	const classes = useStyles();
 
 	return (
@@ -38,13 +35,13 @@ const AssetDolllarSummary = ({
 				<Grid item xs={5}>
 					<div className={classes.assetSummaryItemContainer}>
 						<AssetPieChart
-							tokenDisplayData={tokenDisplayData}
-							totalAssetValue={totalAssetValueFiat}
+							totalValue={totalValue}
+							tokenBalances={tokenBalances}
 						/>
 					</div>
 				</Grid>
 				<Grid item xs={7}>
-					<TokenBalances tokenDisplayData={tokenDisplayData} />
+					<TokenBalances tokenBalances={tokenBalances} />
 				</Grid>
 			</Grid>
 		</div>

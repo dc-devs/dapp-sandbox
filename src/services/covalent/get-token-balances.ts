@@ -1,14 +1,18 @@
 import axios from 'axios';
+import TokenBalancesResponse from '../../interfaces/token-balances-response-interface';
 
-const getTokenBalances = async (address: string) => {
-	const chainId = process.env.REACT_APP_CHAIN_ID;
-	const convalentApiKey = process.env.REACT_APP_COVALENT_API_KEY;
-	const url = `https://api.covalenthq.com/v1/${chainId}/address/${address}/balances_v2/?nft=true&no-nft-fetch=true&key=${convalentApiKey}`;
-	const response: any = await axios.get(url);
-	const { data } = response.data;
-	const { items } = data;
+interface AxiosResponse {
+	data: TokenBalancesResponse;
+}
 
-	return items;
+const getTokenBalances = async (
+	address: string
+): Promise<TokenBalancesResponse> => {
+	const url = `http://localhost:3001/token-balances?address=${address}&currency=usd`;
+	const response: AxiosResponse = await axios.get(url);
+	const { data } = response;
+
+	return data;
 };
 
 export default getTokenBalances;

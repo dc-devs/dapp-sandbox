@@ -1,6 +1,6 @@
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
-import TokenDisplayData from '../../../../../../../../interfaces/token-display-data-interface';
+import TokenBalanceInterface from '../../../../../../../../interfaces/token-balance-interface';
 
 const useStyles = makeStyles((theme) => ({
 	tokenBalanceContainer: {
@@ -27,19 +27,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 interface Props {
-	token: TokenDisplayData;
+	token: TokenBalanceInterface;
 }
 
 const TokenBalance = ({ token }: Props) => {
 	const classes = useStyles();
-	const {
-		tokenName,
-		tokenPrice,
-		tokenSymbol,
-		tokenBalance,
-		tokenLogoUrl,
-		totalAssetValue,
-	} = token;
+	const { name, price, symbol, balance, logoUrl, totalValue } = token;
 
 	return (
 		<div className={classes.tokenBalanceContainer}>
@@ -54,28 +47,28 @@ const TokenBalance = ({ token }: Props) => {
 					<div className={classes.assetContainer}>
 						<img
 							alt=""
-							src={tokenLogoUrl}
+							src={logoUrl}
 							className={`${classes.image} ${classes.assetItem}`}
 						/>
 						<div className={classes.assetItem}>
-							{tokenSymbol} - {tokenName}
+							{symbol} - {name}
 						</div>
 						<div className={classes.assetItem}></div>
 					</div>
 				</Grid>
 				<Grid item xs className={classes.gridItem}>
 					<div className={classes.amount}>
-						<div>{tokenBalance}</div>
+						<div>{balance}</div>
 					</div>
 				</Grid>
 				<Grid item xs className={classes.gridItem}>
 					<div className={classes.price}>
-						<div>{tokenPrice.formatted}</div>
+						<div>{price.formatted}</div>
 					</div>
 				</Grid>
 				<Grid item xs className={classes.gridItem}>
 					<div className={classes.total}>
-						<div>{totalAssetValue.formatted}</div>
+						<div>{totalValue.formatted}</div>
 					</div>
 				</Grid>
 			</Grid>

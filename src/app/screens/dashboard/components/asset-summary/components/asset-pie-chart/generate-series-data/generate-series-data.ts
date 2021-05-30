@@ -1,17 +1,17 @@
-import TokenDisplayData from '../../../../../../../../interfaces/token-display-data-interface';
+import TokenBalance from '../../../../../../../../interfaces/token-balance-interface';
 import RechartPieDataPoint from '../../../../../../../../interfaces/rechart-pie-data-point-interface';
 
 interface Props {
-	tokenDisplayData: TokenDisplayData[];
+	tokenBalances: TokenBalance[];
 }
 
 const generateSeriesData = ({
-	tokenDisplayData,
+	tokenBalances = [],
 }: Props): RechartPieDataPoint[] => {
-	const seriesData = tokenDisplayData.map((token, index) => {
-		const { totalAssetValue, tokenSymbol } = token;
-		const name = tokenSymbol;
-		const value = Math.floor(totalAssetValue.number);
+	const seriesData = tokenBalances.map((token) => {
+		const { totalValue, symbol } = token;
+		const name = symbol;
+		const value = Math.floor(totalValue.number);
 
 		return { name, value };
 	});
