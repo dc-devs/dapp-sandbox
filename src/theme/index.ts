@@ -1,8 +1,16 @@
 import { unstable_createMuiStrictModeTheme as createMuiTheme } from '@material-ui/core/styles';
-import defaultColors from './colors/default-colors';
+import { textColors, defaultColors } from './colors';
 
-const { primaryLight, primary, primaryDark, background, secondary, error } =
-	defaultColors;
+const {
+	errorMain,
+	primaryLight,
+	primaryMain,
+	primaryDark,
+	secondaryMain,
+	backgroundDefault,
+} = defaultColors;
+
+const { primaryText } = textColors;
 
 const theme = createMuiTheme({
 	typography: {
@@ -17,24 +25,27 @@ const theme = createMuiTheme({
 	palette: {
 		primary: {
 			light: primaryLight,
-			main: primary,
+			main: primaryMain,
 			dark: primaryDark,
 		},
 		secondary: {
-			main: secondary,
+			main: secondaryMain,
 		},
 		error: {
-			main: error,
+			main: errorMain,
 		},
 		background: {
-			default: background,
+			default: backgroundDefault,
+		},
+		text: {
+			primary: primaryText,
 		},
 	},
 	overrides: {
 		MuiInput: {
 			underline: {
 				'&:hover:not($disabled):not($focused):not($error):before': {
-					borderBottom: `1px solid ${primary}`,
+					borderBottom: `1px solid ${primaryMain}`,
 				},
 			},
 		},

@@ -8,33 +8,32 @@ const { green } = themeColors;
 
 const useStyles = makeStyles((theme) => ({
 	valuationContainer: {
-		height: '120px',
 		display: 'flex',
 		flexDirection: 'column',
+		alignContent: 'center',
+		jsutifyContent: 'center',
+		height: '120px',
 		borderRadius: '10px',
 		padding: theme.spacing(2),
 	},
+	valuationHeaderContainer: {
+		display: 'flex',
+		alignContent: 'center',
+		justifyContent: 'center',
+	},
+	valuationValueContainer: {
+		display: 'flex',
+		alignContent: 'center',
+		justifyContent: 'center',
+		alignItems: 'center',
+		'flex-grow': '1',
+	},
 	valuationHeader: {
 		fontSize: '1.2rem',
-		textAlign: 'center',
 	},
-	valuation: {
-		display: 'flex',
-		justifyContent: 'center',
-		'flex-grow': '1',
-		alignItems: 'center',
-		textAlign: 'center',
-		position: 'relative',
+	valuationValue: {
 		fontSize: '1.5rem',
-	},
-	fiatDeposited: {
-		color: green,
-	},
-	cryptoValuation: {
-		color: green,
-	},
-	fiatWithdrawn: {
-		color: green,
+		'font-weight': '500',
 	},
 	deltaContainer: {
 		display: 'flex',
@@ -48,12 +47,11 @@ const useStyles = makeStyles((theme) => ({
 		color: green,
 		marginRight: '5px',
 		width: '15%',
+		fill: green,
 	},
 	deltaValue: {
+		color: green,
 		fontSize: '.9rem',
-	},
-	test: {
-		position: 'relative',
 	},
 }));
 
@@ -77,14 +75,16 @@ const DollarSummary = ({ title, amount, deltaValue }: Props) => {
 
 	return (
 		<Paper elevation={3} className={classes.valuationContainer}>
-			<Typography className={classes.valuationHeader}>{title}</Typography>
-			<div className={classes.test}>
-				<Typography
-					className={`${classes.fiatDeposited} ${classes.valuation}`}
-				>
+			<div className={classes.valuationHeaderContainer}>
+				<Typography className={classes.valuationHeader}>
+					{title}
+				</Typography>
+			</div>
+			<div className={classes.valuationValueContainer}>
+				<Typography className={classes.valuationValue}>
 					{amount}
 				</Typography>
-				{deltaValueComponent}
+				{/* {deltaValueComponent} */}
 			</div>
 		</Paper>
 	);
