@@ -10,7 +10,7 @@ interface AxiosResponse {
 }
 
 const getTotalDeposits = async (): Promise<TokenDepositsResponse> => {
-	const url = `${serverBaseUrl}/total-fiat-deposits`;
+	const url = `${serverBaseUrl}/transfers/total-fiat-deposits`;
 	const response: AxiosResponse = await axios.get(url);
 	const { data } = response;
 
