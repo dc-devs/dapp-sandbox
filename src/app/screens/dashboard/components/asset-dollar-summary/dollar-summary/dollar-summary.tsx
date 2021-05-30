@@ -27,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
 		justifyContent: 'center',
 		alignItems: 'center',
 		'flex-grow': '1',
+		position: 'relative',
 	},
 	valuationHeader: {
 		fontSize: '1.2rem',
@@ -34,6 +35,7 @@ const useStyles = makeStyles((theme) => ({
 	valuationValue: {
 		fontSize: '1.5rem',
 		'font-weight': '500',
+		color: green,
 	},
 	deltaContainer: {
 		display: 'flex',
@@ -84,7 +86,7 @@ const DollarSummary = ({ title, amount, deltaValue }: Props) => {
 				<Typography className={classes.valuationValue}>
 					{amount}
 				</Typography>
-				{/* {deltaValueComponent} */}
+				{deltaValueComponent}
 			</div>
 		</Paper>
 	);
