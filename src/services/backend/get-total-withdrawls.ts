@@ -1,20 +1,20 @@
 import axios from 'axios';
 import environment from '../../constants/environment';
-import TokenDepositsResponse from '../../interfaces/total-deposits-response-interface';
+import TokenWithdrawlsResponse from '../../interfaces/total-withdrawls-response-interface';
 
 const { NODE_ENV } = process.env;
 const { serverBaseUrl } = environment[NODE_ENV];
 
 interface AxiosResponse {
-	data: TokenDepositsResponse;
+	data: TokenWithdrawlsResponse;
 }
 
-const getTotalDeposits = async (): Promise<TokenDepositsResponse> => {
-	const url = `${serverBaseUrl}/total-fiat-deposits`;
+const getTotalWithdrawls = async (): Promise<TokenWithdrawlsResponse> => {
+	const url = `${serverBaseUrl}/total-fiat-withdrawls`;
 	const response: AxiosResponse = await axios.get(url);
 	const { data } = response;
 
 	return data;
 };
 
-export default getTotalDeposits;
+export default getTotalWithdrawls;

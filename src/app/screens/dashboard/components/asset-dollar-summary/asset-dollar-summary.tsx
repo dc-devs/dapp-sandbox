@@ -1,6 +1,8 @@
 import Grid from '@material-ui/core/Grid';
 import DollarSummary from './dollar-summary';
 import { makeStyles } from '@material-ui/core/styles';
+import DollarSummaryDeposits from './dollar-summary-deposits';
+import DollarSummaryWithdrawls from './dollar-summary-withdrawls';
 
 const useStyles = makeStyles(() => ({
 	assetDollarSummaryContainer: {},
@@ -23,7 +25,7 @@ const AssetDolllarSummary = ({ totalAssetValueFiat }: Props) => {
 				spacing={3}
 			>
 				<Grid item xs>
-					<DollarSummary title="Fiat Deposited" type="deposit" />
+					<DollarSummaryDeposits />
 				</Grid>
 				<Grid item xs>
 					<DollarSummary
@@ -33,7 +35,7 @@ const AssetDolllarSummary = ({ totalAssetValueFiat }: Props) => {
 					/>
 				</Grid>
 				<Grid item xs>
-					<DollarSummary title="Fiat Withdrawn" amount="$0.00" />
+					<DollarSummaryWithdrawls />
 				</Grid>
 			</Grid>
 		</div>
