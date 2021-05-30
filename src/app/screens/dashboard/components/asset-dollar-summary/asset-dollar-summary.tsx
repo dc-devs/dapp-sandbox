@@ -23,7 +23,7 @@ const AssetDolllarSummary = ({ totalAssetValueFiat }: Props) => {
 				spacing={3}
 			>
 				<Grid item xs>
-					<DollarSummary title="Fiat Deposited" amount="$0.00" />
+					<DollarSummary title="Fiat Deposited" type="deposit" />
 				</Grid>
 				<Grid item xs>
 					<DollarSummary

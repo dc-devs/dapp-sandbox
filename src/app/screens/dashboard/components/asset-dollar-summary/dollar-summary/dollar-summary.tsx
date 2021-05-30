@@ -1,8 +1,16 @@
+import { useEffect } from 'react';
 import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
+import { useSelector, useDispatch } from 'react-redux';
 import { themeColors } from '../../../../../../theme/colors';
 import { Triangle } from 'react-feather';
+import {
+	fetchTotalDeposits,
+	selectTotalDeposits,
+	selectTotalDepositsStatus,
+	selectTotalDepositsError,
+} from '../../../../../../redux/slices/total-deposits-slice';
 
 const { green } = themeColors;
 
@@ -59,12 +67,31 @@ const useStyles = makeStyles((theme) => ({
 
 interface Props {
 	title: string;
-	amount: string;
+	amount?: string;
 	deltaValue?: number;
+	type?: string;
 }
 
-const DollarSummary = ({ title, amount, deltaValue }: Props) => {
+const DollarSummary = ({
+	title,
+	amount = '$0.00',
+	deltaValue,
+	type,
+}: Props) => {
 	const classes = useStyles();
+	const dispatch = useDispatch();
+	const totalDeposits = useSelector(selectTotalDeposits);
+	const totalDepositsStatus = useSelector(selectTotalDepositsStatus);
+	const totalDepositsError = useSelector(selectTotalDepositsError);
+
+	// GET Token Balances
+	useEffect(() => {
+		if (type === 'deposit' && totalDepositsStatus === 'idle') {
+			dispatch(fetchTotalDeposits());
+		}
+	}, [totalDepositsStatus, dispatch, type]);
+
+	const { formatted } = totalDeposits;
 
 	const deltaValueComponent = deltaValue ? (
 		<div className={classes.deltaContainer}>
@@ -82,7 +109,7 @@ const DollarSummary = ({ title, amount, deltaValue }: Props) => {
 				<Typography
 					className={`${classes.fiatDeposited} ${classes.valuation}`}
 				>
-					{amount}
+					{formatted || amount}
 				</Typography>
 				{deltaValueComponent}
 			</div>
