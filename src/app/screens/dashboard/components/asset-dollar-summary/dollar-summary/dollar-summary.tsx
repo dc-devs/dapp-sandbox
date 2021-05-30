@@ -52,6 +52,9 @@ const useStyles = makeStyles((theme) => ({
 	deltaValue: {
 		fontSize: '.9rem',
 	},
+	test: {
+		position: 'relative',
+	},
 }));
 
 interface Props {
@@ -75,12 +78,14 @@ const DollarSummary = ({ title, amount, deltaValue }: Props) => {
 	return (
 		<Paper elevation={3} className={classes.valuationContainer}>
 			<Typography className={classes.valuationHeader}>{title}</Typography>
-			<Typography
-				className={`${classes.fiatDeposited} ${classes.valuation}`}
-			>
-				{amount}
+			<div className={classes.test}>
+				<Typography
+					className={`${classes.fiatDeposited} ${classes.valuation}`}
+				>
+					{amount}
+				</Typography>
 				{deltaValueComponent}
-			</Typography>
+			</div>
 		</Paper>
 	);
 };
