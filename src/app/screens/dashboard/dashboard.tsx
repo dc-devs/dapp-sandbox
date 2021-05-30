@@ -1,15 +1,10 @@
 import { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { useSelector, useDispatch } from 'react-redux';
-import formatBnToFiat from '../../../utils/format-bn-to-fiat';
-import getTokenSymbols from '../../../utils/get-token-symbols';
-import getTotalAssetValue from '../../../utils/get-total-asset-value';
-import filterTokenBalances from '../../../utils/filter-token-balances';
-import { selectMetaMaskWallet } from '../../../redux/slices/metamask-slice';
-import getTokenDisplayData from '../../../utils/get-token-display-data';
-import AssetDollarSummary from './components/asset-dollar-summary';
 import AssetSummary from './components/asset-summary';
-import Transactions from './components/transactions';
+import { useSelector, useDispatch } from 'react-redux';
+import filterTokenBalances from '../../../utils/filter-token-balances';
+import AssetDollarSummary from './components/asset-dollar-summary';
+import { selectMetaMaskWallet } from '../../../redux/slices/metamask-slice';
 import {
 	fetchTokenBalances,
 	selectTokenBalances,
@@ -48,11 +43,6 @@ const DashBoard = () => {
 	const tokenBalancesStatus = useSelector(selectTokenBalancesStatus);
 	const tokenBalancesError = useSelector(selectTokenBalancesError);
 
-	// const filteredTokenBalances = filterTokenBalances({
-	// 	tokenBalances,
-	// 	filterZeros: true,
-	// });
-
 	// GET Token Balances
 	useEffect(() => {
 		if (selectedAddress && tokenBalancesStatus === 'idle') {
@@ -62,15 +52,19 @@ const DashBoard = () => {
 
 	const { totalValue, balances } = tokenBalances;
 
+	const filteredTokenBalances = filterTokenBalances({
+		balances,
+		filterZeros: true,
+	});
+
 	return (
 		<div className={classes.pageContainer}>
 			<div className={classes.dashboardDataContainer}>
 				<AssetDollarSummary totalAssetValueFiat={totalValue} />
 				<AssetSummary
 					totalValue={totalValue}
-					tokenBalances={balances}
+					tokenBalances={filteredTokenBalances}
 				/>
-				{/* <Transactions /> */}
 			</div>
 		</div>
 	);

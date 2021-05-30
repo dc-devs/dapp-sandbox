@@ -1,20 +1,20 @@
-import CovalentTokenBalance from '../../interfaces/covalent-token-balance-interface';
+import TokenBalance from '../../interfaces/token-balance-interface';
 
 interface Props {
 	filterZeros?: boolean;
-	tokenBalances: CovalentTokenBalance[];
+	balances: TokenBalance[];
 }
 
 const filterTokenBalances = ({
 	filterZeros = true,
-	tokenBalances,
-}: Props): CovalentTokenBalance[] => {
-	return tokenBalances.filter((tokenBalance) => {
+	balances = [],
+}: Props): TokenBalance[] => {
+	return balances.filter((tokenBalance) => {
 		let filter: boolean;
 
 		if (filterZeros) {
-			const { balance, quote } = tokenBalance;
-			filter = balance !== '0' && quote !== 0;
+			const { balance, totalValue } = tokenBalance;
+			filter = balance !== '0.00000000' && totalValue.number !== 0;
 		} else {
 			filter = true;
 		}
