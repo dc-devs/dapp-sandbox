@@ -4,7 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import { themeColors } from '../../../../../../theme/colors';
 import { Triangle } from 'react-feather';
 
-const { green } = themeColors;
+const { green, red } = themeColors;
 
 const useStyles = makeStyles((theme) => ({
 	valuationContainer: {
@@ -28,6 +28,17 @@ const useStyles = makeStyles((theme) => ({
 		alignItems: 'center',
 		'flex-grow': '1',
 		position: 'relative',
+	},
+	valuationValueContainerDown: {
+		display: 'flex',
+		alignContent: 'center',
+		justifyContent: 'center',
+		alignItems: 'center',
+		'flex-grow': '1',
+		position: 'relative',
+		'& $valuationValue': {
+			color: red,
+		},
 	},
 	valuationHeader: {
 		fontSize: '1.2rem',
@@ -55,21 +66,49 @@ const useStyles = makeStyles((theme) => ({
 		color: green,
 		fontSize: '.9rem',
 	},
+	deltaContainerDown: {
+		display: 'flex',
+		alignItems: 'center',
+		alignContent: 'center',
+		position: 'absolute',
+		bottom: '0px',
+		right: '0px',
+		'& $deltaArrow': {
+			color: red,
+			fill: red,
+			transform: 'rotate(180deg)',
+		},
+		'& $deltaValue': {
+			color: red,
+		},
+	},
 }));
 
 interface Props {
 	title: string;
 	amount: string;
-	deltaValue?: number;
+	deltaValue?: string;
+	deltaValuePositive?: boolean;
 }
 
-const DollarSummary = ({ title, amount, deltaValue }: Props) => {
+const DollarSummary = ({
+	title,
+	amount,
+	deltaValue,
+	deltaValuePositive = true,
+}: Props) => {
 	const classes = useStyles();
 
 	const deltaValueComponent = deltaValue ? (
-		<div className={classes.deltaContainer}>
+		<div
+			className={
+				deltaValuePositive
+					? classes.deltaContainer
+					: classes.deltaContainerDown
+			}
+		>
 			<Triangle className={classes.deltaArrow} />
-			<div className={classes.deltaValue}>100%</div>
+			<div className={classes.deltaValue}>{deltaValue}</div>
 		</div>
 	) : (
 		''
@@ -82,7 +121,13 @@ const DollarSummary = ({ title, amount, deltaValue }: Props) => {
 					{title}
 				</Typography>
 			</div>
-			<div className={classes.valuationValueContainer}>
+			<div
+				className={
+					deltaValuePositive
+						? classes.valuationValueContainer
+						: classes.valuationValueContainerDown
+				}
+			>
 				<Typography className={classes.valuationValue}>
 					{amount}
 				</Typography>

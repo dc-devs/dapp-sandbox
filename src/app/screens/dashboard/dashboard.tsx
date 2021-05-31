@@ -60,9 +60,9 @@ const DashBoard = () => {
 	return (
 		<div className={classes.pageContainer}>
 			<div className={classes.dashboardDataContainer}>
-				<AssetDollarSummary totalAssetValueFiat={totalValue} />
+				<AssetDollarSummary totalValue={totalValue} />
 				<AssetSummary
-					totalValue={totalValue}
+					totalValue={totalValue?.formatted}
 					tokenBalances={filteredTokenBalances}
 				/>
 			</div>
