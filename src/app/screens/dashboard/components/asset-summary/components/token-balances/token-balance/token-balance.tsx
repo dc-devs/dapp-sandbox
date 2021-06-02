@@ -7,7 +7,7 @@ const useStyles = makeStyles((theme) => ({
 		justifyContent: 'space-between',
 		fontSize: '.95rem',
 		alignItems: 'center',
-		padding: '16px 30px',
+		padding: '13px 30px',
 		cursor: 'pointer',
 		'&:hover': {
 			backgroundColor: 'rgba(17, 51, 83, 0.02)',
@@ -21,6 +21,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 	nameColumn: {
 		display: 'flex',
+		alignItems: 'center',
 		width: '200px',
 	},
 	image: {
@@ -31,9 +32,17 @@ const useStyles = makeStyles((theme) => ({
 	},
 	nameContainer: {},
 	name: {
+		whiteSpace: 'nowrap',
+		overflow: 'hidden',
+		textOverflow: 'ellipsis',
+		width: '150px',
 		marginLeft: '16px',
 	},
 	symbol: {
+		whiteSpace: 'nowrap',
+		overflow: 'hidden',
+		textOverflow: 'ellipsis',
+		width: '150px',
 		marginLeft: '16px',
 		color: 'rgba(17, 51, 83, 0.6)',
 	},
