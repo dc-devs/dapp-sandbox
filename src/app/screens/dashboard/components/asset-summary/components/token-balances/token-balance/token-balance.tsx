@@ -1,29 +1,47 @@
-import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import TokenBalanceInterface from '../../../../../../../../interfaces/token-balance-interface';
 
 const useStyles = makeStyles((theme) => ({
-	tokenBalanceContainer: {
-		marginTop: theme.spacing(2),
-	},
-	assetContainer: {
+	tokenBalanceRow: {
 		display: 'flex',
+		justifyContent: 'space-between',
+		fontSize: '.95rem',
+		alignItems: 'center',
+		padding: '16px 30px',
+		cursor: 'pointer',
+		'&:hover': {
+			backgroundColor: 'rgba(17, 51, 83, 0.02)',
+		},
 	},
-	assetItem: {
-		margin: '0 5px',
+	tokenBalanceColumn: {
+		textAlign: 'right',
+		'&:first-child': {
+			textAlign: 'left',
+		},
+	},
+	nameColumn: {
+		display: 'flex',
+		width: '200px',
 	},
 	image: {
-		width: '25px',
-		height: '25px',
+		width: '32px',
+		height: '32px',
 		borderRadius: '50%',
 		boxShadow: theme.shadows[2],
 	},
-	gridItem: {
-		textAlign: 'right',
+	nameContainer: {},
+	name: {
+		marginLeft: '16px',
 	},
-	amount: {},
-	price: {},
-	total: {},
+	symbol: {
+		marginLeft: '16px',
+		color: 'rgba(17, 51, 83, 0.6)',
+	},
+	amountColumn: {
+		width: '150px',
+	},
+	priceColumn: { width: '150px' },
+	totalColumn: { width: '150px' },
 }));
 
 interface Props {
@@ -35,43 +53,34 @@ const TokenBalance = ({ token }: Props) => {
 	const { name, price, symbol, balance, logoUrl, totalValue } = token;
 
 	return (
-		<div className={classes.tokenBalanceContainer}>
-			<Grid
-				container
-				direction="row"
-				justify="space-between"
-				alignItems="center"
-				spacing={3}
+		<div className={classes.tokenBalanceRow}>
+			<div
+				className={`${classes.tokenBalanceColumn} ${classes.nameColumn}`}
 			>
-				<Grid item xs>
-					<div className={classes.assetContainer}>
-						<img
-							alt=""
-							src={logoUrl}
-							className={`${classes.image} ${classes.assetItem}`}
-						/>
-						<div className={classes.assetItem}>
-							{symbol} - {name}
-						</div>
-						<div className={classes.assetItem}></div>
-					</div>
-				</Grid>
-				<Grid item xs className={classes.gridItem}>
-					<div className={classes.amount}>
-						<div>{balance}</div>
-					</div>
-				</Grid>
-				<Grid item xs className={classes.gridItem}>
-					<div className={classes.price}>
-						<div>{price.formatted}</div>
-					</div>
-				</Grid>
-				<Grid item xs className={classes.gridItem}>
-					<div className={classes.total}>
-						<div>{totalValue.formatted}</div>
-					</div>
-				</Grid>
-			</Grid>
+				<img alt="" src={logoUrl} className={classes.image} />
+				<div className={classes.nameContainer}>
+					<div className={classes.symbol}>{symbol}</div>
+					<div className={classes.name}>{name}</div>
+				</div>
+			</div>
+
+			<div
+				className={`${classes.tokenBalanceColumn} ${classes.amountColumn}`}
+			>
+				<div>{balance}</div>
+			</div>
+
+			<div
+				className={`${classes.tokenBalanceColumn} ${classes.priceColumn}`}
+			>
+				<div>{price.formatted}</div>
+			</div>
+
+			<div
+				className={`${classes.tokenBalanceColumn} ${classes.totalColumn}`}
+			>
+				<div>{totalValue.formatted}</div>
+			</div>
 		</div>
 	);
 };

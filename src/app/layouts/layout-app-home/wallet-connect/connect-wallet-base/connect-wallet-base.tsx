@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
 		justifyContent: 'center',
 		alignItems: 'center',
 		backgroundColor: 'rgb(255, 255, 255)',
-		borderRadius: '12px',
+		borderRadius: '10px',
 		boxShadow: theme.shadows['3'],
 		margin: theme.spacing(2),
 		transition: 'all 0.2s ease-in-out',

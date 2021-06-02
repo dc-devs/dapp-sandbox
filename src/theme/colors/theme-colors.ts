@@ -9,6 +9,7 @@ const themeColors = {
 	lightGreen: '#88fb77',
 	darkOrange: '#fa9a2f',
 	lightOrange: '#fdcc3c',
+	coinbaseBorderColor: 'rgb(236, 239, 241)',
 	red: '#e65c76',
 };
 

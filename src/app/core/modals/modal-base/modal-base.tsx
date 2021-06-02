@@ -10,7 +10,7 @@ interface Props {
 const useStyles = makeStyles(() => ({
 	dialogRoot: {},
 	paper: {
-		borderRadius: '12px',
+		borderRadius: '10px',
 	},
 }));
 

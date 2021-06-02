@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 	pageContainer: {
 		'flex-grow': '1',
-		backgroundColor: 'rgba(228, 230, 246, .1)',
+		// backgroundColor: 'rgba(228, 230, 246, .1)',
 	},
 }));
 

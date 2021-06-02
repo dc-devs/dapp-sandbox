@@ -16,18 +16,18 @@ const getLegendItemsData = (legendPayload: LegendPayload) => {
 	const legendItemsData = payload.map((entry: any, index: number) => {
 		let colorHex;
 
-		if (index < 11) {
+		if (index < 12) {
 			colorHex = pieChartColors[index];
-		} else if (index >= 11) {
-			colorHex = pieChartColors[index - 11];
-		} else if (index >= 22) {
-			colorHex = pieChartColors[index - 22];
-		} else if (index >= 33) {
-			colorHex = pieChartColors[index - 33];
-		} else if (index >= 44) {
-			colorHex = pieChartColors[index - 44];
-		} else if (index >= 55) {
-			colorHex = pieChartColors[index - 55];
+		} else if (index >= 12) {
+			colorHex = pieChartColors[index - 12];
+		} else if (index >= 24) {
+			colorHex = pieChartColors[index - 24];
+		} else if (index >= 36) {
+			colorHex = pieChartColors[index - 36];
+		} else if (index >= 48) {
+			colorHex = pieChartColors[index - 48];
+		} else if (index >= 60) {
+			colorHex = pieChartColors[index - 60];
 		}
 
 		const tokeSymbol = entry.value;

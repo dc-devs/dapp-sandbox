@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
 		alignItems: 'center',
 		marginTop: theme.spacing(3),
 		border: `1px solid #eceff1`,
-		borderRadius: '12px',
+		borderRadius: '10px',
 		minHeight: '36px',
 		width: '100%',
 	},

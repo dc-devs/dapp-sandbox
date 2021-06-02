@@ -6,12 +6,11 @@ import TokenBalance from '../../../../../interfaces/token-balance-interface';
 
 const useStyles = makeStyles(() => ({
 	assetSummaryContainer: {
-		marginTop: '20px',
+		marginTop: '50px',
 	},
 	assetSummaryItemContainer: {
 		display: 'flex',
 		flexDirection: 'column',
-		height: '478px',
 	},
 }));
 
@@ -32,7 +31,7 @@ const AssetDolllarSummary = ({ totalValue, tokenBalances }: Props) => {
 				alignItems="flex-start"
 				spacing={3}
 			>
-				<Grid item xs={5}>
+				<Grid item xs={4}>
 					<div className={classes.assetSummaryItemContainer}>
 						<AssetPieChart
 							totalValue={totalValue}
@@ -40,7 +39,7 @@ const AssetDolllarSummary = ({ totalValue, tokenBalances }: Props) => {
 						/>
 					</div>
 				</Grid>
-				<Grid item xs={7}>
+				<Grid item xs={8}>
 					<TokenBalances tokenBalances={tokenBalances} />
 				</Grid>
 			</Grid>

@@ -4,7 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import { themeColors } from '../../../../../../theme/colors';
 import { Triangle } from 'react-feather';
 
-const { green, red } = themeColors;
+const { green, red, coinbaseBorderColor } = themeColors;
 
 const useStyles = makeStyles((theme) => ({
 	valuationContainer: {
@@ -14,7 +14,9 @@ const useStyles = makeStyles((theme) => ({
 		jsutifyContent: 'center',
 		height: '120px',
 		borderRadius: '10px',
+		minWidth: '250px',
 		padding: theme.spacing(2),
+		borderBottom: `1px solid ${coinbaseBorderColor}`,
 	},
 	valuationHeaderContainer: {
 		display: 'flex',
@@ -115,7 +117,7 @@ const DollarSummary = ({
 	);
 
 	return (
-		<Paper elevation={3} className={classes.valuationContainer}>
+		<Paper elevation={2} className={classes.valuationContainer}>
 			<div className={classes.valuationHeaderContainer}>
 				<Typography className={classes.valuationHeader}>
 					{title}

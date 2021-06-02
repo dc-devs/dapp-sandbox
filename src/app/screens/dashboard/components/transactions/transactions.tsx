@@ -45,7 +45,7 @@ const Transactions = () => {
 	// });
 
 	return (
-		<Paper elevation={3} className={classes.transactionsContainer}>
+		<Paper elevation={2} className={classes.transactionsContainer}>
 			<Typography>Transactions</Typography>
 			<Divider />
 			{/* <div> {transactionsHTML} </div> */}

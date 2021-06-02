@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux';
 const useStyles = makeStyles((theme) => ({
 	buttonRoot: {
 		textTransform: 'none',
-		borderRadius: '12px',
+		borderRadius: '10px',
 		backgroundColor: theme.palette.primary.main,
 		color: 'white',
 		'&:hover': {

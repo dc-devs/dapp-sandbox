@@ -18,7 +18,9 @@ const useStyles = makeStyles((theme) => ({
 		borderRadius: '10px',
 		overflowY: 'scroll',
 	},
-	allocationPieChartHeader: {},
+	allocationPieChartHeader: {
+		fontSize: '1.2rem',
+	},
 	allocationPieChart: {
 		display: 'flex',
 		justifyContent: 'center',
@@ -120,7 +122,7 @@ const AssetPieChart = ({ totalValue, tokenBalances }: Props) => {
 	};
 
 	return (
-		<Paper elevation={3} className={classes.allocationPieChartContainer}>
+		<Paper elevation={2} className={classes.allocationPieChartContainer}>
 			<Typography className={classes.allocationPieChartHeader}>
 				Allocations
 			</Typography>

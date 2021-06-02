@@ -1,35 +1,50 @@
-import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import TokenBalance from './token-balance';
-import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import TokenBalanceInterface from '../../../../../../../interfaces/token-balance-interface';
+import { themeColors } from '../../../../../../../theme/colors';
+const { coinbaseBorderColor } = themeColors;
 
 const useStyles = makeStyles((theme) => ({
 	tokenBalancesContainer: {
-		height: '478px',
 		padding: theme.spacing(2),
 		borderRadius: '10px',
 	},
-	tokenBalancesTable: {},
-	tokenBalancesHeader: {
-		marginTop: theme.spacing(2),
+	tokenBalancesTable: {
+		borderRadius: '10px',
+		border: `1px solid ${coinbaseBorderColor}`,
 	},
 	tokenBalanceHeader: {
-		fontWeight: 'bold',
-		fontSize: '1.1rem',
+		fontSize: '1.2rem',
 		marginBottom: theme.spacing(2),
 	},
+	tokenBalancesHeader: {
+		fontSize: '.95rem',
+		padding: '16px 30px',
+		borderBottom: `1px solid ${coinbaseBorderColor}`,
+		display: 'flex',
+		justifyContent: 'space-between',
+		alignItems: 'center',
+	},
 	tokenBalancesColumn: {
+		color: 'rgba(17, 51, 83, 0.6)',
 		textAlign: 'right',
 		'&:first-child': {
 			textAlign: 'left',
 		},
 	},
-	tokenBalancesTokensContainer: {
-		overflowY: 'scroll',
-		height: '361px',
+	nameColumn: {
+		width: '200px',
+	},
+	amountColumn: {
+		width: '150px',
+	},
+	priceColumn: {
+		width: '150px',
+	},
+	totalColumn: {
+		width: '150px',
 	},
 }));
 
@@ -46,37 +61,34 @@ const TokenBalances = ({ tokenBalances = [] }: Props) => {
 	});
 
 	return (
-		<Paper elevation={3} className={classes.tokenBalancesContainer}>
+		<Paper elevation={2} className={classes.tokenBalancesContainer}>
 			<Typography className={classes.tokenBalanceHeader}>
 				Tokens
 			</Typography>
-			<Divider />
 			<div className={classes.tokenBalancesTable}>
 				<div className={classes.tokenBalancesHeader}>
-					<Grid
-						container
-						direction="row"
-						justify="space-between"
-						alignItems="center"
-						spacing={3}
+					<div
+						className={`${classes.tokenBalancesColumn} ${classes.nameColumn}`}
 					>
-						<Grid item xs className={classes.tokenBalancesColumn}>
-							<Typography>Asset</Typography>
-						</Grid>
-						<Grid item xs className={classes.tokenBalancesColumn}>
-							<Typography>Amount</Typography>
-						</Grid>
-						<Grid item xs className={classes.tokenBalancesColumn}>
-							<Typography>Price</Typography>
-						</Grid>
-						<Grid item xs className={classes.tokenBalancesColumn}>
-							<Typography>Total</Typography>
-						</Grid>
-					</Grid>
+						<Typography>Name</Typography>
+					</div>
+					<div
+						className={`${classes.tokenBalancesColumn} ${classes.amountColumn}`}
+					>
+						<Typography>Amount</Typography>
+					</div>
+					<div
+						className={`${classes.tokenBalancesColumn} ${classes.priceColumn}`}
+					>
+						<Typography>Price</Typography>
+					</div>
+					<div
+						className={`${classes.tokenBalancesColumn} ${classes.totalColumn}`}
+					>
+						<Typography>Total</Typography>
+					</div>
 				</div>
-				<div className={classes.tokenBalancesTokensContainer}>
-					{tokenBalanceComponents}
-				</div>
+				{tokenBalanceComponents}
 			</div>
 		</Paper>
 	);
