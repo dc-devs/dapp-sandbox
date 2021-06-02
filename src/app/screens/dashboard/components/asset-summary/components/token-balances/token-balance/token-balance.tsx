@@ -1,5 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
 import TokenBalanceInterface from '../../../../../../../../interfaces/token-balance-interface';
+import { Link as ReactLink } from 'react-router-dom';
+import Link from '@material-ui/core/Link';
 
 const useStyles = makeStyles((theme) => ({
 	tokenBalanceRow: {
@@ -60,9 +62,17 @@ interface Props {
 const TokenBalance = ({ token }: Props) => {
 	const classes = useStyles();
 	const { name, price, symbol, balance, logoUrl, totalValue } = token;
+	const lowerCaseSymbol = symbol.toLowerCase();
 
 	return (
-		<div className={classes.tokenBalanceRow}>
+		<Link
+			to={`/token/${lowerCaseSymbol}`}
+			underline="none"
+			color="textPrimary"
+			component={ReactLink}
+			className={classes.tokenBalanceRow}
+		>
+			{/* <div className={classes.tokenBalanceRow}> */}
 			<div
 				className={`${classes.tokenBalanceColumn} ${classes.nameColumn}`}
 			>
@@ -90,7 +100,8 @@ const TokenBalance = ({ token }: Props) => {
 			>
 				<div>{totalValue.formatted}</div>
 			</div>
-		</div>
+			{/* </div> */}
+		</Link>
 	);
 };
 

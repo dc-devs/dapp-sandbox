@@ -67,7 +67,7 @@ const PermanentDrawer = ({ logoText }: Props) => {
 				<AccountDropdown />
 				<div className={classes.sidebarLinksContainer}>
 					<Link
-						to="/"
+						to="/dashboard"
 						color="primary"
 						underline="none"
 						component={ReactLink}
@@ -80,7 +80,7 @@ const PermanentDrawer = ({ logoText }: Props) => {
 					</Link>
 
 					<Link
-						to="/"
+						to="/token"
 						color="primary"
 						underline="none"
 						component={ReactLink}
@@ -91,7 +91,7 @@ const PermanentDrawer = ({ logoText }: Props) => {
 							Tokens
 						</Typography>
 					</Link>
-					<Link
+					{/* <Link
 						to="/"
 						color="primary"
 						underline="none"
@@ -114,7 +114,7 @@ const PermanentDrawer = ({ logoText }: Props) => {
 						<Typography className={classes.sidebarLinkText}>
 							Wallet Mapper
 						</Typography>
-					</Link>
+					</Link> */}
 				</div>
 			</div>
 		</Paper>
