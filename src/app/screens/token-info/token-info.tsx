@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { selectMetaMaskWallet } from '../../../redux/slices/metamask-slice';
 import Header from './components/header';
 import Tokenomics from './components/tokenomics';
+import Transactions from './components/transactions';
 import {
 	fetchTokenBalances,
 	selectTokenBalances,
@@ -34,6 +35,7 @@ const TokenInfo = () => {
 	const tokenBalancesError = useSelector(selectTokenBalancesError);
 	let tokeHeaderComponent = <></>;
 	let tokenomicsComponent = <></>;
+	let transactionsComponent = <></>;
 
 	// GET Token Balances
 	useEffect(() => {
@@ -48,12 +50,14 @@ const TokenInfo = () => {
 		const tokenBalance = tokenBalances.balances[0];
 		tokeHeaderComponent = <Header tokenBalance={tokenBalance} />;
 		tokenomicsComponent = <Tokenomics tokenBalance={tokenBalance} />;
+		transactionsComponent = <Transactions />;
 	}
 
 	return (
 		<div className={classes.screenContainer}>
 			{tokeHeaderComponent}
 			{tokenomicsComponent}
+			{transactionsComponent}
 		</div>
 	);
 };
