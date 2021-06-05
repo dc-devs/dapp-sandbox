@@ -2,6 +2,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import TokenBalanceInterface from '../../../../../../../../interfaces/token-balance-interface';
 import { Link as ReactLink } from 'react-router-dom';
 import Link from '@material-ui/core/Link';
+import textColors from '../../../../../../../../theme/colors/text-colors';
+
+const { coinbaseTableHeaderText } = textColors;
 
 const useStyles = makeStyles((theme) => ({
 	tokenBalanceRow: {
@@ -46,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
 		textOverflow: 'ellipsis',
 		width: '150px',
 		marginLeft: '16px',
-		color: 'rgba(17, 51, 83, 0.6)',
+		color: coinbaseTableHeaderText,
 	},
 	amountColumn: {
 		width: '150px',
@@ -72,7 +75,6 @@ const TokenBalance = ({ token }: Props) => {
 			component={ReactLink}
 			className={classes.tokenBalanceRow}
 		>
-			{/* <div className={classes.tokenBalanceRow}> */}
 			<div
 				className={`${classes.tokenBalanceColumn} ${classes.nameColumn}`}
 			>
@@ -100,7 +102,6 @@ const TokenBalance = ({ token }: Props) => {
 			>
 				<div>{totalValue.formatted}</div>
 			</div>
-			{/* </div> */}
 		</Link>
 	);
 };

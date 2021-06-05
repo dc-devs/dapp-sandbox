@@ -46,7 +46,7 @@ const DashBoard = () => {
 	// GET Token Balances
 	useEffect(() => {
 		if (selectedAddress && tokenBalancesStatus === 'idle') {
-			dispatch(fetchTokenBalances(selectedAddress));
+			dispatch(fetchTokenBalances({ address: selectedAddress }));
 		}
 	}, [tokenBalancesStatus, selectedAddress, dispatch]);
 

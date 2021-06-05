@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import getTokenBalances from '../../services/backend/get-token-balances';
 import TokenBalancesResponse from '../../interfaces/token-balances-response-interface';
+import GetTokenBalancesProps from '../../interfaces/get-token-balance-props-interface';
 
 interface Transaction {
 	tokenBalances: TokenBalancesResponse;
@@ -16,8 +17,8 @@ interface State {
 // ---------------
 export const fetchTokenBalances = createAsyncThunk(
 	'tokenBalances/fetchTokenBalances',
-	async (address: string) => {
-		const tokenBalances = await getTokenBalances(address);
+	async ({ address, filter }: GetTokenBalancesProps) => {
+		const tokenBalances = await getTokenBalances({ address, filter });
 
 		return tokenBalances;
 	}
