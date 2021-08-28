@@ -34,7 +34,7 @@ const Transactions = ({ tokenBalance }: Props) => {
 	const { selectedAddress } = useSelector(selectMetaMaskWallet);
 	const transactions = useSelector(selectTransactions);
 	const transactionsStatus = useSelector(selectTransactionsStatus);
-	const transactionsError = useSelector(selectTransactionsError);
+	// const transactionsError = useSelector(selectTransactionsError);
 	const { symbol } = tokenBalance;
 
 	useEffect(() => {

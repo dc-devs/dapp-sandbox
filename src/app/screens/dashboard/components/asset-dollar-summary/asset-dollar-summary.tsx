@@ -31,7 +31,7 @@ const AssetDollarSummary = ({ totalValue }: Props) => {
 	const dispatch = useDispatch();
 	const totalDeposits = useSelector(selectTotalDeposits);
 	const totalDepositsStatus = useSelector(selectTotalDepositsStatus);
-	const totalDepositsError = useSelector(selectTotalDepositsError);
+	// const totalDepositsError = useSelector(selectTotalDepositsError);
 
 	// GET Token Balances
 	useEffect(() => {

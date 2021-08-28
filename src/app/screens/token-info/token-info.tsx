@@ -32,7 +32,7 @@ const TokenInfo = () => {
 	const { selectedAddress } = useSelector(selectMetaMaskWallet);
 	const tokenBalances = useSelector(selectTokenBalances);
 	const tokenBalancesStatus = useSelector(selectTokenBalancesStatus);
-	const tokenBalancesError = useSelector(selectTokenBalancesError);
+	// const tokenBalancesError = useSelector(selectTokenBalancesError);
 	let tokeHeaderComponent = <></>;
 	let tokenomicsComponent = <></>;
 	let transactionsComponent = <></>;

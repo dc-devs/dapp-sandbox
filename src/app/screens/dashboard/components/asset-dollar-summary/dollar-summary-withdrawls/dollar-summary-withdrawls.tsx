@@ -12,7 +12,7 @@ const DollarSummaryDeposits = () => {
 	const dispatch = useDispatch();
 	const totalWithdrawls = useSelector(selectTotalWithdrawls);
 	const totalWithdrawlsStatus = useSelector(selectTotalWithdrawlsStatus);
-	const totalWithdrawlsError = useSelector(selectTotalWithdrawlsError);
+	// const totalWithdrawlsError = useSelector(selectTotalWithdrawlsError);
 
 	// GET Token Balances
 	useEffect(() => {

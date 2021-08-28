@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import AppHome from '../screens/app-home';
-import { Redirect } from 'react-router';
+// import { Redirect } from 'react-router';
 import { useSelector, useDispatch } from 'react-redux';
 import Token from '../screens/token-info';
 import Dashboard from '../screens/dashboard';

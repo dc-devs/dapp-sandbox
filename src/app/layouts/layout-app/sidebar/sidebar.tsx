@@ -2,7 +2,8 @@ import Paper from '@material-ui/core/Paper';
 import AccountDropdown from '../../../screens/dashboard/components/account-dropdown';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import { BarChart, Octagon, Repeat, Search } from 'react-feather';
+import { BarChart, Octagon } from 'react-feather';
+// import { BarChart, Octagon, Repeat, Search } from 'react-feather';
 import { Link as ReactLink } from 'react-router-dom';
 import Link from '@material-ui/core/Link';
 

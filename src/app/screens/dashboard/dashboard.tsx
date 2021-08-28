@@ -41,7 +41,7 @@ const DashBoard = () => {
 
 	const tokenBalances = useSelector(selectTokenBalances);
 	const tokenBalancesStatus = useSelector(selectTokenBalancesStatus);
-	const tokenBalancesError = useSelector(selectTokenBalancesError);
+	// const tokenBalancesError = useSelector(selectTokenBalancesError);
 
 	// GET Token Balances
 	useEffect(() => {
