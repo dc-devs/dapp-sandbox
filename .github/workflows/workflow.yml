@@ -1,27 +1,14 @@
-name: BlockSight CI
+name: Deploy BlockSight Frontend
 
-on:
-  push:
-    branches: 'master'
+on: [push]
 
 jobs:
-  build: 
+  test-and-deploy: 
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix: 
-        node-version: [14.x]
-
     steps:
-      - name: Install Dependencies
-        - uses: actions/checkout@v1
-        - run: yarn installDependencies
-
-      # - name: Deploy
-      #   uses: youyo/aws-cdk-github-actions@v1
-      #   env:
-      #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      #     AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
-      #     AWS_DEFAULT_OUTPUT: ${{ secrets.AWS_DEFAULT_OUTPUT }}
-      #   run: yarn deploy
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - run: yarn installDependencies
