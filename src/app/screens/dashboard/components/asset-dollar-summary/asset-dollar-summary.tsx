@@ -10,7 +10,7 @@ import {
 	fetchTotalDeposits,
 	selectTotalDeposits,
 	selectTotalDepositsStatus,
-	selectTotalDepositsError,
+	// selectTotalDepositsError,
 } from '../../../../../redux/slices/total-deposits-slice';
 
 const useStyles = makeStyles(() => ({

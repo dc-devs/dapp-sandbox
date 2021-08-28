@@ -8,7 +8,7 @@ import {
 	fetchTransactions,
 	selectTransactions,
 	selectTransactionsStatus,
-	selectTransactionsError,
+	// selectTransactionsError,
 } from '../../../../../redux/slices/transactions-slice';
 import TokenBalance from '../../../../../interfaces/token-balance-interface';
 import { selectMetaMaskWallet } from '../../../../../redux/slices/metamask-slice';

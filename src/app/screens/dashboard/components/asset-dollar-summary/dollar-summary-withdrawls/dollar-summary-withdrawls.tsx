@@ -5,7 +5,7 @@ import {
 	fetchTotalWithdrawls,
 	selectTotalWithdrawls,
 	selectTotalWithdrawlsStatus,
-	selectTotalWithdrawlsError,
+	// selectTotalWithdrawlsError,
 } from '../../../../../../redux/slices/total-withdrawls-slice';
 
 const DollarSummaryDeposits = () => {
