@@ -1,7 +1,14 @@
 {
-	"name": "react-starter-template",
-	"version": "0.1.0",
+	"name": "blocksight-frontend",
+	"version": "1.0.0",
 	"private": true,
+	"scripts": {
+		"start": "react-scripts start",
+		"build": "react-scripts build",
+		"test": "react-scripts test",
+		"eject": "react-scripts eject",
+		"deploy": "yarn test --watchAll=false && yarn build && cd infrastructure && yarn deploy && cd .."
+	},
 	"dependencies": {
 		"@material-ui/core": "^4.11.4",
 		"@material-ui/icons": "^4.11.2",
@@ -33,12 +40,6 @@
 		"typescript": "^4.2.4",
 		"web-vitals": "^1.1.2",
 		"web3": "^1.3.6"
-	},
-	"scripts": {
-		"start": "react-scripts start",
-		"build": "react-scripts build",
-		"test": "react-scripts test",
-		"eject": "react-scripts eject"
 	},
 	"eslintConfig": {
 		"extends": [

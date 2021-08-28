@@ -54,7 +54,7 @@ const DashBoard = () => {
 
 	const filteredTokenBalances = filterTokenBalances({
 		balances,
-		filterZeros: false,
+		filterZeros: true,
 	});
 
 	return (

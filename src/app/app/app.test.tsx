@@ -1,7 +1,7 @@
 import { render, screen } from '../../test-utils';
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 import App from './index';
-import { updateIsMetaMaskConnected } from '../../redux/slices/metamask-connected-slice';
+// import { updateIsMetaMaskConnected } from '../../redux/slices/metamask-connected-slice';
 
 describe('App', () => {
 	describe('when not logged in with metamask', () => {

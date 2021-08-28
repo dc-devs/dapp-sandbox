@@ -50,7 +50,7 @@ const TokenInfo = () => {
 		const tokenBalance = tokenBalances.balances[0];
 		tokeHeaderComponent = <Header tokenBalance={tokenBalance} />;
 		tokenomicsComponent = <Tokenomics tokenBalance={tokenBalance} />;
-		transactionsComponent = <Transactions />;
+		transactionsComponent = <Transactions tokenBalance={tokenBalance} />;
 	}
 
 	return (

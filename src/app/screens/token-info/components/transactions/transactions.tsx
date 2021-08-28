@@ -1,8 +1,17 @@
+import { useEffect } from 'react';
 import Transaction from './transaction';
 import Paper from '@material-ui/core/Paper';
-// import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import { useSelector, useDispatch } from 'react-redux';
+import {
+	fetchTransactions,
+	selectTransactions,
+	selectTransactionsStatus,
+	selectTransactionsError,
+} from '../../../../../redux/slices/transactions-slice';
+import TokenBalance from '../../../../../interfaces/token-balance-interface';
+import { selectMetaMaskWallet } from '../../../../../redux/slices/metamask-slice';
 
 const useStyles = makeStyles((theme) => ({
 	transactionsContainer: {
@@ -15,17 +24,38 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const Transactions = () => {
-	const classes = useStyles();
+interface Props {
+	tokenBalance: TokenBalance;
+}
 
-	let transactionsComponents = [<Transaction />];
+const Transactions = ({ tokenBalance }: Props) => {
+	const classes = useStyles();
+	const dispatch = useDispatch();
+	const { selectedAddress } = useSelector(selectMetaMaskWallet);
+	const transactions = useSelector(selectTransactions);
+	const transactionsStatus = useSelector(selectTransactionsStatus);
+	const transactionsError = useSelector(selectTransactionsError);
+	const { symbol } = tokenBalance;
+
+	useEffect(() => {
+		if (selectedAddress && transactionsStatus === 'idle') {
+			dispatch(
+				fetchTransactions({ address: selectedAddress, filter: symbol })
+			);
+		}
+	}, [transactionsStatus, selectedAddress, dispatch, symbol]);
+
+	const transactionComponents =
+		transactions?.supportedTransactions?.map((transaction, index) => {
+			return <Transaction key={index} transaction={transaction} />;
+		}) || [];
 
 	return (
-		<Paper elevation={3} className={classes.transactionsContainer}>
+		<Paper elevation={0} className={classes.transactionsContainer}>
 			<Typography className={classes.transactionsHeader}>
 				Transactions
 			</Typography>
-			<div> {transactionsComponents} </div>
+			<div> {transactionComponents} </div>
 		</Paper>
 	);
 };
