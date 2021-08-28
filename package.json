@@ -7,6 +7,7 @@
 		"build": "react-scripts build",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject",
+		"installDependencies": "yarn && cd infrastructure && yarn && cd ..",
 		"deploy": "yarn test --watchAll=false && yarn build && cd infrastructure && yarn deploy && cd .."
 	},
 	"dependencies": {
