@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
 import TokenBalanceInterface from '../../../../../../../../interfaces/token-balance-interface';
-import { Link as ReactLink } from 'react-router-dom';
-import Link from '@material-ui/core/Link';
+// import { Link as ReactLink } from 'react-router-dom';
+// import Link from '@material-ui/core/Link';
 import textColors from '../../../../../../../../theme/colors/text-colors';
 
 const { coinbaseTableHeaderText } = textColors;
@@ -65,16 +65,19 @@ interface Props {
 const TokenBalance = ({ token }: Props) => {
 	const classes = useStyles();
 	const { name, price, symbol, balance, logoUrl, totalValue } = token;
-	const lowerCaseSymbol = symbol.toLowerCase();
+	// TODO: Add back linking in future iteration
+	// const lowerCaseSymbol = symbol.toLowerCase();
+	// <Link
+	// 	to={`/token/${lowerCaseSymbol}`}
+	// 	underline="none"
+	// 	color="textPrimary"
+	// 	component={ReactLink}
+	// 	className={classes.tokenBalanceRow}
+	// >
+	// </Link>
 
 	return (
-		<Link
-			to={`/token/${lowerCaseSymbol}`}
-			underline="none"
-			color="textPrimary"
-			component={ReactLink}
-			className={classes.tokenBalanceRow}
-		>
+		<div className={classes.tokenBalanceRow}>
 			<div
 				className={`${classes.tokenBalanceColumn} ${classes.nameColumn}`}
 			>
@@ -102,7 +105,7 @@ const TokenBalance = ({ token }: Props) => {
 			>
 				<div>{totalValue.formatted}</div>
 			</div>
-		</Link>
+		</div>
 	);
 };
 
