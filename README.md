@@ -69,6 +69,7 @@ This project holds the front end DApp code for interacting with the smart contra
 ### Prerequisites
 
 -   MetaMask Wallet
+
     [MetaMask.io](https://metamask.io/) - A crypto wallet & gateway to blockchain apps
 
 -   Node LTS version
