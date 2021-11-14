@@ -1,5 +1,5 @@
 {
-	"name": "blocksight-frontend",
+	"name": "dapp-sandbox",
 	"version": "1.0.0",
 	"private": true,
 	"scripts": {
@@ -7,7 +7,7 @@
 		"build": "react-scripts build",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject",
-		"installDependencies": "yarn && cd infrastructure && yarn && cd ..",
+		"installInfraDeps": "yarn && cd infrastructure && yarn && cd ..",
 		"deploy": "yarn test --watchAll=false && yarn build && cd infrastructure && yarn deploy && cd .."
 	},
 	"dependencies": {
@@ -18,12 +18,13 @@
 		"@reduxjs/toolkit": "^1.5.1",
 		"@testing-library/react": "^11.2.7",
 		"@testing-library/user-event": "^13.1.9",
-		"@types/jest": "^26.0.23",
+		"@types/jest": "^27.0.2",
 		"@types/node": "^15.6.0",
 		"@types/numeral": "^2.0.1",
 		"@types/react": "^17.0.6",
 		"@types/react-dom": "^17.0.5",
 		"await-to-js": "^3.0.0",
+		"aws-cdk": "^1.132.0",
 		"axios": "^0.21.1",
 		"bignumber.js": "^9.0.1",
 		"ethers": "^5.2.0",

@@ -10,8 +10,8 @@ export class InfrastructureStack extends cdk.Stack {
 		super(scope, id, props);
 
 		// Add S3 Bucket
-		const s3Site = new s3.Bucket(this, `<BlockSight>`, {
-			bucketName: `blocksight.fi`,
+		const s3Site = new s3.Bucket(this, `<DAppSandbox>`, {
+			bucketName: `dappsandbox.io`,
 			publicReadAccess: true,
 			websiteIndexDocument: 'index.html',
 			websiteErrorDocument: 'index.html',
@@ -21,7 +21,7 @@ export class InfrastructureStack extends cdk.Stack {
 		// Create a new CloudFront Distribution
 		const distribution = new cloudFront.CloudFrontWebDistribution(
 			this,
-			`blocksight-cf-distribution`,
+			`dappsandbox-cf-distribution`,
 			{
 				originConfigs: [
 					{
@@ -52,14 +52,14 @@ export class InfrastructureStack extends cdk.Stack {
 						],
 					},
 				],
-				comment: `blocksight - CloudFront Distribution`,
+				comment: `DApp Sandbox - CloudFront Distribution`,
 				viewerProtocolPolicy:
 					cloudFront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
 			}
 		);
 
 		// Setup Bucket Deployment to automatically deploy new assets and invalidate cache
-		new s3deploy.BucketDeployment(this, `blocksight-s3bucketdeployment`, {
+		new s3deploy.BucketDeployment(this, `dappsandbox-s3bucketdeployment`, {
 			sources: [s3deploy.Source.asset('../build')],
 			destinationBucket: s3Site,
 			distribution: distribution,

@@ -13,9 +13,6 @@ const useStyles = makeStyles(() => ({
 	logo: {
 		marginRight: '10px',
 	},
-	logoImage: {
-		marginRight: '10px',
-	},
 }));
 
 const Logo = () => {
@@ -32,15 +29,8 @@ const Logo = () => {
 				className={classes.logoContainer}
 				data-testid="LogoLink"
 			>
-				<Typography
-					data-testid="LogoImage"
-					variant="h5"
-					className={classes.logoImage}
-				>
-					b
-				</Typography>
 				<Typography data-testid="LogoText" variant="h6">
-					blocksight
+					DApp Sandbox
 				</Typography>
 			</Link>
 		</div>

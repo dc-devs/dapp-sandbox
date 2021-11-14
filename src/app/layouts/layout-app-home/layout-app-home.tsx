@@ -14,7 +14,6 @@ const useStyles = makeStyles((theme) => ({
 	},
 	appBar: {
 		backgroundColor: 'white',
-		boxShadow: 'none',
 		color: '#bbb',
 	},
 }));
@@ -29,6 +28,7 @@ const LayoutAppHome = ({ children }: Props) => {
 	return (
 		<div data-testid="layoutAppHome" className={classes.root}>
 			<AppBar
+				elevation={0}
 				position="fixed"
 				classes={{
 					root: classes.appBar,

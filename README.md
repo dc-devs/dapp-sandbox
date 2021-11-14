@@ -1,46 +1,118 @@
-# Getting Started with Create React App
+<!-- README copied from https://raw.githubusercontent.com/othneildrew/Best-README-Template/master/README.md -->
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a href="https://github.com/DWC01/dapp-sandbox-contracts">
+    <img src="public/logo.png" alt="Logo" width="80" height="80">
+  </a>
 
-## Available Scripts
+  <h3 align="center">DApp Sandbox</h3>
 
-In the project directory, you can run:
+  <p align="center">
+	Front end DApp code for interacting with the 
+	<a href="https://github.com/DWC01/dapp-sandbox-contracts" style="display:inline-block"> 
+	DApp Sandbox Contracts 
+	</a> 
+	project.
+  </p>
+</div>
 
-### `yarn start`
+<!-- TABLE OF CONTENTS -->
+<br/>
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#useful-links">Useful Links</a></li>
+  </ol>
+</details>
+<br/>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<!-- ABOUT THE PROJECT -->
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## About The Project
 
-### `yarn test`
+This project holds the front end DApp code for interacting with the smart contracts created in the [DApp Sandbox Contracts](https://github.com/DWC01/dapp-sandbox-contracts) project.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-### `yarn build`
+### Built With
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+-   [React](https://reactjs.org/)
+-   [AWS CDK](https://github.com/aws/aws-cdk)
+-   [TypeScript](https://www.typescriptlang.org/)
+-   [Yarn](https://yarnpkg.com/)
+-   [Prettier](https://prettier.io/)
+-   [ESLint](https://eslint.org/)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<!-- GETTING STARTED -->
 
-### `yarn eject`
+## Getting Started
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Prerequisites
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+-   Node LTS version
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+    Suggestion to manage with [Node Version Manager (nvm)](https://github.com/nvm-sh/nvm)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+-   Yarn
+    ```sh
+    npm install --global yarn
+    ```
 
-## Learn More
+### Installation
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1. Clone the repo
+    ```sh
+    git clone git@github.com:DWC01/dapp-sandbox.git
+    ```
+2. Install NPM packages
+    ```sh
+    yarn
+    ```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+<!-- USAGE EXAMPLES -->
+
+## Usage
+
+-   Start React App
+    ```sh
+    yarn start
+    ```
+-   Run Tests
+    ```sh
+    yarn test
+    ```
+-   Build Production
+    ```sh
+    yarn lint
+    ```
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+<!-- USEFUL LINKS -->
+
+## Useful Links
+
+-   [MetaMask Docs](https://docs.metamask.io/guide/)
+-   [EthersJs](https://docs.ethers.io/v5/)
+
+<p align="right">(<a href="#top">back to top</a>)</p>

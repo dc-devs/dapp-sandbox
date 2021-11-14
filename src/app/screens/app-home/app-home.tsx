@@ -14,6 +14,9 @@ const useStyles = makeStyles((theme) => ({
 		fontSize: '2.5rem',
 		color: theme.palette.primary.main,
 	},
+	inlineLink: {
+		display: 'inline-block',
+	},
 }));
 
 const Home = () => {
@@ -21,9 +24,7 @@ const Home = () => {
 
 	return (
 		<div className={classes.root}>
-			<Typography className={classes.homeTitle}>
-				Crypto asset tracking made easy.
-			</Typography>
+			<Typography className={classes.homeTitle}>DApp Sandbox</Typography>
 		</div>
 	);
 };
