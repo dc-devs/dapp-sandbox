@@ -10,7 +10,7 @@
   <h3 align="center">DApp Sandbox</h3>
 
   <p align="center">
-	Front end DApp code for interacting with the 
+	Front end DApp code for interacting with the smart contracts created in the 
 	<a href="https://github.com/DWC01/dapp-sandbox-contracts" style="display:inline-block"> 
 	DApp Sandbox Contracts 
 	</a> 
@@ -53,6 +53,7 @@ This project holds the front end DApp code for interacting with the smart contra
 ### Built With
 
 -   [React](https://reactjs.org/)
+-   [Material-UI](https://mui.com/)
 -   [AWS CDK](https://github.com/aws/aws-cdk)
 -   [TypeScript](https://www.typescriptlang.org/)
 -   [Yarn](https://yarnpkg.com/)
