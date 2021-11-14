@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import ModalWalletConnect from '../connect-to-a-wallet-modal';
-import { selectIsMetaMaskConnected } from '../../../../../redux/slices/metamask-connected-slice';
+import { selectIsMetaMaskConnected } from '../../../../redux/slices/metamask-connected-slice';
 import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({

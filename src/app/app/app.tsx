@@ -22,23 +22,17 @@ const App = () => {
 	const isMetaMaskInstalled = useSelector(selectIsMetaMaskInstalled);
 	const isMetaMaskConnected = useSelector(selectIsMetaMaskConnected);
 
+	dispatch(fetchIsMetaMaskConnected());
+	dispatch(fetchIsMetaMaskInstalled());
 	console.log('App - metaMaskWallet', metaMaskWallet);
 	console.log('App - isMetaMaskInstalled', isMetaMaskInstalled);
 	console.log('App - isMetaMaskConnected', isMetaMaskConnected);
 
 	useEffect(() => {
-		if (!isMetaMaskInstalled) {
-			dispatch(fetchIsMetaMaskInstalled());
-		}
-
-		if (isMetaMaskInstalled && !isMetaMaskConnected) {
-			dispatch(fetchIsMetaMaskConnected());
-		}
-
 		if (isMetaMaskConnected) {
 			dispatch(fetchMetaMaskWallet());
 		}
-	}, [isMetaMaskInstalled, isMetaMaskConnected, dispatch]);
+	}, [isMetaMaskConnected, dispatch]);
 
 	return (
 		<>
