@@ -18,7 +18,7 @@
   </p>
   <br />
   <br />
-  <a href="https://github.com/DWC01/dapp-sandbox">View Demo</a>
+  <a href="https://dty0lhixvpa61.cloudfront.net/">View Demo</a>
   ·
   <a href="https://github.com/DWC01/dapp-sandbox/issues">Report Bug</a>
   ·
