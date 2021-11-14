@@ -29,8 +29,6 @@ const LayoutAppHome = ({ children }: Props) => {
 	const classes = useStyles();
 	const isMetaMaskConnected = useSelector(selectIsMetaMaskConnected);
 
-	console.log('Layout - Is metamask connected', isMetaMaskConnected);
-
 	const walletConnectComponent = isMetaMaskConnected ? (
 		<WalletConnectionStatus />
 	) : (
