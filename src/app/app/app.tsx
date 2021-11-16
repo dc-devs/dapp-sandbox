@@ -1,45 +1,25 @@
 import { useEffect } from 'react';
 import AppHome from '../screens/app-home';
-import { useSelector, useDispatch } from 'react-redux';
-import LayoutAppHome from '../layouts/layout-app-home';
 import { Route, Switch } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import LayoutAppHome from '../layouts/layout-app-home';
 import {
 	fetchMetaMaskWallet,
+	selectMetaMaskWalletStatus,
+	selectMetaMaskWallet,
 } from '../../redux/slices/metamask-slice';
-import {
-	selectIsMetaMaskConnected,
-	fetchIsMetaMaskConnected,
-} from '../../redux/slices/metamask-connected-slice';
-import {
-	selectIsMetaMaskInstalled,
-	fetchIsMetaMaskInstalled,
-} from '../../redux/slices/metamask-installed-slice';
 
 const App = () => {
 	const dispatch = useDispatch();
-	// const metaMaskWallet = useSelector(selectMetaMaskWallet);
-	const isMetaMaskInstalled = useSelector(selectIsMetaMaskInstalled);
-	const isMetaMaskConnected = useSelector(selectIsMetaMaskConnected);
-
-	dispatch(fetchIsMetaMaskConnected());
-
-	// console.log('App - metaMaskWallet', metaMaskWallet);
-	// console.log('App - isMetaMaskInstalled', isMetaMaskInstalled);
-	// console.log('App - isMetaMaskConnected', isMetaMaskConnected);
+	const metaMaskWallet = useSelector(selectMetaMaskWallet);
+	const metaMaskWalletStatus = useSelector(selectMetaMaskWalletStatus);
+	console.log('METAMASK', metaMaskWallet);
 
 	useEffect(() => {
-		if (isMetaMaskConnected) {
+		if (metaMaskWalletStatus === 'idle') {
 			dispatch(fetchMetaMaskWallet());
 		}
-
-		if (!isMetaMaskInstalled) {
-			dispatch(fetchIsMetaMaskInstalled());
-		}
-
-		if (isMetaMaskInstalled && !isMetaMaskConnected) {
-			dispatch(fetchIsMetaMaskConnected());
-		}
-	}, [isMetaMaskInstalled, isMetaMaskConnected, dispatch]);
+	}, [metaMaskWalletStatus, dispatch]);
 
 	return (
 		<>

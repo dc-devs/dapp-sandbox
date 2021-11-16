@@ -1,12 +1,14 @@
-import { makeStyles } from '@material-ui/core/styles';
+import Logo from '../logo';
+import { useSelector } from 'react-redux';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Container from '@material-ui/core/Container';
-import Logo from '../logo';
-import WalletConnectButton from '../../components/wallet-connect/connect-to-a-wallet-button';
+import { makeStyles } from '@material-ui/core/styles';
 import WalletConnectionStatus from '../../components/wallet-connection-status';
-import { useSelector } from 'react-redux';
-import { selectIsMetaMaskConnected } from '../../../redux/slices/metamask-connected-slice';
+import WalletConnectButton from '../../components/wallet-connect/connect-to-a-wallet-button';
+import {
+	selectMetaMaskWallet,
+} from '../../../redux/slices/metamask-slice';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -27,9 +29,9 @@ interface Props {
 
 const LayoutAppHome = ({ children }: Props) => {
 	const classes = useStyles();
-	const isMetaMaskConnected = useSelector(selectIsMetaMaskConnected);
+	const metaMaskWallet = useSelector(selectMetaMaskWallet);
 
-	const walletConnectComponent = isMetaMaskConnected ? (
+	const walletConnectComponent = metaMaskWallet.isConnected ? (
 		<WalletConnectionStatus />
 	) : (
 		<WalletConnectButton />

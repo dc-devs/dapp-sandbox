@@ -6,13 +6,21 @@ const getMetaMaskWallet = async () => {
 		mustBeMetaMask: true,
 	});
 
-	if (provider && provider.selectedAddress) {
+	const isInstalled = !!provider;
+
+	const isConnected = isInstalled && !!provider.selectedAddress;
+
+	if (isConnected) {
 		await provider.request({
 			method: 'eth_requestAccounts',
 		});
 	}
 
-	return { selectedAddress: provider.selectedAddress };
+	return {
+		isInstalled,
+		isConnected,
+		selectedAddress: provider.selectedAddress,
+	};
 };
 
 export default getMetaMaskWallet;

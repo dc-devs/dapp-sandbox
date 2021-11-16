@@ -2,6 +2,8 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import getMetaMaskWallet from '../../services/metamask/get-metamask-wallet';
 
 interface Wallet {
+	isConnected: boolean;
+	isInstalled: boolean;
 	selectedAddress: string;
 }
 
@@ -29,7 +31,11 @@ export const metaMaskSlice = createSlice({
 	initialState: {
 		error: null,
 		status: 'idle',
-		wallet: { selectedAddress: null },
+		wallet: {
+			isConnected: false,
+			isInstalled: false,
+			selectedAddress: null,
+		},
 	},
 	reducers: {
 		updateMetaMaskWallet: (state, { payload }) => {
@@ -64,7 +70,19 @@ const selectMetaMaskWallet = (state: State) => {
 	return state.metaMask.wallet;
 };
 
-export { selectMetaMaskWallet };
+const selectMetaMaskWalletStatus = (state: State) => {
+	return state.metaMask.status;
+};
+
+const selectMetaMaskWalletError = (state: State) => {
+	return state.metaMask.error;
+};
+
+export {
+	selectMetaMaskWallet,
+	selectMetaMaskWalletError,
+	selectMetaMaskWalletStatus,
+};
 
 // Export Reducer
 // ------------------

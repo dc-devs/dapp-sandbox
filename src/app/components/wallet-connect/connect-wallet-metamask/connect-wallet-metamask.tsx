@@ -1,12 +1,12 @@
 import { ethers } from 'ethers';
 import { SyntheticEvent } from 'react';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import ConnectWalletBase from '../connect-wallet-base';
 import detectEthereumProvider from '@metamask/detect-provider';
-import { updateMetaMaskWallet } from '../../../../redux/slices/metamask-slice';
-import { updateIsMetaMaskConnected } from '../../../../redux/slices/metamask-connected-slice';
-import { selectIsMetaMaskInstalled } from '../../../../redux/slices/metamask-installed-slice';
+import {
+	selectMetaMaskWallet,
+	updateMetaMaskWallet,
+} from '../../../../redux/slices/metamask-slice';
 
 interface Props {
 	imgSrc: string;
@@ -22,40 +22,43 @@ const ConnectWalletMetaMask = ({
 	walletInstruction,
 }: Props) => {
 	const dispatch = useDispatch();
-	const isWalletInstalled = useSelector(selectIsMetaMaskInstalled);
-	const displayWalletInstallUrl = !isWalletInstalled;
-	console.log('connectWallet - isWalletInstalled', isWalletInstalled);
+	const metaMaskWallet = useSelector(selectMetaMaskWallet);
+	const displayWalletInstallUrl = !metaMaskWallet.isInstalled;
 
 	const connectWallet = async (event: SyntheticEvent) => {
-		if (isWalletInstalled) {
-			event.preventDefault();
-			event.stopPropagation();
-		}
-		const ethereum = window.ethereum;
+		try {
+			if (metaMaskWallet.isInstalled) {
+				event.preventDefault();
+				event.stopPropagation();
+			}
+			const ethereum = window.ethereum;
 
-		if (ethereum) {
-			const metaMaskProvider: any = await detectEthereumProvider({
-				mustBeMetaMask: true,
-				silent: true,
-			});
-
-			if (metaMaskProvider) {
-				const { provider } = new ethers.providers.Web3Provider(
-					ethereum
-				) as any;
-
-				await provider.request({
-					method: 'eth_requestAccounts',
+			if (ethereum) {
+				const metaMaskProvider: any = await detectEthereumProvider({
+					mustBeMetaMask: true,
+					silent: true,
 				});
 
-				dispatch(
-					updateMetaMaskWallet({
-						selectedAddress: provider.selectedAddress,
-					})
-				);
+				if (metaMaskProvider) {
+					const { provider } = new ethers.providers.Web3Provider(
+						ethereum
+					) as any;
 
-				dispatch(updateIsMetaMaskConnected(true));
+					await provider.request({
+						method: 'eth_requestAccounts',
+					});
+
+					dispatch(
+						updateMetaMaskWallet({
+							isInstalled: true,
+							isConnected: true,
+							selectedAddress: provider.selectedAddress,
+						})
+					);
+				}
 			}
+		} catch (error) {
+			console.error(error);
 		}
 	};
 
