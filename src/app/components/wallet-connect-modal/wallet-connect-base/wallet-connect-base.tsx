@@ -47,7 +47,7 @@ interface Props {
 	displayWalletInstallUrl: boolean;
 }
 
-const ConnectWalletBase = ({
+const WalletConnectBase = ({
 	imgSrc,
 	walletName,
 	connectWallet,
@@ -97,4 +97,4 @@ const ConnectWalletBase = ({
 	);
 };
 
-export default ConnectWalletBase;
+export default WalletConnectBase;

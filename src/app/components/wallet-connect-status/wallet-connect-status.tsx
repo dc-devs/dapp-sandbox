@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const WalletConnectionStatus = () => {
+const WalletConnectStatus = () => {
 	const classes = useStyles();
 	const metaMaskWallet = useSelector(selectMetaMaskWallet);
 	const { selectedAddress } = metaMaskWallet;
@@ -38,4 +38,4 @@ const WalletConnectionStatus = () => {
 	);
 };
 
-export default WalletConnectionStatus;
+export default WalletConnectStatus;

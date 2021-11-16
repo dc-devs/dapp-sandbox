@@ -1,5 +1,5 @@
 import { SyntheticEvent } from 'react';
-import ConnectWalletBase from '../connect-wallet-base';
+import WalletConnectBase from '../wallet-connect-base';
 
 interface Props {
 	imgSrc: string;
@@ -8,7 +8,7 @@ interface Props {
 	walletInstruction: string;
 }
 
-const ConnectWalletGeneric = ({
+const WalletConnectGeneric = ({
 	imgSrc,
 	walletName,
 	walletInstallUrl,
@@ -22,7 +22,7 @@ const ConnectWalletGeneric = ({
 	};
 
 	return (
-		<ConnectWalletBase
+		<WalletConnectBase
 			imgSrc={imgSrc}
 			walletName={walletName}
 			connectWallet={connectWallet}
@@ -33,4 +33,4 @@ const ConnectWalletGeneric = ({
 	);
 };
 
-export default ConnectWalletGeneric;
+export default WalletConnectGeneric;

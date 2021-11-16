@@ -1,7 +1,7 @@
 import { ethers } from 'ethers';
 import { SyntheticEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import ConnectWalletBase from '../connect-wallet-base';
+import WalletConnectBase from '../wallet-connect-base';
 import detectEthereumProvider from '@metamask/detect-provider';
 import {
 	selectMetaMaskWallet,
@@ -15,7 +15,7 @@ interface Props {
 	walletInstruction: string;
 }
 
-const ConnectWalletMetaMask = ({
+const WalletConnectMetaMask = ({
 	imgSrc,
 	walletName,
 	walletInstallUrl,
@@ -63,7 +63,7 @@ const ConnectWalletMetaMask = ({
 	};
 
 	return (
-		<ConnectWalletBase
+		<WalletConnectBase
 			imgSrc={imgSrc}
 			walletName={walletName}
 			connectWallet={connectWallet}
@@ -74,4 +74,4 @@ const ConnectWalletMetaMask = ({
 	);
 };
 
-export default ConnectWalletMetaMask;
+export default WalletConnectMetaMask;
