@@ -9,7 +9,11 @@ interface Permission {
 	parentCapability: string;
 }
 
-const getMetaMaskWallet = async () => {
+interface Props {
+	requestPermission?: boolean;
+}
+
+const getMetaMaskWallet = async ({ requestPermission }: Props) => {
 	let isInstalled = false;
 	let isConnected = false;
 	let selectedAddress = '';
@@ -21,6 +25,12 @@ const getMetaMaskWallet = async () => {
 	});
 
 	isInstalled = !!provider;
+
+	if (isInstalled && requestPermission) {
+		await provider.request({
+			method: 'eth_requestAccounts',
+		});
+	}
 
 	const permissions: Permission[] = await provider.request({
 		method: 'wallet_getPermissions',

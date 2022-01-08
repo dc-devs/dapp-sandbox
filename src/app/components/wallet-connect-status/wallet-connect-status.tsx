@@ -5,17 +5,23 @@ import { shortenWalletAddress } from '../../../utils';
 import { selectMetaMaskWallet } from '../../../redux/slices/metamask-slice';
 
 const useStyles = makeStyles((theme) => ({
+	walletConnectContainer: {
+		display: 'flex',
+		flexDirection: 'row',
+		alignItems: 'center',
+		backgroundColor: 'rgb(247, 248, 250)',
+		borderRadius: '12px',
+		border: '1px solid #ccc',
+		color: theme.palette.text.primary,
+	},
 	walletEthAmountcontainer: {
-		border: `1px solid rgb(110, 114, 125)`,
-		borderRadius: '10px',
-		padding: '.2rem .4rem',
-		color: 'rgb(110, 114, 125)',
+		padding: '.4rem .8rem',
 	},
 	walletAddressContainer: {
-		border: `1px solid rgb(110, 114, 125)`,
-		borderRadius: '10px',
-		padding: '.2rem .4rem',
-		color: 'rgb(110, 114, 125)',
+		padding: '.4rem .8rem',
+		borderRadius: '12px',
+		color: theme.palette.text.primary,
+		backgroundColor: 'white',
 	},
 }));
 
@@ -26,14 +32,14 @@ const WalletConnectStatus = () => {
 	const abreviatedWalletAddress = shortenWalletAddress(selectedAddress);
 
 	return (
-		<>
+		<div className={classes.walletConnectContainer}>
 			<div className={classes.walletEthAmountcontainer}>
 				<Typography>{balance} ETH</Typography>
 			</div>
 			<div className={classes.walletAddressContainer}>
 				<Typography>{abreviatedWalletAddress}</Typography>
 			</div>
-		</>
+		</div>
 	);
 };
 

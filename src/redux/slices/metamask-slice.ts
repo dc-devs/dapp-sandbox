@@ -23,7 +23,7 @@ interface State {
 export const fetchMetaMaskWallet = createAsyncThunk(
 	'metaMask/fetchMetaMaskWallet',
 	async () => {
-		return await getMetaMaskWallet();
+		return await getMetaMaskWallet({});
 	}
 );
 
@@ -36,7 +36,7 @@ export const metaMaskSlice = createSlice({
 			isConnected: false,
 			isInstalled: false,
 			selectedAddress: '',
-			balance: ''
+			balance: '',
 		},
 	},
 	reducers: {

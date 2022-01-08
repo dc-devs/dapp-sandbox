@@ -1,8 +1,8 @@
-import { ethers } from 'ethers';
 import { SyntheticEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import WalletConnectBase from '../wallet-connect-base';
 import detectEthereumProvider from '@metamask/detect-provider';
+import { getMetaMaskWallet } from '../../../../services/metamask';
 import {
 	selectMetaMaskWallet,
 	updateMetaMaskWallet,
@@ -40,21 +40,11 @@ const WalletConnectMetaMask = ({
 				});
 
 				if (metaMaskProvider) {
-					const { provider } = new ethers.providers.Web3Provider(
-						ethereum
-					) as any;
-
-					await provider.request({
-						method: 'eth_requestAccounts',
+					const wallet = await getMetaMaskWallet({
+						requestPermission: true,
 					});
 
-					dispatch(
-						updateMetaMaskWallet({
-							isInstalled: true,
-							isConnected: true,
-							selectedAddress: provider.selectedAddress,
-						})
-					);
+					dispatch(updateMetaMaskWallet(wallet));
 				}
 			}
 		} catch (error) {
