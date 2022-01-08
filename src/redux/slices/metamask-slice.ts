@@ -34,7 +34,7 @@ export const metaMaskSlice = createSlice({
 		wallet: {
 			isConnected: false,
 			isInstalled: false,
-			selectedAddress: null,
+			selectedAddress: '',
 		},
 	},
 	reducers: {

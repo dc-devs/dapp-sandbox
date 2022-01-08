@@ -23,9 +23,13 @@ const WalletConnect = () => {
 		metaMaskWalletStatus !== 'succeeded' ? (
 			<div /> // Still Loading..
 		) : metaMaskWallet.isConnected ? (
-			<WalletConnectStatus />
+			<>
+				<WalletConnectStatus />
+			</>
 		) : (
-			<WalletConnectButton />
+			<>
+				<WalletConnectButton />
+			</>
 		);
 
 	return walletConnectComponent;
