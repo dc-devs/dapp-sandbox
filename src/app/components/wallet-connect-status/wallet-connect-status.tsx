@@ -22,15 +22,14 @@ const useStyles = makeStyles((theme) => ({
 const WalletConnectStatus = () => {
 	const classes = useStyles();
 	const metaMaskWallet = useSelector(selectMetaMaskWallet);
-	const { selectedAddress } = metaMaskWallet;
+	const { selectedAddress, balance } = metaMaskWallet;
 	const abreviatedWalletAddress = shortenWalletAddress(selectedAddress);
-	// const walletEthAmount = '1.08 ETH';
 
 	return (
 		<>
-			{/* <div className={classes.walletEthAmountcontainer}>
-				<Typography>{walletEthAmount}</Typography>
-			</div> */}
+			<div className={classes.walletEthAmountcontainer}>
+				<Typography>{balance} ETH</Typography>
+			</div>
 			<div className={classes.walletAddressContainer}>
 				<Typography>{abreviatedWalletAddress}</Typography>
 			</div>

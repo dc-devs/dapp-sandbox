@@ -1,5 +1,6 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import detectEthereumProvider from '@metamask/detect-provider';
+import { ethers } from 'ethers';
+import numeral from 'numeral';
 
 interface Permission {
 	date: number;
@@ -12,6 +13,7 @@ const getMetaMaskWallet = async () => {
 	let isInstalled = false;
 	let isConnected = false;
 	let selectedAddress = '';
+	let balance = '';
 
 	const provider: any = await detectEthereumProvider({
 		silent: true,
@@ -28,16 +30,28 @@ const getMetaMaskWallet = async () => {
 
 	if (isConnected) {
 		const accounts: string[] = await provider.request({
-			method: 'eth_requestAccounts',
+			method: 'eth_accounts',
 		});
 
 		selectedAddress = accounts[0] || '';
+
+		if (selectedAddress) {
+			const balanceHex = await provider.request({
+				method: 'eth_getBalance',
+				params: [selectedAddress, 'latest'],
+			});
+
+			balance = ethers.BigNumber.from(balanceHex).toString();
+			balance = ethers.utils.formatEther(balance);
+			balance = numeral(balance).format('0,0.0000');
+		}
 	}
 
 	return {
 		isInstalled,
 		isConnected,
 		selectedAddress,
+		balance,
 	};
 };
 

@@ -5,6 +5,7 @@ interface Wallet {
 	isConnected: boolean;
 	isInstalled: boolean;
 	selectedAddress: string;
+	balance: string;
 }
 
 interface MetaMask {
@@ -35,6 +36,7 @@ export const metaMaskSlice = createSlice({
 			isConnected: false,
 			isInstalled: false,
 			selectedAddress: '',
+			balance: ''
 		},
 	},
 	reducers: {
